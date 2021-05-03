@@ -1486,4 +1486,3 @@ section {
 .btn-apple:before{content:"";background-image:url(../img/app.PNG);background-size:cover;background-repeat:no-repeat;width:30px;height:30px;position:absolute;left:6px;top:50%;margin-top:-15px}
 .btn-apple:after{content:"GET IT ON";position:absolute;top:5px;left:40px;font-size:10px;font-weight:400;}
 
-
