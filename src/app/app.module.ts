@@ -12,6 +12,8 @@ import { RegistroProveedorComponent } from './components/registro-proveedor/regi
 //importar las rutas
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './components/login/login.component';
+//formularios
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { LoginComponent } from './components/login/login.component';
     BrowserModule,
     HttpClientModule,
     //para las rutas
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

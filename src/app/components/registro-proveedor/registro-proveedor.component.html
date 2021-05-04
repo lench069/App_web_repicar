@@ -3,53 +3,110 @@
         <div class="signup-content">
             <div class="signup-form" data-aos="fade-right">
                 <h2 class="form-title">Registrarse</h2>
-                <form method="POST" class="register-form" id="register-form">
+                <form  autocomplete="off" [formGroup]="forma" (ngSubmit)="Guardar()">
                     <div class="form-group">
-                        <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                        <input type="text" name="name" id="name" placeholder="Nombres y apellidos"/>
+                        <label for="nombres"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                        <input class="form-control"
+                        type="text"
+                        placeholder="Nombres y apellidos"
+                        formControlName="nombres"
+                        [class.is-invalid]="nombreNoValido">
+                        <small *ngIf="nombreNoValido" class="text-danger">
+                        Ingrese 5 letras
+                        </small>
                     </div>
                     <div class="form-group">
-                        <label for="name"><i class="zmdi zmdi-account-box"></i></label>
-                        <input type="text" name="name" id="name" placeholder="Cedula o pasaporte"/>
+                        <label for="ci_pass"><i class="zmdi zmdi-account-box"></i></label>
+                        <input class="form-control"
+                                type="text"
+                                placeholder="Cedula o pasaporte"
+                                formControlName="ci_pass"
+                                [class.is-invalid]="cedulaNoValido">
+                        <small *ngIf="cedulaNoValido" class="text-danger">
+                                Ingrese una cedula o posaporte
+                        </small>
                     </div>
                     <div class="form-group">
-                        <label for="name"><i class="zmdi zmdi-phone"></i></label>
-                        <input type="text" name="name" id="name" placeholder="Telefono o celular"/>
+                        <label for="telefono"><i class="zmdi zmdi-phone"></i></label>
+                        <input class="form-control"
+                        type="text"
+                        placeholder="Telefono"
+                        formControlName="telefono"
+                        [class.is-invalid]="telefonoNoValido">
+                        <small *ngIf="telefonoNoValido" class="text-danger">
+                                Ingrese un telefono
+                        </small>
                     </div>
                     <div class="form-group">
-                        <label for="email"><i class="zmdi zmdi-email"></i></label>
-                        <input type="email" name="email" id="email" placeholder="Email"/>
+                        <label for="correo"><i class="zmdi zmdi-email"></i></label>
+                        <input class="form-control"
+                        type="email"
+                        placeholder="Correo electrónico"
+                        formControlName="correo"
+                        [class.is-invalid]="correoNoValido">
+                        <small *ngIf="correoNoValido" class="text-danger">
+                                Ingrese el correo
+                        </small>
                     </div>
                     <div class="form-group">
-                        <label for="email"><i class="zmdi zmdi-store"></i></label>
-                        <input type="email" name="email" id="email" placeholder="Nombre del local"/>
+                        <label for="nombre_local"><i class="zmdi zmdi-store"></i></label>
+                        <input class="form-control"
+                        type="text"
+                        placeholder="Nombre de local"
+                        formControlName="nombre_local"
+                        [class.is-invalid]="nombre_localNoValido">
+                        <small *ngIf="nombre_localNoValido" class="text-danger">
+                                Ingrese el nombre de un local
+                        </small>
                     </div>
                     <div class="form-group">
-                        <label for="email"><i class="zmdi zmdi-city"></i></label>
-                        <input type="email" name="email" id="email" placeholder="Ciudad"/>
+                        <label for="ciudad"><i class="zmdi zmdi-city"></i></label>
+                        <input class="form-control"
+                        type="text"
+                        placeholder="Ciudad"
+                        formControlName="ciudad"
+                        [class.is-invalid]="ciudadNoValido">
+                        <small *ngIf="ciudadNoValido" class="text-danger">
+                                Ingrese una ciudad
+                        </small>
                     </div>
                     <div class="form-group">
-                        <label for="email"><i class="zmdi zmdi-gps-dot"></i></label>
-                        <input type="email" name="email" id="email" placeholder="Direccion"/>
+                        <label for="direccion"><i class="zmdi zmdi-gps-dot"></i></label>
+                        <input class="form-control"
+                        type="text"
+                        placeholder="Direccion"
+                        formControlName="direccion"
+                        [class.is-invalid]="direccionNoValido">
+                        <small *ngIf="direccionNoValido" class="text-danger">
+                                Ingrese una direccion
+                        </small>
                     </div>
                     <div class="form-group">
-                        <label for="email"><i class="zmdi zmdi-gps-dot"></i></label>
-                        <input type="email" name="email" id="email" placeholder="Sector"/>
+                        <label for="sector"><i class="zmdi zmdi-gps-dot"></i></label>
+                        <input class="form-control"
+                        type="text"
+                        placeholder="Sector"
+                        formControlName="sector"
+                        [class.is-invalid]="sectorNoValido">
+                        <small *ngIf="sectorNoValido" class="text-danger">
+                            Ingrese un sector
+                    </small>
                     </div>
                     <div class="form-group">
-                        <label for="pass"><i class="zmdi zmdi-lock"></i></label>
-                        <input type="password" name="pass" id="pass" placeholder="Contraseña"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
-                        <input type="password" name="re_pass" id="re_pass" placeholder="Repita su contraseña"/>
+                        <label for="contrasenia"><i class="zmdi zmdi-lock"></i></label>
+                        <input type="password" placeholder="Contraseña"
+                        formControlName="contrasenia"
+                        [class.is-invalid]="contraseniaNoValido">
+                        <small *ngIf="contraseniaNoValido" class="text-danger">
+                            Ingrese una contraseña
+                    </small>
                     </div>
                     <div class="form-group">
                         <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
                         <label for="agree-term" class="label-agree-term"><span><span></span></span>Acepto todas las declaraciones en los <a href="#" class="term-service">Términos de servicio</a></label>
                     </div>
                     <div class="form-group form-button">
-                        <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                        <input type="submit" name="signup" id="signup"  class="form-submit" value="Registrar"/>
                     </div>
                 </form>
             </div>
