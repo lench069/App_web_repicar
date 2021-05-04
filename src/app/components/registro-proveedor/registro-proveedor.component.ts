@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ServiciosService } from 'src/app/services/servicios.service';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { ToastNoAnimationModule, ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -13,9 +14,11 @@ export class RegistroProveedorComponent implements OnInit {  forma: FormGroup;
 
 
   constructor( private fb: FormBuilder,
-               private servicio: ServiciosService ) { 
+               private servicio: ServiciosService,
+               private toastr:ToastrService ) { 
 
     this.crearFormulario();
+    
  
  
 
@@ -73,6 +76,14 @@ export class RegistroProveedorComponent implements OnInit {  forma: FormGroup;
 
   }
 
+
+  toast() {
+    console.log('toast');
+    this.toastr.success('Exito!', 'EL proveedor se registro corectamente');
+  }
+    
+  
+
  
 
 
@@ -104,10 +115,13 @@ export class RegistroProveedorComponent implements OnInit {  forma: FormGroup;
         sector: this.forma.value.sector,
         contrasenia: this.forma.value.contrasenia
       }).subscribe((data:any)=>{
-          console.log('se registro');
+          this.toastr.success('Exito!', 'EL proveedor se registro corectamente');
+          this.forma.reset({
+            
+          });
 
       },(error:any)=>{
-          
+        this.toastr.error('Error!', 'No se pudo realizar la peticion, compruebe su conexion a internet');
       });
     }
 

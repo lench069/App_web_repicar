@@ -14,7 +14,7 @@ export class ServiciosService {
   private URL_API: string = 'http://192.168.100.19/api_repicar/'; 
 
   constructor(private router: Router,
-    private http: HttpClient,
+    private http: HttpClient
    ) { }
 
   irA (url:string)
@@ -22,6 +22,7 @@ export class ServiciosService {
     this.router.navigateByUrl(url);
   }
 
+ 
   //***********************PROVEEDORES INICIO******************************************/
   Proveedor_Guardar(data:any) {
     return this.http.post(
