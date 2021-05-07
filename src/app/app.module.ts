@@ -17,6 +17,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 //se usa para los toast
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DashboardProveedorComponent } from './components/dashboard-proveedor/dashboard-proveedor.component';
+import { HeaderProveedorComponent } from './components/header-proveedor/header-proveedor.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ContenidoComponent,
     FooterComponent,
     RegistroProveedorComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardProveedorComponent,
+    HeaderProveedorComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
-
+  public activaMenu:boolean=true;
+  public activaMenuP:boolean=false;
 }
 

@@ -40,6 +40,26 @@ export class ServiciosService {
       }) 
       );
   };
+
+      //***********************Login******************************************/
+      Login(data:any) {
+        console.log(data);
+        return this.http.post(
+          this.URL_API + 'login-proveedor', 
+          this.objectToFormData({
+            ci_ruc: data.ci_ruc,
+            contrasenia: data.contrasenia,
+          }) 
+          );
+      }
+
+      //*************************PEDIDOS **********************************/
+      Pedidos_Nuevos_Listado(data:any) {
+        return this.http.post(
+          this.URL_API + 'listar-pedidos-nuevos', 
+          this.objectToFormData({id_proveedor: data.id_proveedor})
+          );
+      }
   
    //esta funcion es usada para formatear los parametros.
    objectToFormData(obj: any, form?: any, namespace?: any) {

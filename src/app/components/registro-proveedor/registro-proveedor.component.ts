@@ -10,8 +10,9 @@ import { ToastNoAnimationModule, ToastrService } from 'ngx-toastr';
   templateUrl: './registro-proveedor.component.html',
   styleUrls: ['/src/assets/login_registro/css/style.css']
 })
-export class RegistroProveedorComponent implements OnInit {  forma: FormGroup;
-
+export class RegistroProveedorComponent implements OnInit {  
+  
+  forma: FormGroup;
 
   constructor( private fb: FormBuilder,
                private servicio: ServiciosService,
