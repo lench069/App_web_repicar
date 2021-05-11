@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
         console.log(data);
         if(data.mensaje == 'true'){
          // this.storage.set('session_storage', data.info.item);
-          this.servicio.irA('/dashboard_proveedor')
+          this.servicio.irA('/dashboard_proveedor');
           console.log('Ingrese');
 
         }else{
