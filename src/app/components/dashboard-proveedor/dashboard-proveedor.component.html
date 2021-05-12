@@ -40,8 +40,8 @@
                                                 </div><!-- ./row -->
                   <div >
                                                     <div class="widget-main padding-8 " class="scrollbar" id="style-1">
-                                                        <div id="profile-feed-1" class="profile-feed" class="widget-body"  >
-                                                            <div class="profile-activity clearfix"  *ngFor="let pedido of pedidos_nuevos" (click)="verPedido(pedido)" >
+                                                        <div id="profile-feed-1" class="profile-feed" class="widget-body"  *ngFor="let item of pedidos_nuevos">
+                                                            <div class="profile-activity clearfix"  *ngFor="let pedido of item.pedidos" (click)="verPedido(item)" >
 
                                                                 <h5>{{pedido.FECHA_INI}}</h5>
                                                                 <div >
@@ -78,62 +78,58 @@
 
                                             <div class="widget-body">
                                                 <div class="well">
-                                                    Bomba de agua, modelo cahsgdhafa made in brasil.
+                                                    {{descripcion}}
                                                 </div>
                                                 
 
-                                                <div>
-                                                    <ul class="ace-thumbnails clearfix">
+                                                <div class="row">
+                                                    <div class="col-md-2"></div>
+                                                    <div class="col-md-10">
+                                                        <ul class="ace-thumbnails clearfix">
 
-                                                        <li>
-                                                            <a href="assets/dashboard/images/gallery/image-2.jpg" data-rel="colorbox">
-                                                                <img width="130" height="130" alt="130x130" src="assets/dashboard/images/gallery/thumb-2.jpg" />
-                                                            </a>
-                                                        </li>  
-                                                        <li>
-                                                            <a href="assets/dashboard/images/gallery/image-2.jpg" data-rel="colorbox">
-                                                                <img width="130" height="130" alt="130x130" src="assets/dashboard/images/gallery/thumb-2.jpg" />
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="assets/dashboard/images/gallery/image-2.jpg" data-rel="colorbox">
-                                                                <img width="130" height="130" alt="130x130" src="assets/dashboard/images/gallery/thumb-2.jpg" />
-                                                            </a>
-                                                        </li>            
-                
-                                                    </ul>
+                                                            <li *ngFor="let item of fotos">
+                                                                <a href="{{item.IMAGEN}}" data-rel="colorbox">
+                                                                    <img width="130" height="130" alt="130x130" src="{{item.IMAGEN}}" />
+                                                                </a>
+                                                            </li>       
+                    
+                                                        </ul>
+                                                    </div>
+                                                   
                                                 </div>
                                                 <br>
                                                 <div class="well">
                                                     <div class="row">
-                                                        <div class="col-md-8">
+                                                        <div class="col-md-3"></div>
+                                                        <div class="col-md-5 ">
                                                             <div class="input-group mb-3">
                                                                 <span class="input-group-text" id="original">_Original : </span>
-                                                                <input type="number" class="form-control" placeholder="Precio" aria-label="Username" aria-describedby="original">
+                                                                <input type="number" class="form-control"  placeholder="Precio" [(ngModel)]="p_original" aria-label="original" aria-describedby="original">
                                                                 <span class="input-group-text">$</span>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-1"></div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-1">
                                                             <label>Factura
-                                                                <input name="switch-field-1" class="ace ace-switch" type="checkbox" />
+                                                                <input name="switch-field-1" class="ace ace-switch" type="checkbox" [(ngModel)]="chfactura" [value]="chfactura"/>
                                                                 <span class="lbl"></span>
                                                             </label>
                                                         </div>
 
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-8">
+                                                        <div class="col-md-3"></div>
+                                                        <div class="col-md-5">
                                                             <div class="input-group mb-3">
                                                                 <span class="input-group-text" id="generico">Generico:</span>
-                                                                <input type="number" class="form-control" placeholder="Precio" aria-label="Username" aria-describedby="generico">
+                                                                <input type="number" class="form-control" placeholder="Precio" [(ngModel)]="p_generico" aria-label="Username" aria-describedby="generico">
                                                                 <span class="input-group-text">$</span>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-1"></div>
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-1">
                                                             <label>Envio
-                                                                <input name="switch-field-1" class="ace ace-switch" type="checkbox" />
+                                                                <input name="switch-field-1" class="ace ace-switch" type="checkbox"  [(ngModel)]="chenvio" [value]="chenvio"/>
                                                                 <span class="lbl"></span>
                                                             </label>
                                                         </div>
@@ -145,7 +141,7 @@
 
                                                 <div class="widget-main">
                                                     <p style="text-align: center;">
-                                                        <button id="loading-btn" type="button" class="btn btn-success" data-loading-text="Loading...">Cotizar</button>
+                                                        <button id="loading-btn" type="button" class="btn btn-success" data-loading-text="Loading..." (click)="cotizar()">Cotizar</button>
                                                     </p>
                                                 </div>
                                                 

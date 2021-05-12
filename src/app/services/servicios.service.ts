@@ -60,6 +60,21 @@ export class ServiciosService {
           this.objectToFormData({id_proveedor: data.id_proveedor})
           );
       }
+
+      //**************************PROPUESTA */
+      Proveedor_Cotiza_Propuesta(data:any) {
+        return this.http.post(
+          this.URL_API + 'cotizar-propuesta/'+data.id_propuesta, 
+          this.objectToFormData({
+            estado: data.estado,
+            p_original: data.p_original,
+            p_generico:data.p_generico,
+            factura:data.factura,
+            envio:data.envio
+    
+          }) 
+          );
+      };
   
    //esta funcion es usada para formatear los parametros.
    objectToFormData(obj: any, form?: any, namespace?: any) {

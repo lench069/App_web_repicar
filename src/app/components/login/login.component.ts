@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   crearFormulario() {
 
     this.forma = this.fb.group({
-      ci_ruc: ['', [Validators.required, Validators.minLength(10) ] ],
+      ci_ruc: ['', [Validators.required, Validators.minLength(5) ] ],
       contrasenia: ['', [Validators.required ] ]
     });
 
@@ -62,6 +62,8 @@ export class LoginComponent implements OnInit {
         console.log(data);
         if(data.mensaje == 'true'){
          // this.storage.set('session_storage', data.info.item);
+         localStorage.setItem('proveedor_id',this.forma.value.ci_ruc);
+         this.toastr.success('Ingreso exitoso!', 'Bienvenido');
           this.servicio.irA('/dashboard_proveedor');
           console.log('Ingrese');
 
