@@ -15,6 +15,7 @@ import * as elements from 'src/assets/dashboard/js/ace-elements.min.js';
 export class DashboardProveedorComponent implements OnInit {
 
 public pedidos_nuevos:any=[];
+public pedidos_enviados:any=[];
 public proveedor_id:string='';
 public descripcion:string='';
 public fotos:string[]=[];
@@ -36,6 +37,7 @@ stiloos = "height: '250px',mouseWheelLock: true,alwaysVisible : true";
     this.proveedor_id = localStorage.getItem('proveedor_id');
       console.log(this.proveedor_id);
       this.Cargar_Pedidos_Nuevos(this.proveedor_id);
+      this.Cargar_Pedidos_Enviados(this.proveedor_id);
    
   }
 
@@ -65,6 +67,33 @@ stiloos = "height: '250px',mouseWheelLock: true,alwaysVisible : true";
       //this.servicio.irA('/inicio');
    })
  }
+
+ Cargar_Pedidos_Enviados(id:string) {
+
+  this.servicio.Pedidos_Enviados_Listado({
+     id_proveedor: id
+  }) // llamado al servicio
+  .subscribe((data:any)=>{   //promesa espera hasta que regrese la data aqui va cuando fue exitoso
+   console.log(data); 
+   if(data.length >= 1)
+   {
+     this.pedidos_enviados = data;
+     console.log();
+        
+   }else{
+     this.toastr.warning('Aun no tiene pedidos pendientes!', 'Bienvenido');
+     console.log('No existen registros');
+   }
+    
+
+  },(error:any)=>{ //sentencias cuando ocurrio un error
+
+     console.log('error');
+     this.toastr.warning(error+'!', 'Bienvenido');
+     //this.servicio.irA('/inicio');
+  })
+}
+
  verPedido(pedido)
  {
    this.descripcion = pedido.pedidos[0].DESCRIPCION;
@@ -87,6 +116,7 @@ stiloos = "height: '250px',mouseWheelLock: true,alwaysVisible : true";
       }).subscribe((data:any)=>{
         this.toastr.success('Propuesta enviada al cliente!', 'Exito');
         this.Cargar_Pedidos_Nuevos(this.proveedor_id);
+        this.Cargar_Pedidos_Enviados(this.proveedor_id);
         this.descripcion='';
         this.fotos=[];
         this.p_original=0;

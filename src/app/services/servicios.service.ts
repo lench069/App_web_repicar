@@ -60,6 +60,12 @@ export class ServiciosService {
           this.objectToFormData({id_proveedor: data.id_proveedor})
           );
       }
+      Pedidos_Enviados_Listado(data:any) {
+        return this.http.post(
+          this.URL_API + 'listar-pedidos-enviados', 
+          this.objectToFormData({id_proveedor: data.id_proveedor})
+          );
+      }
 
       //**************************PROPUESTA */
       Proveedor_Cotiza_Propuesta(data:any) {
