@@ -16,6 +16,7 @@ export class DashboardProveedorComponent implements OnInit {
 
 public pedidos_nuevos:any=[];
 public pedidos_enviados:any=[];
+public pedidos_aceptados:any=[];
 public proveedor_id:string='';
 public descripcion:string='';
 public fotos:string[]=[];
@@ -24,6 +25,7 @@ public p_generico:number=0;
 public id_propuesta:number=0;
 public chfactura:boolean= false;
 public chenvio:boolean=false;
+public numPedido:string='';
 
 
 stiloos = "height: '250px',mouseWheelLock: true,alwaysVisible : true";
@@ -38,6 +40,7 @@ stiloos = "height: '250px',mouseWheelLock: true,alwaysVisible : true";
       console.log(this.proveedor_id);
       this.Cargar_Pedidos_Nuevos(this.proveedor_id);
       this.Cargar_Pedidos_Enviados(this.proveedor_id);
+      this.Cargar_Pedidos_Aceptados(this.proveedor_id);
    
   }
 
@@ -94,6 +97,31 @@ stiloos = "height: '250px',mouseWheelLock: true,alwaysVisible : true";
   })
 }
 
+Cargar_Pedidos_Aceptados(id:string) {
+
+  this.servicio.Pedidos_Aceptados_Listado({
+     id_proveedor: id
+  }) // llamado al servicio
+  .subscribe((data:any)=>{   //promesa espera hasta que regrese la data aqui va cuando fue exitoso
+   console.log(data); 
+   if(data.length >= 1)
+   {
+     this.pedidos_aceptados = data;
+     
+        
+   }else{
+     this.toastr.warning('Aun no tiene pedidos aceptados!', 'Bienvenido');
+     console.log('No existen registros');
+   }
+    
+
+  },(error:any)=>{ //sentencias cuando ocurrio un error
+
+     this.toastr.warning(error+'!', 'Bienvenido');
+     //this.servicio.irA('/inicio');
+  })
+}
+
  verPedido(pedido)
  {
    this.descripcion = pedido.pedidos[0].DESCRIPCION;
@@ -129,11 +157,36 @@ stiloos = "height: '250px',mouseWheelLock: true,alwaysVisible : true";
       });
      }else{
         this.toastr.warning('Debe seleccionar un pedido de la bandeja de entrada!', 'Alerta');
-     }
+     }     
+ }
 
+ bucarNumPedido()
+ {
+   /*buscar pedido*/
+    if(this.numPedido == '')
+    {
+      this.toastr.warning('Debe ingresar un codigo de pedido!', 'Alerta');
+    }else if (this.numPedido.length < 10) {
+      this.toastr.warning('El codigo de pedido debe tener 10 caracteres!', 'Alerta');
+    }else if (this.numPedido.length == 10)
+    {
+      this.servicio.pedido_consultar({
+       numPedido:this.numPedido,
+       proveedor_id : this.proveedor_id,
+      estado:'Aceptado'})
+      .subscribe((data:any)=>{
+        console.log(data);
+        this.Cargar_Pedidos_Enviados(this.proveedor_id);
+      this.Cargar_Pedidos_Aceptados(this.proveedor_id);
+        
+    
+        
+      },(error:any)=>{
      
+         
 
-       
+      });
+    }
  }
 
 
