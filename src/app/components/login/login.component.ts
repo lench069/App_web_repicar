@@ -65,16 +65,13 @@ export class LoginComponent implements OnInit {
          localStorage.setItem('proveedor_id',this.forma.value.ci_ruc);
          this.toastr.success('Ingreso exitoso!', 'Bienvenido');
           this.servicio.irA('/dashboard_proveedor');
-          console.log('Ingrese');
-
         }else{
-          //this.servicio.Mensajes(data.mensaje, 'danger');
-          console.log('No ingrese');
+          this.toastr.warning('Usuario o contraseña incorrecta!', 'Warning');
         }
       },(error:any)=>{
      
-        // this.servicio.Mensajes('No se pudo realizar la peticion, compruebe su conexion a internet.','danger');
-        console.log('Error en la consulta');
+        this.toastr.error(error, 'Error');
+ 
       });
     }
     

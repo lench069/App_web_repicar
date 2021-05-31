@@ -38,10 +38,10 @@
                                                     </div>
                                                     
                                                 </div><!-- ./row -->
-                  <div >
+                                                 <div >
                                                     <div class="widget-main padding-8 " class="scrollbar" id="style-1">
-                                                        <div id="profile-feed-1" class="profile-feed" class="widget-body"  *ngFor="let item of pedidos_nuevos">
-                                                            <div class="profile-activity clearfix"  *ngFor="let pedido of item.pedidos" (click)="verPedido(item)" >
+                                                        <div id="profile-feed-1" class="profile-feed" class="widget-body"  *ngFor="let item of pedidos_nuevos" >
+                                                            <div class="profile-activity clearfix"  *ngFor="let pedido of item.pedidos" (click)="verPedido(item)">
 
                                                                 <h5>{{pedido.FECHA_INI}}</h5>
                                                                 <div >

@@ -58,7 +58,8 @@ stiloos = "height: '250px',mouseWheelLock: true,alwaysVisible : true";
      
         
     }else{
-      this.toastr.warning('Aun no tiene pedidos pendientes!', 'Bienvenido');
+      this.pedidos_nuevos = [];
+      this.toastr.warning('Aun no tiene nuevos pedidos!', 'Bienvenido');
       console.log('No existen registros');
     }
      
@@ -81,9 +82,10 @@ stiloos = "height: '250px',mouseWheelLock: true,alwaysVisible : true";
    if(data.length >= 1)
    {
      this.pedidos_enviados = data;
-     console.log();
+     console.log(this.pedidos_enviados);
         
    }else{
+    this.pedidos_enviados = [];
      this.toastr.warning('Aun no tiene pedidos pendientes!', 'Bienvenido');
      console.log('No existen registros');
    }
@@ -176,13 +178,14 @@ Cargar_Pedidos_Aceptados(id:string) {
       estado:'Aceptado'})
       .subscribe((data:any)=>{
         console.log(data);
+        this.numPedido ="";
         this.Cargar_Pedidos_Enviados(this.proveedor_id);
-      this.Cargar_Pedidos_Aceptados(this.proveedor_id);
+        this.Cargar_Pedidos_Aceptados(this.proveedor_id);
         
     
         
       },(error:any)=>{
-     
+        console.log('errorAceptar');
          
 
       });

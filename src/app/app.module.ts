@@ -40,7 +40,7 @@ import { HeaderProveedorComponent } from './components/header-proveedor/header-p
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({
-      timeOut: 2000,
+      timeOut: 20000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }), // ToastrModule added
