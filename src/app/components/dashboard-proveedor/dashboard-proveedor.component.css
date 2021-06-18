@@ -53,4 +53,9 @@
     #style-1::-webkit-scrollbar-thumb:active {
         background-color: #999999;
     }
+
+    .text-dangerProveedor {
+        color: #dc3545 !important;
+        font-size: 10px;
+      }
     

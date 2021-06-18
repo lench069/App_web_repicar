@@ -4,248 +4,360 @@
 <br>
 <br>
 
+<div class="main-container ace-save-state" id="dashboard">
+  <div class="main-content">
+    <div class="main-content-inner">
+      <div class="page-content">
+        <div class="page-header">
+          <h1>
+            Dashboard Proveedor
+            <small>
+              <i class="ace-icon fa fa-angle-double-right"></i>
+              Funcionalidades asociadas al proveedor
+            </small>
+          </h1>
+        </div><!-- /.page-header -->
+        <div class="row">
+          <div class="col-md-12">
+            <!-- PAGE CONTENT BEGINS -->
+            <div class="row">
+              <div class="col-md-3">
+                <div class="widget-box">
+                  <div class="widget-header">
+                    <h4 class="smaller">Bandeja entrada</h4>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-1">
 
-    <div class="main-container ace-save-state" id="dashboard">
-        <div class="main-content">
-            <div class="main-content-inner">
-                <div class="page-content">
-                    <div class="page-header">
-                        <h1>
-                            Dashboard Proveedor
-                            <small>
-                                <i class="ace-icon fa fa-angle-double-right"></i>
-                                Funcionalidades asociadas al proveedor
-                            </small>
-                        </h1>
-                    </div><!-- /.page-header -->
+                    </div>
+											<div class="col-md-5">
+													<label for="form-field-select-3">Tipo de auto</label>
+														<br />
+                            <select class="chosen-select form-control" id="form-field-select-3" data-placeholder="Selecciona...">
+                              <option value="">  </option>
+                              <option *ngFor="let tipoAuto of Tipo_vehiculos" value="tipoAuto.ID_TIPOV">{{tipoAuto.DESCRIPCION}}</option>
+                            </select>		
+													
+											</div>
+                      <div class="col-md-5">
+                        <label for="form-field-select-3">Marca</label>
+                          <br />
+                          <select class="chosen-select form-control" id="form-field-select-3" data-placeholder="Selecciona...">
+                            <option value="">  </option>
+                            <option value="WY">Wyoming</option>
+                            <option value="WY">A</option>
+                            <option value="WY">B</option>
+                            <option value="WY">C</option>
+                            <option value="WY">D</option>
+                          </select>
+                    </div>
+                  </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- PAGE CONTENT BEGINS -->
+                  <select [(ngModel)]="myModel" data-placeholder="Some Dropdown Value" id="my-dropdown"
+                    class="chosen-select" (change)="onChange($event.target.value)">
+                <option value=""></option>
+                <optgroup label="Group 1">
+                    <option *ngFor="let entry1 of Tipo_vehiculos" [ngValue]="entry1['id']"
+                            class="dropdown-item">
+                        {{entry1['name']}}
+                    </option>
+                </optgroup>
+                  <hr>
+                  <select class="form-select" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option ></option>
+                  </select>
+                  <hr>
+                  <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-10">
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Buscar termino"
+                          aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btnace btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
+                      </div>
+                    </div>
+                  </div><!-- ./row -->
+                  <hr>
+                  <div>
+                    <div class="widget-main padding-8 " class="scrollbar" id="style-1">
+                      <div id="profile-feed-1" class="profile-feed" class="widget-body"
+                        *ngFor="let item of pedidos_nuevos">
+                        <div class="profile-activity clearfix" *ngFor="let pedido of item.pedidos"
+                          (click)="verPedido(item)">
 
-                                <div class="row">
-                                    <div class="col-md-3">
-                                            <div class="widget-box">
-                                                <div class="widget-header">
-                                                    <h4 class="smaller">Bandeja entrada</h4>
-                                                </div>
-                                                <br>
-                                                <div class="row">
-                                                    <div class="col-md-10"><div class="input-group mb-3">
-                                                        <input type="text" class="form-control" placeholder="Buscar termino" aria-label="Recipient's username" aria-describedby="button-addon2">
-                                                        <button class="btnace btn-outline-secondary" type="button" id="button-addon2">Buscar</button>
-                                                      </div>
-                                                    </div>
-                                                    
-                                                </div><!-- ./row -->
-                                                 <div >
-                                                    <div class="widget-main padding-8 " class="scrollbar" id="style-1">
-                                                        <div id="profile-feed-1" class="profile-feed" class="widget-body"  *ngFor="let item of pedidos_nuevos" >
-                                                            <div class="profile-activity clearfix"  *ngFor="let pedido of item.pedidos" (click)="verPedido(item)">
+                          <h5>{{pedido.FECHA_INI}}</h5>
+                          <div>
+                            <h6 style="line-height: 30%;"><small><b>Ubicacion:</b> {{pedido.NOMBRE_PROVINCIA}},
+                                {{pedido.NOMBRE_CIUDAD}}</small></h6>
+                            <h6 style="line-height: 30%;"><small><b>Automovil:</b> {{pedido.MARCA}}, {{pedido.MODELO}},
+                                {{pedido.ANIO}}</small></h6>
+                            <h6 style="line-height: 30%;"><small><b>Respuesto:</b> {{pedido.DESCRIPCION}}</small></h6>
+                            <h6 style="line-height: 30%;"><small><b>Extras:</b> {{pedido.ORIGINAL}},
+                                {{pedido.GENERICO}}, {{pedido.FACTURA}}, {{pedido.SERVICIO_ENV}}</small></h6>
+                          </div>
 
-                                                                <h5>{{pedido.FECHA_INI}}</h5>
-                                                                <div >
-                                                                    <h6 style="line-height: 30%;"><small><b>Ubicacion:</b> {{pedido.NOMBRE_PROVINCIA}}, {{pedido.NOMBRE_CIUDAD}}</small></h6>
-                                                                    <h6 style="line-height: 30%;"><small><b>Automovil:</b> {{pedido.MARCA}}, {{pedido.MODELO}}, {{pedido.ANIO}}</small></h6>
-                                                                    <h6 style="line-height: 30%;"><small><b>Respuesto:</b> {{pedido.DESCRIPCION}}</small></h6>
-                                                                    <h6 style="line-height: 30%;"><small><b>Extras:</b> {{pedido.ORIGINAL}}, {{pedido.GENERICO}}, {{pedido.FACTURA}}, {{pedido.SERVICIO_ENV}}</small></h6>
-                                                                </div>
-  
-                                                                <div class="tools action-buttons">
-                                                                    <a href="#" class="blue">
-                                                                        <i class="ace-icon fa fa-pencil bigger-130"></i>
-                                                                    </a>
-            
-                                                                    <a href="#" class="red">
-                                                                        <i class="ace-icon fa fa-times bigger-130"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </div>                  
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                              
+                          <div class="tools action-buttons">
+                            <a href="#" class="red">
+                              <i class="ace-icon fa fa-times bigger-130"></i>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <h5 class="card-header">Detalles del pedido solicitado</h5>
+                  <div class="card-body">
+                    <div class="widget-body">
+                      <div *ngFor="let item of pedidoSeleccionado">
+                        <div class="row">
 
-                                            </div>
+                          <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="widget-box">
+                              <div class="widget-header">
+                                <h4 class="widget-title">Item 1</h4>
 
-                                            
+                                <div class="widget-toolbar">
+                                  <a href="#" data-action="collapse">
+                                    <i class="ace-icon fa fa-chevron-up"></i>
+                                  </a>
+                                </div>
+                              </div>
+
+                              <div class="widget-body">
+                                <form action="" [formGroup]="forma" (ngSubmit)="cotizar()">
+
+                                
+                                <div class="widget-main">
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <label for="form-field-8">Ubicacion</label>
+                                      <textarea class="form-control" id="form-field-8"
+                                        placeholder="Default Text" disabled>{{item.NOMBRE_CIUDAD}} - {{item.NOMBRE_PROVINCIA}}</textarea>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="widget-box">
-                                            <div class="widget-header">
-                                                <h4 class="smaller">Descripcion de repuestos</h4>
-                                            </div>
-
-                                            <div class="widget-body">
-                                                <div class="well">
-                                                    {{descripcion}}
-                                                </div>
-                                                
-
-                                                <div class="row">
-                                                    <div class="col-md-2"></div>
-                                                    <div class="col-md-10">
-                                                        <ul class="ace-thumbnails clearfix">
-
-                                                            <li *ngFor="let item of fotos">
-                                                                <a href="{{item.IMAGEN}}" data-rel="colorbox">
-                                                                    <img width="130" height="130" alt="130x130" src="{{item.IMAGEN}}" />
-                                                                </a>
-                                                            </li>       
-                    
-                                                        </ul>
-                                                    </div>
-                                                   
-                                                </div>
-                                                <br>
-                                                <div class="well">
-                                                    <div class="row">
-                                                        <div class="col-md-3"></div>
-                                                        <div class="col-md-5 ">
-                                                            <div class="input-group mb-3">
-                                                                <span class="input-group-text" id="original">_Original : </span>
-                                                                <input type="number" class="form-control"  placeholder="Precio" [(ngModel)]="p_original" aria-label="original" aria-describedby="original">
-                                                                <span class="input-group-text">$</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-1"></div>
-                                                        <div class="col-md-1">
-                                                            <label>Factura
-                                                                <input name="switch-field-1" class="ace ace-switch" type="checkbox" [(ngModel)]="chfactura" [value]="chfactura"/>
-                                                                <span class="lbl"></span>
-                                                            </label>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-md-3"></div>
-                                                        <div class="col-md-5">
-                                                            <div class="input-group mb-3">
-                                                                <span class="input-group-text" id="generico">Generico:</span>
-                                                                <input type="number" class="form-control" placeholder="Precio" [(ngModel)]="p_generico" aria-label="Username" aria-describedby="generico">
-                                                                <span class="input-group-text">$</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-1"></div>
-                                                        <div class="col-md-1">
-                                                            <label>Envio
-                                                                <input name="switch-field-1" class="ace ace-switch" type="checkbox"  [(ngModel)]="chenvio" [value]="chenvio"/>
-                                                                <span class="lbl"></span>
-                                                            </label>
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-
-
-                                                <div class="widget-main">
-                                                    <p style="text-align: center;">
-                                                        <button id="loading-btn" type="button" class="btn btn-success" data-loading-text="Loading..." (click)="cotizar()">Cotizar</button>
-                                                    </p>
-                                                </div>
-                                                
-                                            </div>
-                                        </div>
+                                      <label for="form-field-8">Vehiculo</label>
+                                      <textarea class="form-control" id="form-field-8"
+                                        placeholder="Default Text" disabled>{{item.MARCA}} {{item.MODELO}} del año {{item.ANIO}}</textarea>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="row">
+                                  </div>
+                                  <div>
+                                    <label for="form-field-9">Repuesto</label>
 
-                                            <div class="widget-box">
-                                                <div class="widget-header">
-                                                    <h4 class="smaller">Cotizaciones Aceptadas</h4>
-                                                </div>
-                                                <br>
-                                                <div class="row">
-                                                    <div class="col-md-10"><div class="input-group mb-3">
-                                                        <input type="text" class="form-control" placeholder="Ingrese el numero de orden" aria-label="numero de orden" [(ngModel)]="numPedido" aria-describedby="btnSerie">
-                                                        <button class="btnace btn-outline-secondary" type="button" id="btnSerie"  (click)="bucarNumPedido()">Mostrar</button>
+                                    <textarea class="form-control limited" id="form-field-9"
+                                      maxlength="50" disabled>{{item.DESCRIPCION}}</textarea>
+                                  </div>
+                                  <hr>
+                                  <div>
+                                    <label for="form-field-11">Fotos</label>
+                                    <div class="row">
+                                      <div class="col-md-2"></div>
+                                      <div class="col-md-10">
+                                        <ul class="ace-thumbnails clearfix">
+
+                                          <li *ngFor="let item of fotos">
+                                            <a href="{{item.IMAGEN}}" data-rel="colorbox">
+                                              <img width="130" height="130" alt="130x130" src="{{item.IMAGEN}}" />
+                                            </a>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <hr>
+                                  <div class="well">
+                                    <div class="row">
+                                        <table class="table table-hover" style="text-align: center;" >
+                                            <thead>
+                                              <tr>
+                                                <th scope="col"></th>
+                                                <th style="width: 150px;">Precio</th>
+                                                <th>Precio + Comision</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <th>Original</th>
+                                                <td>
+                                                    <div class="input-group mb-3">
+                                                        <input type="number" class="form-control" placeholder="Precio"
+                                                          aria-label="original" aria-describedby="original" (ngModelChange)="calcularOriginal()"
+                                                          formControlName="pre_original"
+                                                          [class.is-invalid]="p_originalNoValido">
+                                                        <span class="input-group-text">$</span>
+                                                        <small *ngIf="p_originalNoValido" class="text-dangerProveedor">
+                                                          Ingresar un valor mayor a 0
+                                                          </small>
                                                       </div>
-                                                    </div> 
-                                                </div><!-- ./row -->
-                                                    <!--*ngFor="let pedido of pedidos_nuevos;let impar = odd;let par = even;" [ngClass]="{azul:par,verde:impar}"-->
-                                                        <div class="widget-body" >
-                                                            <div class="widget-main padding-8">
-                                                                <div id="profile-feed-3" class="profile-feed" >
-                                                                    <div class="profile-activity clearfix"  *ngFor="let pedido of pedidos_aceptados">
-        
-                                                                        <h5>{{pedido.FECHA_INI}}</h5>
-                                                                        <div >
-                                                                            <h6 style="line-height: 30%;"><small><b>Ubicacion:</b> {{pedido.NOMBRE_PROVINCIA}}, {{pedido.NOMBRE_CIUDAD}}</small></h6>
-                                                                            <h6 style="line-height: 30%;"><small><b>Automovil:</b> {{pedido.MARCA}}, {{pedido.MODELO}}, {{pedido.ANIO}}</small></h6>
-                                                                            <h6 style="line-height: 30%;"><small><b>Respuesto:</b> {{pedido.DESCRIPCION}}</small></h6>
-                                                                            <h6 style="line-height: 30%;"><small><b>Extras:</b> {{pedido.ORIGINAL}}, {{pedido.GENERICO}}, {{pedido.FACTURA}}, {{pedido.SERVICIO_ENV}}</small></h6>
-                                                                        </div>
-          
-                                                                        <div class="tools action-buttons">
-                                                                            <a href="#" class="blue">
-                                                                                <i class="ace-icon fa fa-pencil bigger-130"></i>
-                                                                            </a>
-                    
-                                                                            <a href="#" class="red">
-                                                                                <i class="ace-icon fa fa-times bigger-130"></i>
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>        
-                               
-                                                                </div>
-                                                            </div>
-                                                    </div>
-
-
-                                            </div>
-
-                                        </div>
-                                        <div class="row">
-
-                                            <div class="widget-box">
-                                                <div class="widget-header">
-                                                    <h4 class="smaller">Cotizaciones Enviadas</h4>
-                                                </div>
-    
-                                                <div class="widget-body" >
-                                                    <div class="widget-main padding-8">
-                                                        <div id="profile-feed-3" class="profile-feed" >
-                                                            <div class="profile-activity clearfix"  *ngFor="let pedido of pedidos_enviados">
-
-                                                                <h5>{{pedido.FECHA_INI}}</h5>
-                                                                <div >
-                                                                    <h6 style="line-height: 30%;"><small><b>Ubicacion:</b> {{pedido.NOMBRE_PROVINCIA}}, {{pedido.NOMBRE_CIUDAD}}</small></h6>
-                                                                    <h6 style="line-height: 30%;"><small><b>Automovil:</b> {{pedido.MARCA}}, {{pedido.MODELO}}, {{pedido.ANIO}}</small></h6>
-                                                                    <h6 style="line-height: 30%;"><small><b>Respuesto:</b> {{pedido.DESCRIPCION}}</small></h6>
-                                                                    <h6 style="line-height: 30%;"><small><b>Extras:</b> {{pedido.ORIGINAL}}, {{pedido.GENERICO}}, {{pedido.FACTURA}}, {{pedido.SERVICIO_ENV}}</small></h6>
-                                                                </div>
-  
-                                                                <div class="tools action-buttons">
-                                                                    <a href="#" class="blue">
-                                                                        <i class="ace-icon fa fa-pencil bigger-130"></i>
-                                                                    </a>
-            
-                                                                    <a href="#" class="red">
-                                                                        <i class="ace-icon fa fa-times bigger-130"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </div>        
-                       
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                            </div>
-
-                                        </div>
-                                        
-                                   
+                                                </td>
+                                                <td>{{p_original_Coti | currency}}</td>
+                                              </tr>
+                                              <tr>
+                                                <th>Generico</th>
+                                                <td>
+                                                    <div class="input-group mb-3">
+                                                        <input type="number" class="form-control" placeholder="Precio" 
+                                                           aria-label="Username" aria-describedby="generico" (ngModelChange)="calcularGenerico()"
+                                                           formControlName="pre_generico"
+                                                          [class.is-invalid]="p_genericoNoValido">
+                                                        <span class="input-group-text">$</span>
+                                                        <small *ngIf="p_genericoNoValido" class="text-dangerProveedor">
+                                                          Ingresar un valor mayor a 0
+                                                          </small>
+                                                      </div>
+                                                </td>
+                                                <td>{{p_generico_Coti | currency}}</td>
+                                              </tr>
+                                              <tr *ngIf="activar_preenvio">
+                                                <th>Envio</th>
+                                                <td>
+                                                    <div class="input-group mb-3">
+                                                        <input type="number" class="form-control" placeholder="Precio"
+                                                           aria-label="Username" aria-describedby="envio" 
+                                                           formControlName="pre_envio"
+                                                           [class.is-invalid]="p_envioNoValido">
+                                                        <span class="input-group-text">$</span>
+                                                        <small *ngIf="p_envioNoValido" class="text-dangerProveedor">
+                                                          Ingrese un valor mayor a 0
+                                                          </small>
+                                                      </div>
+                                                </td>
+                                                <td></td>
+                                              </tr>
+                                              <tr>
+                                                <th>Adicionales</th>
+                                                <td>
+                                                  <label style="vertical-align:top;">Factura</label>
+                                                    <input name="switch-field-1" class="ace ace-switch" type="checkbox"
+                                                    formControlName="checkFactura" />
+                                                    <span class="lbl"></span>
+                                                  
+                                                </td>
+                                                <td>
+                                                  <label style="vertical-align:top;">Envio  </label>
+                                                      <input name="switch-field-1" class="ace ace-switch" type="checkbox"
+                                                      formControlName="checkEnvio" (change)="clickCheckEnvio()"/>
+                                                      <span class="lbl"></span>
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    
+                            
+                                  </div>
+                                  <div class="widget-main">
+                                    <p style="text-align: center;">
+                                      <button id="loading-btn" type="submit" class="btn btn-success"
+                                        data-loading-text="Loading..." >Cotizar</button>
+                                    </p>
+                                  </div>
                                 </div>
+                              </form>
+                              </div>
+                            </div>
+                          </div><!-- /.span -->
+                        </div>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="row">
+                  <div class="widget-box">
+                    <div class="widget-header">
+                      <h4 class="smaller">Cotizaciones Aceptadas</h4>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-md-10">
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" placeholder="Ingrese el numero de orden"
+                            aria-label="numero de orden" [(ngModel)]="numPedido" aria-describedby="btnSerie">
+                          <button class="btnace btn-outline-secondary" type="button" id="btnSerie"
+                            (click)="bucarNumPedido()">Mostrar</button>
+                        </div>
+                      </div>
+                    </div><!-- ./row -->
+                    <!--*ngFor="let pedido of pedidos_nuevos;let impar = odd;let par = even;" [ngClass]="{azul:par,verde:impar}"-->
+                    <div class="widget-body">
+                      <div class="widget-main padding-8">
+                        <div id="profile-feed-3" class="profile-feed">
+                          <div class="profile-activity clearfix" *ngFor="let pedido of pedidos_aceptados">
 
-  
-                            <!-- PAGE CONTENT ENDS -->
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.page-content -->
+                            <h5>{{pedido.FECHA_INI}}</h5>
+                            <div>
+                              <h6 style="line-height: 30%;"><small><b>Ubicacion:</b> {{pedido.NOMBRE_PROVINCIA}},
+                                  {{pedido.NOMBRE_CIUDAD}}</small></h6>
+                              <h6 style="line-height: 30%;"><small><b>Automovil:</b> {{pedido.MARCA}},
+                                  {{pedido.MODELO}}, {{pedido.ANIO}}</small></h6>
+                              <h6 style="line-height: 30%;"><small><b>Respuesto:</b> {{pedido.DESCRIPCION}}</small></h6>
+                              <h6 style="line-height: 30%;"><small><b>Extras:</b> {{pedido.ORIGINAL}},
+                                  {{pedido.GENERICO}}, {{pedido.FACTURA}}, {{pedido.SERVICIO_ENV}}</small></h6>
+                            </div>
+
+                            <div class="tools action-buttons">
+                              <a href="#" class="blue">
+                                <i class="ace-icon fa fa-pencil bigger-130"></i>
+                              </a>
+
+                              <a href="#" class="red">
+                                <i class="ace-icon fa fa-times bigger-130"></i>
+                              </a>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="widget-box">
+                    <div class="widget-header">
+                      <h4 class="smaller">Cotizaciones Enviadas</h4>
+                    </div>
+                    <div class="widget-body">
+                      <div class="widget-main padding-8">
+                        <div id="profile-feed-3" class="profile-feed">
+                          <div class="profile-activity clearfix" *ngFor="let pedido of pedidos_enviados">
+                            <h5>{{pedido.FECHA_INI}}</h5>
+                            <div>
+                              <h6 style="line-height: 30%;"><small><b>Ubicacion:</b> {{pedido.NOMBRE_PROVINCIA}},
+                                  {{pedido.NOMBRE_CIUDAD}}</small></h6>
+                              <h6 style="line-height: 30%;"><small><b>Automovil:</b> {{pedido.MARCA}},
+                                  {{pedido.MODELO}}, {{pedido.ANIO}}</small></h6>
+                              <h6 style="line-height: 30%;"><small><b>Respuesto:</b> {{pedido.DESCRIPCION}}</small></h6>
+                              <h6 style="line-height: 30%;"><small><b>Extras:</b> {{pedido.ORIGINAL}},
+                                  {{pedido.GENERICO}}, {{pedido.FACTURA}}, {{pedido.SERVICIO_ENV}}</small></h6>
+                            </div>
+                            <div class="tools action-buttons">
+                              <a href="#" class="blue">
+                                <i class="ace-icon fa fa-pencil bigger-130"></i>
+                              </a>
+                              <a href="#" class="red">
+                                <i class="ace-icon fa fa-times bigger-130"></i>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
             </div>
-        </div><!-- /.main-content -->
-    </div><!-- /.main-container -->
-    
-
+            <!-- PAGE CONTENT ENDS -->
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.page-content -->
+    </div>
+  </div><!-- /.main-content -->
+</div><!-- /.main-container -->

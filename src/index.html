@@ -24,8 +24,8 @@
    <link rel="stylesheet" href="assets/dashboard/font-awesome/4.5.0/css/font-awesome.min.css" />
 
 <!-- ace styles -->
+<link href="assets/dashboard/css/chosen.min.css"  rel="stylesheet"/>
 <link rel="stylesheet" href="assets/dashboard/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
-
 
  <!-- Template Main CSS File -->
  <link href="assets/css/style.css" rel="stylesheet">
@@ -61,6 +61,7 @@
    <!-- ace scripts -->
    <script src="assets/dashboard/js/ace-elements.min.js"></script>
    <script src="assets/dashboard/js/ace.min.js"></script>
+   <script src="assets/dashboard/js/chosen.jquery.min.js"></script>
  
    <!-- inline scripts related to this page -->
    <script type="text/javascript">
@@ -112,6 +113,40 @@
 
 
 
+
+   
+			
+			
+				if(!ace.vars['touch']) {
+					$('.chosen-select').chosen({allow_single_deselect:true}); 
+					//resize the chosen on window resize
+			
+					$(window)
+					.off('resize.chosen')
+					.on('resize.chosen', function() {
+						$('.chosen-select').each(function() {
+							 var $this = $(this);
+							 $this.next().css({'width': $this.parent().width()});
+						})
+					}).trigger('resize.chosen');
+					//resize chosen on sidebar collapse/expand
+					$(document).on('settings.ace.chosen', function(e, event_name, event_val) {
+						if(event_name != 'sidebar_collapsed') return;
+						$('.chosen-select').each(function() {
+							 var $this = $(this);
+							 $this.next().css({'width': $this.parent().width()});
+						})
+					});
+			
+			
+					$('#chosen-multiple-style .btn').on('click', function(e){
+						var target = $(this).find('input[type=radio]');
+						var which = parseInt(target.val());
+						if(which == 2) $('#form-field-select-4').addClass('tag-input-style');
+						 else $('#form-field-select-4').removeClass('tag-input-style');
+					});
+				}
+		
     });
   </script>
 

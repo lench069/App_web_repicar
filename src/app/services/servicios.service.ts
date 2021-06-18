@@ -11,7 +11,7 @@ export class ServiciosService {
 
   //URL del servidor
   //private URL_API: string = 'http://riobytes.com/api_repicar/'; 
-  private URL_API: string = 'http://192.168.100.19/api_repicar/'; 
+  private URL_API: string = 'http://192.168.100.19:8080/api_repicar/'; 
 
   constructor(private router: Router,
     private http: HttpClient
@@ -81,6 +81,7 @@ export class ServiciosService {
 
       //**************************PROPUESTA */
       Proveedor_Cotiza_Propuesta(data:any) {
+        console.log(data);
         return this.http.post(
           this.URL_API + 'cotizar-propuesta/'+data.id_propuesta, 
           this.objectToFormData({
@@ -88,9 +89,19 @@ export class ServiciosService {
             p_original: data.p_original,
             p_generico:data.p_generico,
             factura:data.factura,
-            envio:data.envio
+            envio:data.envio,
+            p_envio:data.p_envio, //Areglar por que no va el valor de cero
+            p_original_com:data.p_original_com,
+            p_generico_com:data.p_generico_com
     
           }) 
+          );
+      };
+      //****************TIPO VEHICULO */
+
+      Tipo_vehiculo() {
+        return this.http.get(
+          this.URL_API + 'listado-tipo-vehiculo' 
           );
       };
   
