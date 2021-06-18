@@ -52,16 +52,6 @@
                           </select>
                     </div>
                   </div>
-
-                  <select [(ngModel)]="myModel" data-placeholder="Some Dropdown Value" id="my-dropdown"
-                    class="chosen-select" (change)="onChange($event.target.value)">
-                <option value=""></option>
-                <optgroup label="Group 1">
-                    <option *ngFor="let entry1 of Tipo_vehiculos" [ngValue]="entry1['id']"
-                            class="dropdown-item">
-                        {{entry1['name']}}
-                    </option>
-                </optgroup>
                   <hr>
                   <select class="form-select" aria-label="Default select example">
                     <option selected>Open this select menu</option>
