@@ -60,6 +60,34 @@ export class ServiciosService {
           this.objectToFormData({id_proveedor: data.id_proveedor})
           );
       }
+      Pedidos_Nuevos_Listado_Por_TipoV(data:any) {
+        return this.http.post(
+          this.URL_API + 'listar-pedidos-nuevos_por_TipoV', 
+          this.objectToFormData({
+            id_proveedor: data.id_proveedor,
+            detalle_tipov: data.detalle_tipov
+          })
+          );
+      }
+      Pedidos_Nuevos_Listado_Por_Marca(data:any) {
+        return this.http.post(
+          this.URL_API + 'listar-pedidos-nuevos_por_Marca', 
+          this.objectToFormData({
+            id_proveedor: data.id_proveedor,
+            detalle_tipov: data.detalle_tipov,
+            detalle_marca: data.detalle_marca
+          })
+          );
+      }
+      Pedidos_Nuevos_Listado_Por_Termino(data:any) {
+        return this.http.post(
+          this.URL_API + 'listar-pedidos-nuevos_por_Termino', 
+          this.objectToFormData({
+            id_proveedor: data.id_proveedor,
+            termino: data.termino
+          })
+          );
+      }
       Pedidos_Enviados_Listado(data:any) {
         return this.http.post(
           this.URL_API + 'listar-pedidos-enviados', 
@@ -102,6 +130,12 @@ export class ServiciosService {
       Tipo_vehiculo() {
         return this.http.get(
           this.URL_API + 'listado-tipo-vehiculo' 
+          );
+      };
+      //**************MARCA**************/
+      Marcas_Tipov(id_tipov:number) {
+        return this.http.get(
+          this.URL_API + 'marcas-tipov/'+id_tipov, 
           );
       };
   

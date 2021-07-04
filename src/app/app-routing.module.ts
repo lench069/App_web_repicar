@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ContenidoComponent } from './components/contenido/contenido.component';
 import { DashboardProveedorComponent } from './components/dashboard-proveedor/dashboard-proveedor.component';
 import { LoginComponent } from './components/login/login.component';
+import { MisVentasComponent } from './components/mis-ventas/mis-ventas.component';
 import { RegistroProveedorComponent } from './components/registro-proveedor/registro-proveedor.component';
 
 const routes: Routes = [
@@ -10,6 +11,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroProveedorComponent },
   { path: 'dashboard_proveedor', component: DashboardProveedorComponent },
+  { path: 'mis_ventas', component: MisVentasComponent},
   { path: '**', pathMatch: 'full', redirectTo: 'inicio' }
 ];
 

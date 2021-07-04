@@ -19,6 +19,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardProveedorComponent } from './components/dashboard-proveedor/dashboard-proveedor.component';
 import { HeaderProveedorComponent } from './components/header-proveedor/header-proveedor.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { MisVentasComponent } from './components/mis-ventas/mis-ventas.component';
 
 @NgModule({
   declarations: [
@@ -29,13 +31,15 @@ import { HeaderProveedorComponent } from './components/header-proveedor/header-p
     RegistroProveedorComponent,
     LoginComponent,
     DashboardProveedorComponent,
-    HeaderProveedorComponent
+    HeaderProveedorComponent,
+    MisVentasComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     //para las rutas
     AppRoutingModule,
+    NgSelectModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
