@@ -21,6 +21,8 @@ import { DashboardProveedorComponent } from './components/dashboard-proveedor/da
 import { HeaderProveedorComponent } from './components/header-proveedor/header-proveedor.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MisVentasComponent } from './components/mis-ventas/mis-ventas.component';
+//Datatable
+import { DataTablesModule } from "angular-datatables";
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { MisVentasComponent } from './components/mis-ventas/mis-ventas.component
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }), // ToastrModule added
+    //Datatable
+    DataTablesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,13 @@
+.textTam{
+    font-size: 13px;
+}
+.btn-info1 {
+    color: #000;
+    /* background-color: #0dcaf0; */
+    border-color: #0dcaf0;
+}
+.btn-warning1 {
+    color: #ffff;
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
