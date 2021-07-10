@@ -100,6 +100,12 @@ export class ServiciosService {
           this.objectToFormData({id_proveedor: data.id_proveedor})
           );
       }
+      Pedidos_Finalizados_Listado(data:any) {
+        return this.http.post(
+          this.URL_API + 'listar-pedidos-finalizados', 
+          this.objectToFormData({id_proveedor: data.id_proveedor})
+          );
+      }
       pedido_consultar(data){
       return this.http.post(
         this.URL_API + 'consultar-cod-pedido/'+data.numPedido, 

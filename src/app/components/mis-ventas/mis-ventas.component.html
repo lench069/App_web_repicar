@@ -24,14 +24,14 @@
               Resumen de ventas
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <div class="table-header" style="background-color: darkkhaki;">
-              <span>Fecha de corte 01/07/2021 - 30/07/2021</span> 
+              <b>Fecha de corte </b> {{fecha_inicial}} - {{fecha_final}}
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-6">
             <div class="clearfix">
               <div class="pull-right tableTools-container"></div>
             </div>
@@ -46,19 +46,19 @@
                   </tr>
                 </thead>
                 <tbody >
-                  <tr>                  
-                    <td>$45</td>
-                    <td class="hidden-480">3,330</td>
-                    <td>Feb 12</td>
+                  <tr *ngFor="let pedido of pedidos_finalizados">                  
+                    <td>{{pedido.FECHA_FIN}}</td>
+                    <td class="hidden-480">{{pedido.TIPO_VEHICULO}}</td>
+                    <td>{{pedido.P_ORIGINAL | currency}}</td>
                     <td class="hidden-480">
-                      <span >Feb 12</span>
+                      <span >{{pedido.P_ORIGINAL*0.1 | currency}}</span>
                     </td>                 
                   </tr>      
                 </tbody>
               </table>
             </div>
           </div>
-          <div class="col-md-7">
+          <div class="col-md-6">
 
             <form class="form-horizontal" role="form">
               <div class="form-group">
@@ -78,7 +78,7 @@
         <br>
         <br>
         <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-6">
               <div class="clearfix">
               <div class="pull-right tableTools-container"></div>
             </div>
