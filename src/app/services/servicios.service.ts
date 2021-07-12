@@ -52,6 +52,16 @@ export class ServiciosService {
           }) 
           );
       }
+      Login_Admin(data:any) {
+        console.log(data);
+        return this.http.post(
+          this.URL_API + 'login-administrador', 
+          this.objectToFormData({
+            usuario: data.usuario,
+            contrasenia: data.contrasenia,
+          }) 
+          );
+      }
 
       //*************************PEDIDOS **********************************/
       Pedidos_Nuevos_Listado(data:any) {

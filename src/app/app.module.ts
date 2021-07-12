@@ -23,6 +23,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { MisVentasComponent } from './components/mis-ventas/mis-ventas.component';
 //Datatable
 import { DataTablesModule } from "angular-datatables";
+import { LoginAdminComponent } from './components/login-admin/login-admin.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DataTablesModule } from "angular-datatables";
     LoginComponent,
     DashboardProveedorComponent,
     HeaderProveedorComponent,
-    MisVentasComponent
+    MisVentasComponent,
+    LoginAdminComponent
   ],
   imports: [
     BrowserModule,
