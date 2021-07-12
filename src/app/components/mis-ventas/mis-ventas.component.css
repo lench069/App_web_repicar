@@ -11,3 +11,32 @@
     background-color: #ffc107;
     border-color: #ffc107;
 }
+
+.infobox {
+    display: inline-block;
+    width: 220px;
+    height: 66px;
+
+    background-color: #FFF;
+    box-shadow: none;
+    margin: -1px 0 0 -1px;
+    padding: 8px 3px 6px 9px;
+    border: 1px dotted;
+    border-color: #D8D8D8!important;
+    vertical-align: middle;
+    text-align: left;
+    position: relative;
+}
+
+.infobox-green.infobox-dark {
+    background-color: #9ABC32;
+    border-color: #9ABC32;
+}
+.infobox-green {
+    color: #9ABC32;
+    border-color: #9ABC32;
+}
+.infobox .infobox-content {
+    
+    max-width: 240px;
+}
