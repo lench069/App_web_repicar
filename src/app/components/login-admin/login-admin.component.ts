@@ -61,7 +61,7 @@ export class LoginAdminComponent implements OnInit {
          // this.storage.set('session_storage', data.info.item);
          localStorage.setItem('admin_id',this.forma.value.ci_ruc);
          this.toastr.success('Ingreso exitoso!', 'Bienvenido');
-          this.servicio.irA('/dashboard_administrador');
+          this.servicio.irA('/add-proveedores');
         }else{
           this.toastr.warning('Usuario o contraseña incorrecta!', 'Warning');
           this.forma.value.usuario = '';

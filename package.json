@@ -22,6 +22,7 @@
     "@ng-select/ng-select": "^7.0.0",
     "@types/datatables.net": "^1.10.20",
     "angular-datatables": "^12.0.0",
+    "bootstrap": "^5.0.2",
     "datatables.net": "^1.10.25",
     "datatables.net-dt": "^1.1.0",
     "jquery": "^3.6.0",

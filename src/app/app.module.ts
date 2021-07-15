@@ -24,6 +24,9 @@ import { MisVentasComponent } from './components/mis-ventas/mis-ventas.component
 //Datatable
 import { DataTablesModule } from "angular-datatables";
 import { LoginAdminComponent } from './components/login-admin/login-admin.component';
+import { MenuAdminComponent } from './components/menu-admin/menu-admin.component';
+import { AddProveedoresComponent } from './components/PageAdministradores/add-proveedores/add-proveedores.component';
+import { AdminProveedoresComponent } from './components/PageAdministradores/admin-proveedores/admin-proveedores.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { LoginAdminComponent } from './components/login-admin/login-admin.compon
     DashboardProveedorComponent,
     HeaderProveedorComponent,
     MisVentasComponent,
-    LoginAdminComponent
+    LoginAdminComponent,
+    MenuAdminComponent,
+    AddProveedoresComponent,
+    AdminProveedoresComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,154 @@
+<app-menu-admin></app-menu-admin>
+<br>
+<br>
+<br>
+
+<div class="no-skin">
+    
+    <div class="main-container ace-save-state" id="main-container">
+      
+
+        <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
+            <script type="text/javascript">
+                try{ace.settings.loadState('sidebar')}catch(e){}
+            </script>
+<!--Botones en el menu -->
+            <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+                <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                  
+
+                    <button class="btn btn-warning"  (click)="irMenuProveedores()">
+                        <i class="ace-icon fa fa-users"></i>
+                    </button>
+
+                    <button class="btn btn-danger" (click)="irMenuConfiguracion()">
+                        <i class="ace-icon fa fa-cogs"></i>
+                    </button>
+                </div>
+
+                <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                  
+                    <span class="btn btn-warning"></span>
+
+                    <span class="btn btn-danger"></span>
+                </div>
+            </div><!-- /.sidebar-shortcuts -->
+            <br>
+<!--Menu principal-->
+            <ul class="nav nav-list" style="display: block;" [hidden]="!menuProveedores">
+                <li class="" ng-show = "mostrar"  >
+                    <a class="disply" (click)="irMenuProveedores()">
+                        <i class="menu-icon fa fa-users"></i>
+                        <span class="menu-text"> Add proveedores </span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                
+                <li  class="">
+                    <a (click)="irMenuAdminProveedores()">
+                        <i class="menu-icon fa  fa-book"></i>
+                        <span class="menu-text"> Admin proveedores</span>
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>		
+                <li >
+                    <a href="" ng-click="logout()">
+                        <i class="menu-icon fa fa-power-off"></i>
+                        <span class="menu-text"> Salir </span>
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>		
+            </ul><!-- /.nav-list -->
+
+            <!--Configuraciones-->
+            <ul class="nav nav-list" style="display: block;" [hidden]="!menuConfiguracion">
+                <li class="" ng-show = "mostrar">
+                    <a class="disply" (click)="irMenuConfiguracion()">
+                        <i class="menu-icon fa fa-users"></i>
+                        <span class="menu-text"> Conf. Generales </span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+                
+                <li  class="">
+                    <a ng-click="navegacion('/test')">
+                        <i class="menu-icon fa  fa-book"></i>
+                        <span class="menu-text"> Conf. Comisiones</span>
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>		
+                <li >
+                    <a href="" ng-click="logout()">
+                        <i class="menu-icon fa fa-power-off"></i>
+                        <span class="menu-text"> Salir </span>
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>		
+            </ul><!-- /.nav-list -->
+
+    </div>
+   
+        <div class="main-content" >
+     
+            <div class="page-content">
+            
+                <div class="page-header">
+                    <h1>
+                        Ingreso de usuarios
+                        <small>
+                            <i class="ace-icon fa fa-angle-double-right"></i>
+                            Permite ingresar usuarios
+                        </small>
+                    </h1>
+                </div><!-- /.page-header -->
+            
+                <div class="row">
+                
+                        <!-- PAGE CONTENT BEGINS -->
+
+                        <div class="col-md-3"></div>
+                        <div class="col-md-5">
+                        <form class="form-horizontal" role="form" >
+                            <div class="form-group row">
+                              <label for="staticEmail" class="col-sm-2 col-form-label control-label no-padding-right">Email</label>
+                              <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                              <div class="col-sm-10">
+                                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                              </div>
+                            </div>
+                           
+                          </form>
+                          <div class="clearfix form-actions row">
+                            <div class="col-md-12">
+                                <button class="btn btn-info" type="submit">
+                                    <i class="ace-icon fa fa-check bigger-110"></i>
+                                    Aceptar
+                                </button>
+        
+                                &nbsp; &nbsp; &nbsp;
+                                <button class="btn" type="button" ng-click="navegacion('/usuarios')"> 
+                                    <i class="ace-icon fa fa-undo bigger-110"></i>
+                                    Cancelar
+                                </button>
+                            </div>
+                        </div>
+                        </div>
+                   
+                </div>
+            
+            </div><!-- /.page-content -->
+            
+            
+
+        </div>      
+    </div>
+</div>
