@@ -27,7 +27,8 @@ import { LoginAdminComponent } from './components/login-admin/login-admin.compon
 import { MenuAdminComponent } from './components/menu-admin/menu-admin.component';
 import { AddProveedoresComponent } from './components/PageAdministradores/add-proveedores/add-proveedores.component';
 import { AdminProveedoresComponent } from './components/PageAdministradores/admin-proveedores/admin-proveedores.component';
-
+//Autocomplete
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +60,10 @@ import { AdminProveedoresComponent } from './components/PageAdministradores/admi
       preventDuplicates: true,
     }), // ToastrModule added
     //Datatable
-    DataTablesModule
+    DataTablesModule,
+    //Autocomplete
+    AutocompleteLibModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -110,24 +110,59 @@
                 
                         <!-- PAGE CONTENT BEGINS -->
 
-                        <div class="col-md-3"></div>
-                        <div class="col-md-5">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
                         <form class="form-horizontal" role="form" >
                             <div class="form-group row">
-                              <label for="staticEmail" class="col-sm-2 col-form-label control-label no-padding-right">Email</label>
-                              <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+                              <label for="nombre_apellidos" class="col-md-4 col-form-label control-label no-padding-right">Nombres y Apellidos</label>
+                              <div class="col-md-8">
+                                <input type="text"  class="form-control-plaintext" id="nombre_apellidos" value="Ingrese un nombre">
                               </div>
                             </div>
                             <div class="form-group row">
-                              <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                              <div class="col-sm-10">
-                                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                <label for="ced_pass" class="col-md-4 col-form-label control-label no-padding-right">Cedula o Pasaporte</label>
+                                <div class="col-md-8">
+                                  <input type="text"  class="form-control-plaintext" id="ced_pass" value="Cedula o Pasaporte">
+                                </div>
                               </div>
-                            </div>
-                           
+                              <div class="form-group row">
+                                <label for="telefono" class="col-md-4 col-form-label control-label no-padding-right">Telefono</label>
+                                <div class="col-md-8">
+                                  <input type="text"  class="form-control-plaintext" id="telefono" value="Ingrese un telefono">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="email" class="col-md-4 col-form-label control-label no-padding-right">Correo electronico</label>
+                                <div class="col-md-8">
+                                  <input type="text"  class="form-control-plaintext" id="email" value="Ingrese un mail">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="nom_local" class="col-md-4 col-form-label control-label no-padding-right">Nombre del local</label>
+                                <div class="col-md-8">
+                                  <input type="text"  class="form-control-plaintext" id="nom_local" value="Ingrese un nombre">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="nom_local" class="col-md-4 col-form-label control-label no-padding-right">Ciudad</label>
+                                <div class="col-md-8">
+                                  <input type="text"  class="form-control-plaintext" id="nom_local" value="Ingrese una ciudad">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="nom_local" class="col-md-4 col-form-label control-label no-padding-right">Direccion</label>
+                                <div class="col-md-8">
+                                  <input type="text"  class="form-control-plaintext" id="nom_local" value="Ingrese una direccion">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="nom_local" class="col-md-4 col-form-label control-label no-padding-right">Sector</label>
+                                <div class="col-md-8">
+                                  <input type="text"  class="form-control-plaintext" id="nom_local" value="Ingrese un sector">
+                                </div>
+                              </div>                                                                            
                           </form>
-                          <div class="clearfix form-actions row">
+                          <div class="clearfix form-actions row" style="text-align: center;">
                             <div class="col-md-12">
                                 <button class="btn btn-info" type="submit">
                                     <i class="ace-icon fa fa-check bigger-110"></i>
@@ -135,7 +170,7 @@
                                 </button>
         
                                 &nbsp; &nbsp; &nbsp;
-                                <button class="btn" type="button" ng-click="navegacion('/usuarios')"> 
+                                <button class="btn btn-default" type="button" ng-click="navegacion('/usuarios')"> 
                                     <i class="ace-icon fa fa-undo bigger-110"></i>
                                     Cancelar
                                 </button>

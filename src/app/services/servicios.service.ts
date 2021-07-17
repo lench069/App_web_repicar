@@ -25,6 +25,7 @@ export class ServiciosService {
  
   //***********************PROVEEDORES INICIO******************************************/
   Proveedor_Guardar(data:any) {
+    console.log(data);
     return this.http.post(
       this.URL_API + 'registrar-proveedor', 
       this.objectToFormData({
@@ -36,7 +37,7 @@ export class ServiciosService {
         id_ciudad_f: data.id_ciudad_f,
         direccion: data.direccion,
         sector: data.sector,
-        contrasenia: data.contrasenia
+       // contrasenia: data.contrasenia
       }) 
       );
   };
@@ -154,6 +155,19 @@ export class ServiciosService {
           this.URL_API + 'marcas-tipov/'+id_tipov, 
           );
       };
+
+      //**********CARgar Privincaias */
+      Provincias_por_pais(data) {
+        return this.http.get(
+          this.URL_API + 'provincias-pais/'+data.id_pais , 
+          );
+      };
+       //***********************CIUDAD INICIO******************************************/
+    Ciudades_por_provincia(data) {
+      return this.http.get(
+        this.URL_API + 'ciudades-provincia/'+data.id_provincia, 
+        );
+    };
   
    //esta funcion es usada para formatear los parametros.
    objectToFormData(obj: any, form?: any, namespace?: any) {
