@@ -7,6 +7,8 @@ import { LoginComponent } from './components/login/login.component';
 import { MisVentasComponent } from './components/mis-ventas/mis-ventas.component';
 import { AddProveedoresComponent } from './components/PageAdministradores/add-proveedores/add-proveedores.component';
 import { AdminProveedoresComponent } from './components/PageAdministradores/admin-proveedores/admin-proveedores.component';
+import { ConfiguracionesComponent } from './components/PageAdministradores/configuraciones/configuraciones.component';
+import { MenuLateralComponent } from './components/PageAdministradores/menu-lateral/menu-lateral.component';
 import { RegistroProveedorComponent } from './components/registro-proveedor/registro-proveedor.component';
 
 const routes: Routes = [
@@ -18,6 +20,8 @@ const routes: Routes = [
   { path: 'login_admin', component: LoginAdminComponent},
   { path: 'add-proveedores', component: AddProveedoresComponent},
   { path: 'admin-proveedores', component: AdminProveedoresComponent},
+  { path: 'menu_lateral', component: MenuLateralComponent},
+  { path: 'configuraciones', component: ConfiguracionesComponent},
   { path: '**', pathMatch: 'full', redirectTo: 'inicio' }
 ];
 

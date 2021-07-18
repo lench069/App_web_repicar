@@ -8,91 +8,11 @@
     <div class="main-container ace-save-state" id="main-container">
       
 
-        <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
-            <script type="text/javascript">
-                try{ace.settings.loadState('sidebar')}catch(e){}
-            </script>
-<!--Botones en el menu -->
-            <div class="sidebar-shortcuts" id="sidebar-shortcuts">
-                <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-                  
+        <app-menu-lateral>
 
-                    <button class="btn btn-warning"  (click)="irMenuProveedores()">
-                        <i class="ace-icon fa fa-users"></i>
-                    </button>
-
-                    <button class="btn btn-danger" (click)="irMenuConfiguracion()">
-                        <i class="ace-icon fa fa-cogs"></i>
-                    </button>
-                </div>
-
-                <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
-                  
-                    <span class="btn btn-warning"></span>
-
-                    <span class="btn btn-danger"></span>
-                </div>
-            </div><!-- /.sidebar-shortcuts -->
-            <br>
-<!--Menu principal-->
-            <ul class="nav nav-list" style="display: block;" [hidden]="!menuProveedores">
-                <li class="" ng-show = "mostrar"  >
-                    <a class="disply" (click)="irMenuProveedores()">
-                        <i class="menu-icon fa fa-users"></i>
-                        <span class="menu-text"> Add proveedores </span>
-                    </a>
-                    <b class="arrow"></b>
-                </li>
-                
-                <li  class="">
-                    <a (click)="irMenuAdminProveedores()">
-                        <i class="menu-icon fa  fa-book"></i>
-                        <span class="menu-text"> Admin proveedores</span>
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>		
-                <li >
-                    <a href="" ng-click="logout()">
-                        <i class="menu-icon fa fa-power-off"></i>
-                        <span class="menu-text"> Salir </span>
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>		
-            </ul><!-- /.nav-list -->
-
-            <!--Configuraciones-->
-            <ul class="nav nav-list" style="display: block;" [hidden]="!menuConfiguracion">
-                <li class="" ng-show = "mostrar">
-                    <a class="disply" (click)="irMenuConfiguracion()">
-                        <i class="menu-icon fa fa-users"></i>
-                        <span class="menu-text"> Conf. Generales </span>
-                    </a>
-                    <b class="arrow"></b>
-                </li>
-                
-                <li  class="">
-                    <a ng-click="navegacion('/test')">
-                        <i class="menu-icon fa  fa-book"></i>
-                        <span class="menu-text"> Conf. Comisiones</span>
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>		
-                <li >
-                    <a href="" ng-click="logout()">
-                        <i class="menu-icon fa fa-power-off"></i>
-                        <span class="menu-text"> Salir </span>
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>		
-            </ul><!-- /.nav-list -->
-
-    </div>
-   
-        <div class="" >
+        </app-menu-lateral>
+     
+          <div class="main-content" >
      
             <div class="row">
                 <div class="col-xs-12">

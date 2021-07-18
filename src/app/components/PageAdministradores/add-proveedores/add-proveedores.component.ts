@@ -10,10 +10,7 @@ import  Swal  from 'sweetalert2';
   styleUrls: ['./add-proveedores.component.css']
 })
 export class AddProveedoresComponent implements OnInit {
-  public menuDashboard:boolean = false;
-  public menuEditar:boolean = false;
-  public menuProveedores:boolean = true;
-  public menuConfiguracion:boolean = false;
+ 
   forma: FormGroup;
   public id_pais:number = 1;
   public provincias:[] = [];
@@ -32,59 +29,7 @@ export class AddProveedoresComponent implements OnInit {
     this.cargarProvincias();
   }
 
-  irMenuDashboard()
-  {
-    console.log("dashboard");
-    this.menuDashboard= true;
-    this.menuEditar= false;
-    this.menuConfiguracion= false;
-    this.menuProveedores=false;
-    this.servicio.irA('/dashboard_administrador');
-    
-  }
-
-  irMenuEditar()
-  {
-    console.log("dashboard");
-    this.menuDashboard= false;
-    this.menuEditar= true;
-    this.menuConfiguracion= false;
-    this.menuProveedores=false;
-   // this.servicio.irA('/admin_proveedores');
-    
-  }
-
-  irMenuProveedores()
-  {
-    console.log("proveedores");
-    this.menuDashboard= false;
-    this.menuEditar= false;
-    this.menuConfiguracion= false;
-    this.menuProveedores=true;
-    this.servicio.irA('/add-proveedores');
-    
-  }
-  irMenuConfiguracion()
-  {
-    console.log("configuraciones");
-    this.menuDashboard= false;
-    this.menuEditar= false;
-    this.menuConfiguracion= true;
-    this.menuProveedores=false;
-    //this.servicio.irA('/admin_proveedores');
-    
-  }
-
-  irMenuAdminProveedores()
-  {
-    console.log("admin proveedores");
-    this.menuDashboard= false;
-    this.menuEditar= false;
-    this.menuConfiguracion= false;
-    this.menuProveedores=true;
-    this.servicio.irA('/admin-proveedores');
-    
-  }
+ 
 
   get nombreNoValido() {
     return this.forma.get('nombres').invalid && this.forma.get('nombres').touched
