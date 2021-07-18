@@ -168,6 +168,12 @@ export class ServiciosService {
         this.URL_API + 'ciudades-provincia/'+data.id_provincia, 
         );
     };
+    //*******PROVEEDORES*************/
+    Proveedores_Listado() {
+      return this.http.get(
+        this.URL_API + 'listar-proveedores'
+        );
+    }
   
    //esta funcion es usada para formatear los parametros.
    objectToFormData(obj: any, form?: any, namespace?: any) {
