@@ -98,10 +98,10 @@
             
                 <div class="page-header">
                     <h1>
-                        Ingreso de usuarios
+                        Ingreso de proveedores
                         <small>
                             <i class="ace-icon fa fa-angle-double-right"></i>
-                            Permite ingresar usuarios
+                            Permite ingresar proveedores
                         </small>
                     </h1>
                 </div><!-- /.page-header -->
@@ -112,70 +112,130 @@
 
                         <div class="col-md-2"></div>
                         <div class="col-md-8">
-                        <form class="form-horizontal" role="form" >
+                        <form  autocomplete="off" [formGroup]="forma" (ngSubmit)="Guardar()">
                             <div class="form-group row">
                               <label for="nombre_apellidos" class="col-md-4 col-form-label control-label no-padding-right">Nombres y Apellidos</label>
                               <div class="col-md-8">
-                                <input type="text"  class="form-control-plaintext" id="nombre_apellidos" value="Ingrese un nombre">
+                                <input type="text"  class="form-control-plaintext" id="nombre_apellidos" placeholder="Ingrese un nombre" formControlName="nombres"
+                                [class.is-invalid]="nombreNoValido"/>
+                                <small *ngIf="nombreNoValido" class="text-danger">
+                                Ingrese 5 letras
+                                </small>
                               </div>
                             </div>
                             <div class="form-group row">
                                 <label for="ced_pass" class="col-md-4 col-form-label control-label no-padding-right">Cedula o Pasaporte</label>
                                 <div class="col-md-8">
-                                  <input type="text"  class="form-control-plaintext" id="ced_pass" value="Cedula o Pasaporte">
+                                  <input type="text"  class="form-control-plaintext" id="ced_pass" value="Cedula o Pasaporte" placeholder="Ingrese una cedula" formControlName="ci_pass"
+                                  [class.is-invalid]="cedulaNoValido">
+                                <small *ngIf="cedulaNoValido" class="text-danger">
+                                        Ci o ruc erroreo
+                                </small>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="telefono" class="col-md-4 col-form-label control-label no-padding-right">Telefono</label>
                                 <div class="col-md-8">
-                                  <input type="text"  class="form-control-plaintext" id="telefono" value="Ingrese un telefono">
+                                  <input type="text"  class="form-control-plaintext" id="telefono" value="Ingrese un telefono" placeholder="Ingrese un Telefono"  formControlName="telefono"
+                                  [class.is-invalid]="telefonoNoValido">
+                                  <small *ngIf="telefonoNoValido" class="text-danger">
+                                          Ingrese un telefono
+                                  </small>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="email" class="col-md-4 col-form-label control-label no-padding-right">Correo electronico</label>
                                 <div class="col-md-8">
-                                  <input type="text"  class="form-control-plaintext" id="email" value="Ingrese un mail">
+                                  <input type="text"  class="form-control-plaintext" id="email" value="Ingrese un mail" placeholder="Ingrese un correo" formControlName="correo"
+                                  [class.is-invalid]="correoNoValido">
+                                  <small *ngIf="correoNoValido" class="text-danger">
+                                          Ingrese el correo
+                                  </small>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="nom_local" class="col-md-4 col-form-label control-label no-padding-right">Nombre del local</label>
                                 <div class="col-md-8">
-                                  <input type="text"  class="form-control-plaintext" id="nom_local" value="Ingrese un nombre">
+                                  <input type="text"  class="form-control-plaintext" id="nom_local" value="Ingrese un nombre" placeholder="Ingrese un nombre"  formControlName="nombre_local"
+                                  [class.is-invalid]="nombre_localNoValido">
+                                  <small *ngIf="nombre_localNoValido" class="text-danger">
+                                          Ingrese el nombre de un local
+                                  </small>
                                 </div>
-                              </div>
-                              <div class="form-group row">
-                                <label for="nom_local" class="col-md-4 col-form-label control-label no-padding-right">Ciudad</label>
-                                <div class="col-md-8">
-                                  <input type="text"  class="form-control-plaintext" id="nom_local" value="Ingrese una ciudad">
+                              </div>                   
+                              <div class="row">
+                                <div class="col-md-2">
+                                    </div>
+                                  <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label for="provincia" class=" col-md-4 col-form-label control-label no-padding-right">Provincia</label>                                  
+                                            <div class="col-md-8">
+                                                <select class="" style="font-size:small"  id="provincia"  (change)="Cargar_Ciudades(provi.value)" #provi >                   
+                                                    <option hidden value="" disabled selected>Select District/City</option>
+                                                    <option *ngFor="let item of provincias;" [value]="item.ID_PROVINCIA" [selected]="item.ID_PROVINCIA == 1">{{item.NOMBRE}}</option>                      
+                                                </select>
+                                            </div>
+                                        </div>
+                                  </div>
+                                  <div class="col-md-5">
+                                    <div class="form-group">
+                                        <label for="nom_local" class="col-md-4 col-form-label control-label no-padding-right">Ciudad</label>
+                                        <div class="col-md-8">
+                                        <select class="form-select" style="font-size:small" formControlName="ciudad"
+                                        [class.is-invalid]="ciudadNoValido">    
+                                        <option hidden value="" disabled selected>Seleccione una ciudad</option>   
+                                            <option *ngFor="let item of ciudades;" [value]="item.ID_CIUDAD" [selected]="item.ID_CIUDAD == 1">{{item.NOMBRE}}</option>                      
+                                          </select>
+                                          <small *ngIf="ciudadNoValido" class="text-danger">
+                                            Ingrese una ciudad
+                                          </small>
+                                        </div>
+                                    </div>     
                                 </div>
-                              </div>
+                               
+                                    
+                              </div><br>
+                              
                               <div class="form-group row">
                                 <label for="nom_local" class="col-md-4 col-form-label control-label no-padding-right">Direccion</label>
                                 <div class="col-md-8">
-                                  <input type="text"  class="form-control-plaintext" id="nom_local" value="Ingrese una direccion">
+                                  <input type="text"  class="form-control-plaintext" id="nom_local" value="Ingrese una direccion" placeholder="Direccion"
+                                  formControlName="direccion"
+                                  [class.is-invalid]="direccionNoValido">
+                                  <small *ngIf="direccionNoValido" class="text-danger">
+                                          Ingrese una direccion
+                                  </small>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="nom_local" class="col-md-4 col-form-label control-label no-padding-right">Sector</label>
                                 <div class="col-md-8">
-                                  <input type="text"  class="form-control-plaintext" id="nom_local" value="Ingrese un sector">
+                                  <input type="text"  class="form-control-plaintext" id="nom_local" value="Ingrese un sector" placeholder="Sector"
+                                  formControlName="sector"
+                                  [class.is-invalid]="sectorNoValido">
+                                  <small *ngIf="sectorNoValido" class="text-danger">
+                                      Ingrese un sector
+                              </small>
                                 </div>
-                              </div>                                                                            
-                          </form>
-                          <div class="clearfix form-actions row" style="text-align: center;">
-                            <div class="col-md-12">
-                                <button class="btn btn-info" type="submit">
-                                    <i class="ace-icon fa fa-check bigger-110"></i>
-                                    Aceptar
-                                </button>
-        
-                                &nbsp; &nbsp; &nbsp;
-                                <button class="btn btn-default" type="button" ng-click="navegacion('/usuarios')"> 
-                                    <i class="ace-icon fa fa-undo bigger-110"></i>
-                                    Cancelar
-                                </button>
+                              </div>   
+                              
+                              <div class="clearfix form-actions row" style="text-align: center;">
+                                <div class="col-md-12">
+                                    <button class="btn btn-info" type="submit">
+                                        <i class="ace-icon fa fa-check bigger-110"></i>
+                                        Aceptar
+                                    </button>
+            
+                                    &nbsp; &nbsp; &nbsp;
+                                    <button class="btn btn-default" type="button" ng-click="navegacion('/usuarios')"> 
+                                        <i class="ace-icon fa fa-undo bigger-110"></i>
+                                        Cancelar
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                              
+                          </form>
+                         
                         </div>
                    
                 </div>
