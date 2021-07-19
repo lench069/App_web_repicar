@@ -174,6 +174,35 @@ export class ServiciosService {
         this.URL_API + 'listar-proveedores'
         );
     }
+     proveedor_consultar(data)
+     {
+       return this.http.get(
+         this.URL_API + 'consultar-proveedor/'+data.id_proveedor , 
+         );
+     }
+     Proveedor_Editar(data:any) {
+      console.log(data);
+      return this.http.post(
+        this.URL_API + 'editar-proveedor/'+data.id_proveedor , 
+        this.objectToFormData({
+          nombres: data.nombres,
+          telefono: data.telefono,
+          email: data.email,
+          nombre_local: data.nombre_local,
+          direccion: data.direccion,
+          sector: data.sector,
+          estado:data.estado
+         // contrasenia: data.contrasenia
+        }) 
+        );
+    };
+     //**********ESTADOS**************/
+     listar_estados() {
+      return this.http.get(
+        this.URL_API + 'listar-estados'
+        );
+    }
+ 
   
    //esta funcion es usada para formatear los parametros.
    objectToFormData(obj: any, form?: any, namespace?: any) {

@@ -20,8 +20,6 @@ export class AdminProveedoresComponent implements OnInit {
     
   }
 
-  
-
   Cargar_Proveedores() {
 
     this.servicio.Proveedores_Listado() // llamado al servicio
@@ -37,6 +35,12 @@ export class AdminProveedoresComponent implements OnInit {
         this.toastr.warning(error + '!', 'Error');
         //this.servicio.irA('/inicio');
       })
+  }
+
+  editProveedor(item)
+  {
+      console.log(item);
+      this.servicio.irA('/edit_proveedores/'+item.CI_RUC);
   }
 
 }

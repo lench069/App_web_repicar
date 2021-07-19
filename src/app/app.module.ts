@@ -31,6 +31,7 @@ import { AdminProveedoresComponent } from './components/PageAdministradores/admi
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { MenuLateralComponent } from './components/PageAdministradores/menu-lateral/menu-lateral.component';
 import { ConfiguracionesComponent } from './components/PageAdministradores/configuraciones/configuraciones.component';
+import { EditProveedoresComponent } from './components/PageAdministradores/edit-proveedores/edit-proveedores.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,6 +49,7 @@ import { ConfiguracionesComponent } from './components/PageAdministradores/confi
     AdminProveedoresComponent,
     MenuLateralComponent,
     ConfiguracionesComponent,
+    EditProveedoresComponent,
   ],
   imports: [
     BrowserModule,
