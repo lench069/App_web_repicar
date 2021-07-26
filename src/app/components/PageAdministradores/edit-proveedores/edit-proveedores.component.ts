@@ -28,6 +28,7 @@ export class EditProveedoresComponent implements OnInit {
   public direccion:string='';
   public estado:number=null;
   public estados:string[]=[];
+  public pass:string="";
   constructor( private fb: FormBuilder,
     public servicio: ServiciosService,
     private toastr:ToastrService,public route:ActivatedRoute, ) { 
@@ -120,6 +121,12 @@ console.log("crear formulario");
       });
      
     }else{
+
+      if (this.forma.value.estado == 2) //si es activo enviar contraseña
+      {
+         this.pass = this.generarContraseña();
+      }
+
       console.log(this.forma.value.estado);
       this.servicio.Proveedor_Editar({
         id_proveedor:this.id_proveedor,
@@ -129,12 +136,11 @@ console.log("crear formulario");
         nombre_local:this.forma.value.nombre_local,
         direccion: this.forma.value.direccion,
         sector: this.forma.value.sector,
-        estado:this.forma.value.estado
-      //  contrasenia: this.forma.value.contrasenia
+        estado:this.forma.value.estado,
+       contrasenia: this.pass 
       }).subscribe((data:any)=>{
           this.toastr.success('', 'EL proveedor se edito corectamente');
-        /*  this.forma.reset({     
-          });*/
+          this.servicio.irA("/admin-proveedores");
 
       },(error:any)=>{
         this.toastr.error('Error!', 'No se pudo realizar la peticion, compruebe su conexion a internet');
@@ -182,5 +188,29 @@ console.log("crear formulario");
       });
     }
   }
+
+  generarContraseña()
+  {
+      let result = "";
+      const abc = "a b c d e f g h i j k l m n o p q r s t u v w x y z".split(" "); // Espacios para convertir cara letra a un elemento de un array
+      for(let i=1;i<=6;i++) {
+        if (abc[i]) { // Condicional para prevenir errores en caso de que longitud sea mayor a 26
+          const random = Math.floor(Math.random() * 4); // Generaremos el número
+          const random2 = Math.floor(Math.random() * abc.length); // Generaremos el número
+          const random3 = Math.floor(Math.random() * abc.length + 3); // Generaremos el número
+          if (random == 1) {
+            result += abc[random2]
+          } else if (random == 2) {
+            result += random3 + abc[random2]
+          } else {
+            result += abc[random2].toUpperCase()
+          }
+        }
+      }
+      console.log(result);
+      return result;
+      
+  }
+
 
 }

@@ -12,6 +12,7 @@ export class ServiciosService {
   //URL del servidor
   //private URL_API: string = 'http://riobytes.com/api_repicar/'; 
   private URL_API: string = 'http://192.168.100.19:8080/api_repicar/'; 
+  //private URL_API: string = 'http://192.168.88.5:8080/api_repicar/'; 
 
   constructor(private router: Router,
     private http: HttpClient
@@ -123,6 +124,12 @@ export class ServiciosService {
         this.objectToFormData({id_proveedor: data.proveedor_id}) 
         );
     }
+    Pedidos_Total_Ventas(data:any) {
+      return this.http.post(
+        this.URL_API + 'total-ventas', 
+        this.objectToFormData({id_proveedor: data.id_proveedor})
+        );
+    }
 
       //**************************PROPUESTA */
       Proveedor_Cotiza_Propuesta(data:any) {
@@ -191,8 +198,8 @@ export class ServiciosService {
           nombre_local: data.nombre_local,
           direccion: data.direccion,
           sector: data.sector,
-          estado:data.estado
-         // contrasenia: data.contrasenia
+          estado:data.estado,
+         contrasenia: data.contrasenia
         }) 
         );
     };
@@ -202,6 +209,25 @@ export class ServiciosService {
         this.URL_API + 'listar-estados'
         );
     }
+
+    //**********Publicidades**************/
+    Publicidad_TipoListado() {
+      return this.http.get(
+        this.URL_API + 'listar-tipopublicidad'
+        );
+    }
+    //**********LIcecnias**************/
+    Licencias_Listado() {
+      return this.http.get(
+        this.URL_API + 'listar-licencias'
+        );
+    }
+      //**********Comisiones**************/
+      Comisiones_Listado() {
+        return this.http.get(
+          this.URL_API + 'listar-comisiones'
+          );
+      }
  
   
    //esta funcion es usada para formatear los parametros.
