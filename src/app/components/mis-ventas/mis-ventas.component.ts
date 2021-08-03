@@ -71,6 +71,14 @@ export class MisVentasComponent implements OnInit {
         this.toastr.warning(error + '!', 'Error');
         //this.servicio.irA('/inicio');
       })
+      
+      setTimeout(function(){
+        $('#DTventas').DataTable({
+            "language": {
+                "url": "http://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+            }
+        });
+    }, 1000);
   }
 
   cargarPublicidad()

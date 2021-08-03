@@ -12,12 +12,12 @@ export class AdminProveedoresComponent implements OnInit {
   public proveedores:string[]=[];
 
   constructor(private servicio:ServiciosService,private toastr: ToastrService) {
-    this.Cargar_Proveedores();
-
+    
    }
 
   ngOnInit(): void {
-    
+    this.Cargar_Proveedores();
+
   }
 
   Cargar_Proveedores() {
@@ -35,6 +35,14 @@ export class AdminProveedoresComponent implements OnInit {
         this.toastr.warning(error + '!', 'Error');
         //this.servicio.irA('/inicio');
       })
+
+      setTimeout(function(){
+        $('#DTproveedores').DataTable({
+            "language": {
+                "url": "http://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+            }
+        });
+    }, 1000);
   }
 
   editProveedor(item)
