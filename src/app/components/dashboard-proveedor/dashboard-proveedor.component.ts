@@ -337,7 +337,7 @@ export class DashboardProveedorComponent implements OnInit {
 
 
   cotizar() {
-    console.log("hola");
+  
     if (this.forma.invalid) {
       console.log('invalido');
       return Object.values(this.forma.controls).forEach(control => {

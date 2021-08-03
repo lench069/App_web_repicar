@@ -10,6 +10,7 @@ import { AdminProveedoresComponent } from './components/PageAdministradores/admi
 import { ConfiguracionesComponent } from './components/PageAdministradores/configuraciones/configuraciones.component';
 import { EditProveedoresComponent } from './components/PageAdministradores/edit-proveedores/edit-proveedores.component';
 import { MenuLateralComponent } from './components/PageAdministradores/menu-lateral/menu-lateral.component';
+import { VentasProveedorComponent } from './components/PageAdministradores/ventas-proveedor/ventas-proveedor.component';
 import { RegistroProveedorComponent } from './components/registro-proveedor/registro-proveedor.component';
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'menu_lateral', component: MenuLateralComponent},
   { path: 'configuraciones', component: ConfiguracionesComponent},
   { path: 'edit_proveedores/:ci_ruc', component: EditProveedoresComponent},
+  { path: 'ventas_proveedor/:ci_ruc', component: VentasProveedorComponent},
   { path: '**', pathMatch: 'full', redirectTo: 'inicio' }
 ];
 

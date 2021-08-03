@@ -42,5 +42,9 @@ export class AdminProveedoresComponent implements OnInit {
       console.log(item);
       this.servicio.irA('/edit_proveedores/'+item.CI_RUC);
   }
+  verPagos(proveedorSeleccionado)
+  {
+    this.servicio.irA('/ventas_proveedor/'+proveedorSeleccionado.CI_RUC);
+  }
 
 }

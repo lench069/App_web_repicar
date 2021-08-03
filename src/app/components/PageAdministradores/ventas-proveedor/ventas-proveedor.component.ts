@@ -1,19 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ServiciosService } from 'src/app/services/servicios.service';
-import { ConfiguracionesComponent } from '../PageAdministradores/configuraciones/configuraciones.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-mis-ventas',
-  templateUrl: './mis-ventas.component.html',
-  styleUrls: ['./mis-ventas.component.css']
+  selector: 'app-ventas-proveedor',
+  templateUrl: './ventas-proveedor.component.html',
+  styleUrls: ['./ventas-proveedor.component.css']
 })
-export class MisVentasComponent implements OnInit {
-
-  public pedidos_finalizados: any = [];
+export class VentasProveedorComponent implements OnInit {
+  
   public proveedor_id: string = '';
-  public fecha_inicial:string='';
-  public fecha_final:string='';
   public tipo_publicidad:any=null;
   public proveedor:any=null;
   public selectPublicidad:any={
@@ -37,40 +34,15 @@ export class MisVentasComponent implements OnInit {
   public recargo_total:number=0;
   public precio_total:number=0;
 
+  constructor(private servicio: ServiciosService,private toastr: ToastrService,public route:ActivatedRoute) { 
 
-  constructor(private servicio: ServiciosService,private toastr: ToastrService) { }
-
-  ngOnInit(): void {
-    this.proveedor_id = localStorage.getItem('proveedor_id');
-    this.Cargar_Pedidos_Finalizados(this.proveedor_id);
-    this.Cargar_Total_Ventas(this.proveedor_id);
-    this.consultarProveedor();
-    
-    
+    this.proveedor_id = this.route.snapshot.params.ci_ruc;
   }
 
-  Cargar_Pedidos_Finalizados(id: string) {
-
-    this.servicio.Pedidos_Finalizados_Listado({
-      id_proveedor: id
-    }) // llamado al servicio
-      .subscribe((data: any) => {   //promesa espera hasta que regrese la data aqui va cuando fue exitoso
-        console.log(data);
-        if (data.length >= 1) {
-          this.pedidos_finalizados = data[0].finalizados;
-          this.fecha_inicial = data[0].fecha_ini;
-          this.fecha_final = data[0].fecha_fin;
-          console.log(this.pedidos_finalizados);
-          console.log(this.fecha_inicial);
-          console.log(this.fecha_final);
-        } else {
-          this.toastr.warning('Aun no tienes ventas concretadas!', 'Aviso');
-        }
-      }, (error: any) => { //sentencias cuando ocurrio un error
-
-        this.toastr.warning(error + '!', 'Error');
-        //this.servicio.irA('/inicio');
-      })
+  ngOnInit(): void {
+    this.Cargar_Total_Ventas(this.proveedor_id);
+    this.consultarProveedor();
+   
   }
 
   cargarPublicidad()
@@ -112,18 +84,18 @@ export class MisVentasComponent implements OnInit {
         {
           
          this.proveedor = data.proveedor;
-            if(this.proveedor != {})
-                {
-                  this.cargarPublicidad();
-                  this.cargarLicencias();
-                  this.cantidad_total = 3;
-                  this.recargo_total = this.selectPublicidad.PRECIO + this.selectLicencia.VALOR + (this.total_ventas.TOTAL_ORIGINAL_COM - this.total_ventas.TOTAL_ORIGINAL);
-                  this.precio_total = this.selectPublicidad.PRECIO + this.selectLicencia.VALOR + this.total_ventas.TOTAL_ORIGINAL_COM ;
-                  console.log(this.cantidad_total);
-                  console.log(this.recargo_total);
-                  console.log(this.precio_total);
-
-                }
+         if(this.proveedor != {})
+         {
+           this.cargarPublicidad();
+           this.cargarLicencias();
+           this.cantidad_total = 3;
+           this.recargo_total = this.selectPublicidad.PRECIO + this.selectLicencia.VALOR + (this.total_ventas.TOTAL_ORIGINAL_COM - this.total_ventas.TOTAL_ORIGINAL);
+           this.precio_total = this.selectPublicidad.PRECIO + this.selectLicencia.VALOR + this.total_ventas.TOTAL_ORIGINAL_COM ;
+           console.log(this.cantidad_total);
+           console.log(this.recargo_total);
+           console.log(this.precio_total);
+     
+         }
         }else{
 
          this.toastr.error('El proveedor que desea consultar no existe.');    
