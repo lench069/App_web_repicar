@@ -255,8 +255,7 @@ export class DashboardProveedorComponent implements OnInit {
         console.log(data);
         if (data.length >= 1) {
           this.pedidos_aceptados = data;
-
-
+          console.log(this.pedidos_aceptados);
         } else {
           this.toastr.warning('Aun no tiene pedidos aceptados!', 'Bienvenido');
           console.log('No existen registros');
@@ -285,7 +284,6 @@ export class DashboardProveedorComponent implements OnInit {
     console.log(pedido);
     this.mostrarEntrada = false;
     this.mostrarEnviada = true;
-    console.log(pedido);
     this.pedidoSeleccionado = pedido.pedidos;
     this.descripcion = pedido.pedidos[0].DESCRIPCION;
     this.id_propuesta = pedido.pedidos[0].ID_PROPUESTA;

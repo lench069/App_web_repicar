@@ -395,8 +395,8 @@
                     <!--*ngFor="let pedido of pedidos_nuevos;let impar = odd;let par = even;" [ngClass]="{azul:par,verde:impar}"-->
                     <div class="widget-body">
                       <div class="widget-main padding-8">
-                        <div id="profile-feed-3" class="profile-feed">
-                          <div class="profile-activity clearfix" *ngFor="let pedido of pedidos_aceptados">
+                        <div id="profile-feed-3" class="profile-feed" *ngFor="let item of pedidos_aceptados">
+                          <div class="profile-activity clearfix" *ngFor="let pedido of item.pedidos">
 
                             <h5>{{pedido.FECHA_FIN}}</h5>
                             <div>
@@ -410,6 +410,9 @@
                             </div>
 
                             <div class="tools action-buttons">
+                              <a [routerLink]="" class="green" (click)="verPedidoEnviada(item)">
+                                <i class="ace-icon fa fa-eye bigger-130"></i>
+                              </a>
                               <a href="#" class="blue">
                                 <i class="ace-icon fa fa-user bigger-130"></i>
                               </a>
