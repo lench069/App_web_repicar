@@ -43,6 +43,28 @@ export class ServiciosService {
       );
   };
 
+  cambiarContrasenia(data:any) {
+    console.log(data);
+    return this.http.post(
+      this.URL_API + 'cambiar-contrasenia', 
+      this.objectToFormData({
+        ci_ruc: data.ci_ruc,
+        new_contrasenia: data.newContraseña
+      }) 
+      );
+  }
+  olvideContrasenia(data:any) {
+    console.log(data);
+    return this.http.post(
+      this.URL_API + 'olvide-contrasenia', 
+      this.objectToFormData({
+        ci_ruc: data.ci_ruc,
+        correo: data.correo,
+        pass_temp: data.pass_temp
+      }) 
+      );
+  }
+
       //***********************Login******************************************/
       Login(data:any) {
         console.log(data);
@@ -61,6 +83,16 @@ export class ServiciosService {
           this.objectToFormData({
             usuario: data.usuario,
             contrasenia: data.contrasenia,
+          }) 
+          );
+      }
+
+      verificarCambioContra(data:any) {
+        console.log(data);
+        return this.http.post(
+          this.URL_API + 'verificar-cambio-contrasenia', 
+          this.objectToFormData({
+            ci_ruc: data.ci_ruc
           }) 
           );
       }
@@ -254,6 +286,29 @@ export class ServiciosService {
     }
     return fd;
   };
+
+  generarContraseña()
+  {
+      let result = "";
+      const abc = "a b c d e f g h i j k l m n o p q r s t u v w x y z".split(" "); // Espacios para convertir cara letra a un elemento de un array
+      for(let i=1;i<=6;i++) {
+        if (abc[i]) { // Condicional para prevenir errores en caso de que longitud sea mayor a 26
+          const random = Math.floor(Math.random() * 4); // Generaremos el número
+          const random2 = Math.floor(Math.random() * abc.length); // Generaremos el número
+          const random3 = Math.floor(Math.random() * abc.length + 3); // Generaremos el número
+          if (random == 1) {
+            result += abc[random2]
+          } else if (random == 2) {
+            result += random3 + abc[random2]
+          } else {
+            result += abc[random2].toUpperCase()
+          }
+        }
+      }
+      console.log(result);
+      return result;
+      
+  }
 }
 
 

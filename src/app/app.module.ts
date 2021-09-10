@@ -33,6 +33,8 @@ import { MenuLateralComponent } from './components/PageAdministradores/menu-late
 import { ConfiguracionesComponent } from './components/PageAdministradores/configuraciones/configuraciones.component';
 import { EditProveedoresComponent } from './components/PageAdministradores/edit-proveedores/edit-proveedores.component';
 import { VentasProveedorComponent } from './components/PageAdministradores/ventas-proveedor/ventas-proveedor.component';
+import { CambioPasswordComponent } from './components/cambio-password/cambio-password.component';
+import { OlvidePasswordComponent } from './components/olvide-password/olvide-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +54,8 @@ import { VentasProveedorComponent } from './components/PageAdministradores/venta
     ConfiguracionesComponent,
     EditProveedoresComponent,
     VentasProveedorComponent,
+    CambioPasswordComponent,
+    OlvidePasswordComponent,
   ],
   imports: [
     BrowserModule,

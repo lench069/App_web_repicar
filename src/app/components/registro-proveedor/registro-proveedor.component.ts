@@ -73,7 +73,7 @@ export class RegistroProveedorComponent implements OnInit {
 
     this.forma = this.fb.group({
       nombres  : ['', [ Validators.required, Validators.minLength(5) ]  ],
-      ci_pass: ['', [Validators.required, Validators.minLength(10),Validators.maxLength(12) ] ],
+      ci_pass: ['', [Validators.required, Validators.minLength(10),Validators.maxLength(13) ] ],
       telefono: ['', [Validators.required, Validators.minLength(10) ] ],
       correo  : ['', [ Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')] ],
       nombre_local: ['', [Validators.required ] ],

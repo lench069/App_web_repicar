@@ -11,6 +11,7 @@ import { ServiciosService } from 'src/app/services/servicios.service';
 export class LoginComponent implements OnInit {
 
   forma: FormGroup;
+  public flagCambioContra:boolean = false;
 
   constructor(private fb: FormBuilder,
     private servicio: ServiciosService,
@@ -60,13 +61,22 @@ export class LoginComponent implements OnInit {
         contrasenia: this.forma.value.contrasenia
       }).subscribe((data:any)=>{
         console.log(data);
-        if(data.mensaje == 'true'){
+        if(data.mensaje == 'Ingreso exitoso'){
          // this.storage.set('session_storage', data.info.item);
          localStorage.setItem('proveedor_id',this.forma.value.ci_ruc);
-         this.toastr.success('Ingreso exitoso!', 'Bienvenido');
-          this.servicio.irA('/dashboard_proveedor');
+         this.tieneCambioContra(this.forma.value.ci_ruc).then((repuesta: any) => {
+            console.log(repuesta);
+            if(repuesta.mensaje == 'true'){
+              this.servicio.irA('/cambio_contraseña');
+            }else{
+              this.toastr.success(data.mensaje + '!', 'Bienvenido');
+              this.servicio.irA('/dashboard_proveedor');
+            }
+
+          });
+   
         }else{
-          this.toastr.warning('Usuario o contraseña incorrecta!', 'Warning');
+          this.toastr.warning(data.mensaje + '!', 'Warning');
         }
       },(error:any)=>{
      
@@ -75,6 +85,12 @@ export class LoginComponent implements OnInit {
       });
     }
     
+  }
+
+  tieneCambioContra(proveedor_id:string){
+   return this.servicio.verificarCambioContra({
+      ci_ruc: proveedor_id
+    }).toPromise();
   }
 
 }

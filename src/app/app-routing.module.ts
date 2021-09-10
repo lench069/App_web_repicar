@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CambioPasswordComponent } from './components/cambio-password/cambio-password.component';
 import { ContenidoComponent } from './components/contenido/contenido.component';
 import { DashboardProveedorComponent } from './components/dashboard-proveedor/dashboard-proveedor.component';
 import { LoginAdminComponent } from './components/login-admin/login-admin.component';
 import { LoginComponent } from './components/login/login.component';
 import { MisVentasComponent } from './components/mis-ventas/mis-ventas.component';
+import { OlvidePasswordComponent } from './components/olvide-password/olvide-password.component';
 import { AddProveedoresComponent } from './components/PageAdministradores/add-proveedores/add-proveedores.component';
 import { AdminProveedoresComponent } from './components/PageAdministradores/admin-proveedores/admin-proveedores.component';
 import { ConfiguracionesComponent } from './components/PageAdministradores/configuraciones/configuraciones.component';
@@ -26,6 +28,8 @@ const routes: Routes = [
   { path: 'configuraciones', component: ConfiguracionesComponent},
   { path: 'edit_proveedores/:ci_ruc', component: EditProveedoresComponent},
   { path: 'ventas_proveedor/:ci_ruc', component: VentasProveedorComponent},
+  { path: 'cambio_contraseña', component: CambioPasswordComponent},
+  { path: 'olvide_contraseña', component: OlvidePasswordComponent},
   { path: '**', pathMatch: 'full', redirectTo: 'inicio' }
 ];
 

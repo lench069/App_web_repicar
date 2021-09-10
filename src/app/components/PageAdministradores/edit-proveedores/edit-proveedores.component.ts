@@ -74,7 +74,7 @@ export class EditProveedoresComponent implements OnInit {
 console.log("crear formulario");
     this.forma = this.fb.group({
       nombres  : [this.nombres, [ Validators.required, Validators.minLength(5) ]  ],
-      ci_pass: [this.id_proveedor, [Validators.required, Validators.minLength(10),Validators.maxLength(12) ] ],
+      ci_pass: [this.id_proveedor, [Validators.required, Validators.minLength(10),Validators.maxLength(13) ] ],
       telefono: [this.telefono, [Validators.required, Validators.minLength(10) ] ],
       correo  : [this.email, [ Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')] ],
       nombre_local: [this.nombre_local, [Validators.required ] ],
@@ -124,7 +124,7 @@ console.log("crear formulario");
 
       if (this.forma.value.estado == 2) //si es activo enviar contraseña
       {
-         this.pass = this.generarContraseña();
+         this.pass = this.servicio.generarContraseña();
       }
 
       console.log(this.forma.value.estado);
@@ -189,7 +189,9 @@ console.log("crear formulario");
     }
   }
 
-  generarContraseña()
+
+//esta funcion esta como servicio BORRARLA
+  /*generarContraseña()
   {
       let result = "";
       const abc = "a b c d e f g h i j k l m n o p q r s t u v w x y z".split(" "); // Espacios para convertir cara letra a un elemento de un array
@@ -210,7 +212,7 @@ console.log("crear formulario");
       console.log(result);
       return result;
       
-  }
+  }*/
 
 
 }

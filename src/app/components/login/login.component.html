@@ -5,7 +5,7 @@
         <div class="signin-content">
             <div class="signin-image" data-aos="fade-right">
                 <figure><img src="assets/login_registro/images/signin-image.jpg" alt="sing up image" ></figure>
-                <a href="#" class="signup-image-link">Registrate como proveedor aqui</a>
+                <p class="signup-image-link" >¿No tienes cuenta? <a routerLink="/registro"> Registrate aquí</a></p>
             </div>
 
             <div class="signin-form" data-aos="fade-left">
@@ -33,22 +33,25 @@
                         Ingrese su contraseña
                         </small>
                     </div>
+                    <div style="text-align: right;margin-top: -15px; font-size:small;">
+                        <a routerLink="/olvide_contraseña" class="">Olvidé mi contraseña.</a>
+                    </div>   
                     <div class="form-group">
                         <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
                         <label for="remember-me" class="label-agree-term"><span><span></span></span>Recuerdame</label>
                     </div>
                     <div class="form-group form-button">
                         <input type="submit" name="signin" id="signin" class="form-submit" value="Ingresar"/>
-                    </div>
+                    </div>                              
                 </form>
-                <div class="social-login">
+                <!--<div class="social-login">
                     <span class="social-label">O ingresar con</span>
                     <ul class="socials">
                         <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
                         <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
                         <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
                     </ul>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
