@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ServiciosService } from 'src/app/services/servicios.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -56,9 +57,10 @@ export class LoginComponent implements OnInit {
       });
      
     }else{
+   
       this.servicio.Login({
         ci_ruc: this.forma.value.ci_ruc,
-        contrasenia: this.forma.value.contrasenia
+        contrasenia: this.servicio.encriptarContraseña(this.forma.value.contrasenia)
       }).subscribe((data:any)=>{
         console.log(data);
         if(data.mensaje == 'Ingreso exitoso'){

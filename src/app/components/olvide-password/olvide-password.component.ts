@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ServiciosService } from 'src/app/services/servicios.service';
 import  Swal  from 'sweetalert2'; 
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-olvide-password',
@@ -14,7 +15,6 @@ export class OlvidePasswordComponent implements OnInit {
   forma: FormGroup;
   public contraCoinciden:boolean = true;
   public proveedor_id: string = '';
-  public pass_temp:string;
 
   constructor(private fb: FormBuilder,
     private servicio: ServiciosService,
@@ -59,12 +59,12 @@ export class OlvidePasswordComponent implements OnInit {
       });
      
     }else{
-
-          this.pass_temp = this.servicio.generarContraseña();
+      
+         // this.pass_temp = this.servicio.generarContraseña();
           this.servicio.olvideContrasenia({
             ci_ruc: this.forma.value.ci_ruc,
             correo: this.forma.value.correo,
-            pass_temp: this.pass_temp
+            pass_temp: this.servicio.encriptarContraseña(this.servicio.generarContraseña())
           }).subscribe((data:any)=>{
             console.log(data);
             if(data.flag == 'true'){

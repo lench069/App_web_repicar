@@ -124,7 +124,7 @@ console.log("crear formulario");
 
       if (this.forma.value.estado == 2) //si es activo enviar contraseña
       {
-         this.pass = this.servicio.generarContraseña();
+         this.pass = this.servicio.encriptarContraseña(this.servicio.generarContraseña());
       }
 
       console.log(this.forma.value.estado);

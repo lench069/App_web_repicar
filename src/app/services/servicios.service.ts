@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import * as CryptoJS from 'crypto-js';
 
 
 
@@ -13,6 +14,9 @@ export class ServiciosService {
   //private URL_API: string = 'http://riobytes.com/api_repicar/'; 
   private URL_API: string = 'http://192.168.100.19:8080/api_repicar/'; 
   //private URL_API: string = 'http://192.168.88.5:8080/api_repicar/'; 
+
+  public DataKey = CryptoJS.enc.Utf8.parse("01234567890123456789012345678901"); // 32 bytes
+  public DataVector = CryptoJS.enc.Utf8.parse("1234567890123412"); // 16 bytes
 
   constructor(private router: Router,
     private http: HttpClient
@@ -308,6 +312,11 @@ export class ServiciosService {
       console.log(result);
       return result;
       
+  }
+
+  encriptarContraseña(contraseña)
+  {
+     return CryptoJS.AES.encrypt(contraseña, this.DataKey,{ iv: this.DataVector }).toString();
   }
 }
 

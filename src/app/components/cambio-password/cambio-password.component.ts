@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ServiciosService } from 'src/app/services/servicios.service';
 
+
 @Component({
   selector: 'app-cambio-password',
   templateUrl: './cambio-password.component.html',
@@ -13,6 +14,7 @@ export class CambioPasswordComponent implements OnInit {
   forma: FormGroup;
   public contraCoinciden:boolean = true;
   public proveedor_id: string = '';
+  public pass:string = '';
 
   constructor(private fb: FormBuilder,
     private servicio: ServiciosService,
@@ -63,7 +65,7 @@ export class CambioPasswordComponent implements OnInit {
 
           this.servicio.cambiarContrasenia({
             ci_ruc: this.proveedor_id,
-            newContraseña: this.forma.value.contraNueva,
+            newContraseña: this.servicio.encriptarContraseña(this.forma.value.contraNueva)
           }).subscribe((data:any)=>{
             console.log(data);
             if(data.flag == 'true'){

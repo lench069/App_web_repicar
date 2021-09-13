@@ -24,6 +24,7 @@
     "angular-datatables": "^12.0.0",
     "angular-ng-autocomplete": "^2.0.5",
     "bootstrap": "^5.0.2",
+    "crypto-js": "^4.1.1",
     "datatables.net": "^1.10.25",
     "datatables.net-dt": "^1.1.0",
     "jquery": "^3.6.0",
