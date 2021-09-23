@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   forma: FormGroup;
   public flagCambioContra:boolean = false;
+  public type:string='password';
 
   constructor(private fb: FormBuilder,
     private servicio: ServiciosService,
@@ -24,6 +25,11 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  mostrarContra()
+  {
+    this.type = this.servicio.verContraseña(this.type);
+  }
+ 
   get ci_rucNoValido() {
     return this.forma.get('ci_ruc').invalid && this.forma.get('ci_ruc').touched
   }

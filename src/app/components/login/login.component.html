@@ -25,10 +25,11 @@
                     <div class="form-group">
                         <label for="contrasenia"><i class="zmdi zmdi-lock"></i></label>
                         <input class="form-control"
-                        type="password"
+                        [type]="type"
                         placeholder="Contraseña"
                         formControlName="contrasenia"
                         [class.is-invalid]="contraseniaNoValido">
+                        <i class="fa fa-fw fa-eye password-icon show-password" (click)='mostrarContra()'></i>
                         <small *ngIf="contraseniaNoValido" class="text-danger">
                         Ingrese su contraseña
                         </small>

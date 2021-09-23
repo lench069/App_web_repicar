@@ -318,6 +318,18 @@ export class ServiciosService {
   {
      return CryptoJS.AES.encrypt(contraseña, this.DataKey,{ iv: this.DataVector }).toString();
   }
+
+  verContraseña(type:string)
+  {
+    if(type == 'password')
+    {
+      type = 'text';
+    }else{
+      type = 'password';
+    }
+    return type;
+   
+  }
 }
 
 

@@ -15,6 +15,8 @@ export class CambioPasswordComponent implements OnInit {
   public contraCoinciden:boolean = true;
   public proveedor_id: string = '';
   public pass:string = '';
+  public type:string='password';
+  public typeRep:string='password';
 
   constructor(private fb: FormBuilder,
     private servicio: ServiciosService,
@@ -87,5 +89,13 @@ export class CambioPasswordComponent implements OnInit {
         }
     }
     
+  }
+  mostrarContra()
+  {
+    this.type = this.servicio.verContraseña(this.type);
+  }
+  mostrarContraRep()
+  {
+    this.typeRep = this.servicio.verContraseña(this.typeRep);
   }
 }
