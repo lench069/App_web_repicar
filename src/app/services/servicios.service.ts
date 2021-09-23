@@ -330,6 +330,19 @@ export class ServiciosService {
     return type;
    
   }
+
+  //Contactanos
+  contactanos_enviar(data:any) {
+    return this.http.post(
+      this.URL_API + 'contactanos-enviar', 
+      this.objectToFormData({
+        nombre: data.nombre,
+        correo: data.correo,
+        asunto: data.asunto,
+        mensaje: data.mensaje
+      }) 
+      );
+  }
 }
 
 

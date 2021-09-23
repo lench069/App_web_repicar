@@ -374,20 +374,49 @@
         </div>
 
         <div class="col-lg-6 mt-4 mt-lg-0">
-          <form action="forms/contact.php" method="post" role="form" class="php-email-form w-100" data-aos="fade-up">
+          <form  [formGroup]="forma"  role="form" class="php-email-form w-100" data-aos="fade-up" (ngSubmit)='enviar()'>
             <div class="row">
               <div class="col-md-6 form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Tu nombre" required>
+                <input  name="name"  id="name" placeholder="Tu nombre" 
+                        class="form-control"
+                        type="text"
+                        formControlName="nombre"
+                        [class.is-invalid]="nombreNoValido" >
+                        <small *ngIf="nombreNoValido" class="text-danger">
+                          Nombre requerido
+                        </small>
               </div>
               <div class="col-md-6 form-group mt-3 mt-md-0">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Tu email" required>
+                <input  name="email"  id="email" placeholder="Tu email" 
+                        class="form-control"
+                        type="email"
+                        formControlName="correo"
+                        [class.is-invalid]="correoNoValido" >
+                        <small *ngIf="correoNoValido" class="text-danger">
+                          Email requerido
+                        </small>
               </div>
             </div>
             <div class="form-group mt-3">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto" required>
+              <input  name="asunto"  id="asunto" placeholder="Asunto" 
+                        class="form-control"
+                        type="text"
+                        formControlName="asunto"
+                        [class.is-invalid]="asuntoNoValido" >
+                        <small *ngIf="asuntoNoValido" class="text-danger">
+                          Asunto requerido
+                        </small>
             </div>
             <div class="form-group mt-3">
-              <textarea class="form-control" name="message" rows="5" placeholder="Mensaje" required></textarea>
+              <textarea name="message" rows="5" placeholder="Mensaje"  
+                        id="message"
+                        class="form-control"
+                        type="text"
+                        formControlName="mensaje"
+                        [class.is-invalid]="mensajeNoValido"></textarea>
+                        <small *ngIf="mensajeNoValido" class="text-danger">
+                          Mensaje requerido
+                        </small>
             </div>
             <div class="my-3">
               <div class="loading">Loading</div>
