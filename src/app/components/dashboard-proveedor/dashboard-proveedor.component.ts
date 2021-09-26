@@ -90,7 +90,7 @@ export class DashboardProveedorComponent implements OnInit {
     this.forma = this.fb.group({
       pre_original: ['', [Validators.required]],
       pre_generico: ['', [Validators.required]],
-      pre_envio: ['', [Validators.required]],
+      pre_envio: [0, [Validators.min(0)]],
       checkFactura: [false],
       checkEnvio: [false]
     });

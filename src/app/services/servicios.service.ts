@@ -178,7 +178,7 @@ export class ServiciosService {
             p_generico:data.p_generico,
             factura:data.factura,
             envio:data.envio,
-            p_envio:data.p_envio, //Areglar por que no va el valor de cero
+            p_envio:data.p_envio == 0 ? '0' : data.p_envio,//Areglar por que no va el valor de cero
             p_original_com:data.p_original_com,
             p_generico_com:data.p_generico_com
     
