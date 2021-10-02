@@ -145,10 +145,10 @@
                                         <div class="col-md-10">
                                           <ul class="ace-thumbnails clearfix">
 
-                                            <li *ngFor="let item of fotos">
-                                              <a href="{{item.IMAGEN}}" data-rel="colorbox">
-                                                <img width="130" height="130" alt="130x130" src="{{item.IMAGEN}}" />
-                                              </a>
+                                            <li *ngFor="let item of fotos; let i = index">
+                                              
+                                                <img width="130" height="130" alt="130x130" src="{{item.IMAGEN}}" (click)="showGallery(i)"/>
+                                             
                                             </li>
                                           </ul>
                                         </div>

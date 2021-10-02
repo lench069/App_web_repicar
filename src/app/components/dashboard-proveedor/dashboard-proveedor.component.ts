@@ -5,6 +5,10 @@ import { ToastNoAnimationModule, ToastrService } from 'ngx-toastr';
 import * as $ from 'src/assets/dashboard/js/jquery-2.1.4.min.js';
 import * as elements from 'src/assets/dashboard/js/ace-elements.min.js';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+//galery
+import {Gallery, Images} from 'angular-gallery';
+//interface
+import{imagenesPath} from 'src/app/interfaces/imagenes.interface'
 
 
 
@@ -44,12 +48,14 @@ export class DashboardProveedorComponent implements OnInit {
   public termino: string = '';
   public mostrarEntrada: boolean = null;
   public mostrarEnviada: boolean = null;
+  public galery:any[];
+  public foto:imagenesPath = {};
 
 
 
   stiloos = "height: '250px',mouseWheelLock: true,alwaysVisible : true";
   constructor(private servicio: ServiciosService, private toastr: ToastrService, private platformLocation: PlatformLocation,
-    private ngZone: NgZone, private fb: FormBuilder,) {
+    private ngZone: NgZone, private fb: FormBuilder,private gallery: Gallery) {
 
     this.crearFormulario();
   }
@@ -269,17 +275,36 @@ export class DashboardProveedorComponent implements OnInit {
       })
   }
 
+
   verPedido(pedido) {
+    this.fotos = [];
+    this.galery = [];
     this.mostrarEntrada = true;
     this.mostrarEnviada = false;
     console.log(pedido);
     this.pedidoSeleccionado = pedido.pedidos;
     this.descripcion = pedido.pedidos[0].DESCRIPCION;
     this.id_propuesta = pedido.pedidos[0].ID_PROPUESTA;
+    this.fotos = pedido.fotos; 
+    console.log(this.fotos);
+   for(let i=0;i<pedido.fotos.length;i++)
+   {
+      this.foto= {path:pedido.fotos[i].IMAGEN};
+      this.galery.push(this.foto);  
+   }
+   console.log(this.galery);
 
-    this.fotos = pedido.fotos;
-    console.log(this.pedidoSeleccionado[0]);
   }
+
+  showGallery(index: number) {
+    let prop = {
+        images: this.galery,
+        index ,
+        counter: true
+    };
+    this.gallery.load(prop);
+}
+
   verPedidoEnviada(pedido) {
     console.log(pedido);
     this.mostrarEntrada = false;

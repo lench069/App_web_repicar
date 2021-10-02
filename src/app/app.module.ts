@@ -35,6 +35,8 @@ import { EditProveedoresComponent } from './components/PageAdministradores/edit-
 import { VentasProveedorComponent } from './components/PageAdministradores/ventas-proveedor/ventas-proveedor.component';
 import { CambioPasswordComponent } from './components/cambio-password/cambio-password.component';
 import { OlvidePasswordComponent } from './components/olvide-password/olvide-password.component';
+//Galeria
+import {IvyGalleryModule} from 'angular-gallery';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +76,9 @@ import { OlvidePasswordComponent } from './components/olvide-password/olvide-pas
     //Datatable
     DataTablesModule,
     //Autocomplete
-    AutocompleteLibModule
+    AutocompleteLibModule,
+    //galery
+    IvyGalleryModule
 
   ],
   providers: [],
