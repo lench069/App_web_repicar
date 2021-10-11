@@ -9,6 +9,8 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import {Gallery, Images} from 'angular-gallery';
 //interface
 import{imagenesPath} from 'src/app/interfaces/imagenes.interface'
+//spinner
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 
@@ -55,7 +57,7 @@ export class DashboardProveedorComponent implements OnInit {
 
   stiloos = "height: '250px',mouseWheelLock: true,alwaysVisible : true";
   constructor(private servicio: ServiciosService, private toastr: ToastrService, private platformLocation: PlatformLocation,
-    private ngZone: NgZone, private fb: FormBuilder,private gallery: Gallery) {
+    private ngZone: NgZone, private fb: FormBuilder,private gallery: Gallery,private spinner: NgxSpinnerService) {
 
     this.crearFormulario();
   }
@@ -67,8 +69,8 @@ export class DashboardProveedorComponent implements OnInit {
     this.Cargar_Pedidos_Enviados(this.proveedor_id);
     this.Cargar_Pedidos_Aceptados(this.proveedor_id);
     this.getTipoVehiculos();
-
-
+    
+    
   }
 
   verTodosNuevos() {
@@ -111,7 +113,7 @@ export class DashboardProveedorComponent implements OnInit {
   }
 
   Cargar_Pedidos_Nuevos(id: string) {
-
+    this.spinner.show();
     this.servicio.Pedidos_Nuevos_Listado({
       id_proveedor: id
     }) // llamado al servicio
@@ -119,17 +121,20 @@ export class DashboardProveedorComponent implements OnInit {
         console.log(data);
         if (data.length >= 1) {
           this.pedidos_nuevos = data;
+          this.spinner.hide();
 
         } else {
           this.pedidos_nuevos = [];
           this.toastr.warning('Aun no tiene nuevos pedidos!', 'Bienvenido');
           console.log('No existen registros');
+          this.spinner.hide();
         }
 
       }, (error: any) => { //sentencias cuando ocurrio un error
 
         console.log('error');
         this.toastr.warning(error + '!', 'Bienvenido');
+        this.spinner.hide();
         //this.servicio.irA('/inicio');
       })
   }
@@ -137,7 +142,7 @@ export class DashboardProveedorComponent implements OnInit {
 
   Cargar_Pedidos_Nuevos_Por_TipoV(detalle_tipov: string) {
     console.log(detalle_tipov);
-
+    this.spinner.show();
     this.servicio.Pedidos_Nuevos_Listado_Por_TipoV({
       id_proveedor: this.proveedor_id,
       detalle_tipov: detalle_tipov
@@ -162,18 +167,20 @@ export class DashboardProveedorComponent implements OnInit {
           this.toastr.warning('No existen pedidos para este tipo de vehiculo!', 'Alerta');
           console.log('No existen registros por tipo vehiculo');
         }
+        this.spinner.hide();
 
       }, (error: any) => { //sentencias cuando ocurrio un error
 
         console.log('error');
         this.toastr.warning(error + '!', 'Bienvenido');
+        this.spinner.hide();
         //this.servicio.irA('/inicio');
       })
   }
 
   buscarTermino() {
     console.log(this.termino);
-
+    this.spinner.show();
     this.servicio.Pedidos_Nuevos_Listado_Por_Termino({
       id_proveedor: this.proveedor_id,
       termino: this.termino
@@ -192,18 +199,20 @@ export class DashboardProveedorComponent implements OnInit {
           this.toastr.warning('No existen pedidos congruentes con este termino!', 'Alerta');
           console.log('No existen registros por tipo vehiculo');
         }
+        this.spinner.hide();
 
       }, (error: any) => { //sentencias cuando ocurrio un error
 
         console.log('error');
         this.toastr.warning(error + '!', 'Bienvenido');
+        this.spinner.hide();
         //this.servicio.irA('/inicio');
       })
   }
 
   Cargar_Pedidos_Nuevos_Por_MARCA(detalle_marca: string) {
     console.log(detalle_marca);
-
+    this.spinner.show();
     this.servicio.Pedidos_Nuevos_Listado_Por_Marca({
       id_proveedor: this.proveedor_id,
       detalle_tipov: this.tipV,
@@ -220,17 +229,19 @@ export class DashboardProveedorComponent implements OnInit {
           this.toastr.warning('No existen pedidos para esta marca!', 'Alerta');
           console.log('No existen registros por tipo vehiculo');
         }
+        this.spinner.hide();
 
       }, (error: any) => { //sentencias cuando ocurrio un error
 
         console.log('error');
         this.toastr.warning(error + '!', 'Bienvenido');
+        this.spinner.hide();
         //this.servicio.irA('/inicio');
       })
   }
 
   Cargar_Pedidos_Enviados(id: string) {
-
+    this.spinner.show();
     this.servicio.Pedidos_Enviados_Listado({
       id_proveedor: id
     }) // llamado al servicio
@@ -239,21 +250,24 @@ export class DashboardProveedorComponent implements OnInit {
         if (data.length >= 1) {
           this.pedidos_enviados = data;
           console.log(this.pedidos_enviados);
+          this.spinner.hide();
         } else {
           this.pedidos_enviados = [];
           this.toastr.warning('Aun no tiene pedidos pendientes!', 'Bienvenido');
           console.log('No existen registros');
+          this.spinner.hide();
         }
       }, (error: any) => { //sentencias cuando ocurrio un error
 
         console.log('error');
         this.toastr.warning(error + '!', 'Bienvenido');
+        this.spinner.hide();
         //this.servicio.irA('/inicio');
       })
   }
 
   Cargar_Pedidos_Aceptados(id: string) {
-
+    this.spinner.show();
     this.servicio.Pedidos_Aceptados_Listado({
       id_proveedor: id
     }) // llamado al servicio
@@ -262,16 +276,19 @@ export class DashboardProveedorComponent implements OnInit {
         if (data.length >= 1) {
           this.pedidos_aceptados = data;
           console.log(this.pedidos_aceptados);
+          this.spinner.hide();
         } else {
           this.toastr.warning('Aun no tiene pedidos aceptados!', 'Bienvenido');
           console.log('No existen registros');
+          this.spinner.hide();
         }
 
 
       }, (error: any) => { //sentencias cuando ocurrio un error
 
-        this.toastr.warning(error + '!', 'Bienvenido');
-        //this.servicio.irA('/inicio');
+        this.toastr.error(error + '!', 'Algo salio mal');
+        this.spinner.hide();
+        this.servicio.irA('/inicio');
       })
   }
 
@@ -318,15 +335,18 @@ export class DashboardProveedorComponent implements OnInit {
   }
 
   getTipoVehiculos() {
+    this.spinner.show();
     this.servicio.Tipo_vehiculo() // llamado al servicio
       .subscribe((data: any) => {   //promesa espera hasta que regrese la data aqui va cuando fue exitoso
 
         this.Tipo_vehiculos = data.info.items;
         console.log(this.Tipo_vehiculos);
+        this.spinner.hide();
 
 
       }, (error: any) => { //sentencias cuando ocurrio un error
         this.toastr.warning(error + '!');
+        this.spinner.hide();
       })
   }
 
@@ -374,10 +394,11 @@ export class DashboardProveedorComponent implements OnInit {
 
       });
 
-    } else {
+    } else {   
       console.log(this.forma.value.pre_envio);
       console.log(this.forma.value.pre_original);
       if (this.id_propuesta != 0) {
+        this.spinner.show();
         this.servicio.Proveedor_Cotiza_Propuesta({
           id_propuesta: this.id_propuesta,
           estado: 'Cotizado',
@@ -393,6 +414,7 @@ export class DashboardProveedorComponent implements OnInit {
           this.Cargar_Pedidos_Nuevos(this.proveedor_id);
           this.Cargar_Pedidos_Enviados(this.proveedor_id);
           this.pedidoSeleccionado = [];
+          this.spinner.hide();
           /* this.descripcion='';
            this.fotos=[];
            this.forma.value.pre_original='';
@@ -402,9 +424,11 @@ export class DashboardProveedorComponent implements OnInit {
            this.forma.value.checkEnvio=false;*/
         }, (error: any) => {
           this.toastr.error(error, 'Error');
+          this.spinner.hide();
         });
       } else {
         this.toastr.warning('Debe seleccionar un pedido de la bandeja de entrada!', 'Alerta');
+        this.spinner.hide();
       }
 
     }
@@ -417,6 +441,7 @@ export class DashboardProveedorComponent implements OnInit {
 
   bucarNumPedido() {
     /*buscar pedido*/
+    this.spinner.show();
     if (this.numPedido == '') {
       this.toastr.warning('Debe ingresar un codigo de pedido!', 'Alerta');
     } else if (this.numPedido.length < 10) {
@@ -432,11 +457,13 @@ export class DashboardProveedorComponent implements OnInit {
           this.numPedido = "";
           this.Cargar_Pedidos_Enviados(this.proveedor_id);
           this.Cargar_Pedidos_Aceptados(this.proveedor_id);
+          this.spinner.hide();
 
 
 
         }, (error: any) => {
           console.log('errorAceptar');
+          this.spinner.hide();
 
 
         });

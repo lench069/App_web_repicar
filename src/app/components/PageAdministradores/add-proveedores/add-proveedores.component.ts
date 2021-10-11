@@ -3,6 +3,8 @@ import { ServiciosService } from 'src/app/services/servicios.service';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import  Swal  from 'sweetalert2'; 
+//spinner
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-add-proveedores',
@@ -20,7 +22,7 @@ export class AddProveedoresComponent implements OnInit {
 
   constructor( private fb: FormBuilder,
     private servicio: ServiciosService,
-    private toastr:ToastrService ) { 
+    private toastr:ToastrService,private spinner: NgxSpinnerService ) { 
       this.crearFormulario();
 
     }
@@ -67,7 +69,7 @@ export class AddProveedoresComponent implements OnInit {
 
     this.forma = this.fb.group({
       nombres  : ['', [ Validators.required, Validators.minLength(5) ]  ],
-      ci_pass: ['', [Validators.required, Validators.minLength(10),Validators.maxLength(12) ] ],
+      ci_pass: ['', [Validators.required, Validators.minLength(10),Validators.maxLength(13) ] ],
       telefono: ['', [Validators.required, Validators.minLength(10) ] ],
       correo  : ['', [ Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')] ],
       nombre_local: ['', [Validators.required ] ],
@@ -80,6 +82,7 @@ export class AddProveedoresComponent implements OnInit {
   }
 
   cargarProvincias() {
+    this.spinner.show();
     this.servicio.Provincias_por_pais({id_pais:this.id_pais})
       .subscribe((data:any)=>{
       // this.servicio.Mensajes(data.mensaje,data.info.item.id == 0 ? 'danger': 'success');
@@ -91,8 +94,10 @@ export class AddProveedoresComponent implements OnInit {
        
           this.toastr.error('Error!', 'El pais seleccionado no tiene provincias asociadas.');
         }   
+        this.spinner.hide();
       },(error:any)=>{
           this.toastr.error('Error!', 'No se pudo realizar la peticion.');
+          this.spinner.hide();
       });
     }
 
@@ -102,6 +107,7 @@ export class AddProveedoresComponent implements OnInit {
     this.id_provincia = id_provincia;
     if(this.id_provincia != 0)
     {
+      this.spinner.show();
       this.servicio.Ciudades_por_provincia({id_provincia:this.id_provincia})
       .subscribe((data:any)=>{
       // this.servicio.Mensajes(data.mensaje,data.info.item.id == 0 ? 'danger': 'success');
@@ -111,9 +117,10 @@ export class AddProveedoresComponent implements OnInit {
         }else{
           this.toastr.error('Error!', 'La provincia seleccionada no tiene ciudades asociadas.');
         }
-        
+        this.spinner.hide();
       },(error:any)=>{
           this.toastr.error('Error!', 'No se pudo realizar la peticion.');
+          this.spinner.hide();
       });
     }
   }
@@ -135,6 +142,7 @@ export class AddProveedoresComponent implements OnInit {
       });
      
     }else{
+      this.spinner.show();
       this.servicio.Proveedor_Guardar({
         nombres:this.forma.value.nombres,
         ci_ruc:this.forma.value.ci_pass,
@@ -147,11 +155,14 @@ export class AddProveedoresComponent implements OnInit {
       //  contrasenia: this.forma.value.contrasenia
       }).subscribe((data:any)=>{
           this.toastr.success('', 'EL proveedor se registro corectamente');
+          this.spinner.hide();
+          this.servicio.irA('/admin-proveedores');
           this.forma.reset({     
           });
 
       },(error:any)=>{
         this.toastr.error('Error!', 'No se pudo realizar la peticion, compruebe su conexion a internet');
+        this.spinner.hide();
       });
     }
   }

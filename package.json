@@ -29,6 +29,7 @@
     "datatables.net": "^1.10.25",
     "datatables.net-dt": "^1.1.0",
     "jquery": "^3.6.0",
+    "ngx-spinner": "^9.0.2",
     "ngx-toastr": "^13.2.1",
     "rxjs": "~6.5.4",
     "sweetalert2": "^11.0.18",

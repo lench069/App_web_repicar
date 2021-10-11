@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -37,6 +37,8 @@ import { CambioPasswordComponent } from './components/cambio-password/cambio-pas
 import { OlvidePasswordComponent } from './components/olvide-password/olvide-password.component';
 //Galeria
 import {IvyGalleryModule} from 'angular-gallery';
+//spinner
+import { NgxSpinnerModule } from "ngx-spinner";
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,9 +80,12 @@ import {IvyGalleryModule} from 'angular-gallery';
     //Autocomplete
     AutocompleteLibModule,
     //galery
-    IvyGalleryModule
+    IvyGalleryModule,
+    //ngx spinner
+    NgxSpinnerModule
 
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })

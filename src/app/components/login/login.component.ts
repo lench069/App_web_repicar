@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ServiciosService } from 'src/app/services/servicios.service';
-
-
+//spinner
+import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private servicio: ServiciosService,
-    private toastr:ToastrService) { 
+    private toastr:ToastrService,private spinner: NgxSpinnerService) { 
       this.crearFormulario();
 
     }
@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
       });
      
     }else{
-   
+      this.spinner.show();
       this.servicio.Login({
         ci_ruc: this.forma.value.ci_ruc,
         contrasenia: this.servicio.encriptarContraseña(this.forma.value.contrasenia)
@@ -82,13 +82,15 @@ export class LoginComponent implements OnInit {
             }
 
           });
-   
+          this.spinner.hide();
         }else{
           this.toastr.warning(data.mensaje + '!', 'Warning');
+          this.spinner.hide();
         }
       },(error:any)=>{
      
         this.toastr.error(error, 'Error');
+        this.spinner.hide();
  
       });
     }

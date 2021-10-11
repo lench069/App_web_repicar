@@ -3,7 +3,8 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ServiciosService } from 'src/app/services/servicios.service';
 import  Swal  from 'sweetalert2'; 
-import * as CryptoJS from 'crypto-js';
+//spinner
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-olvide-password',
@@ -18,7 +19,7 @@ export class OlvidePasswordComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private servicio: ServiciosService,
-    private toastr:ToastrService) { 
+    private toastr:ToastrService,private spinner: NgxSpinnerService) { 
       this.crearFormulario();
 
     }
@@ -59,7 +60,7 @@ export class OlvidePasswordComponent implements OnInit {
       });
      
     }else{
-      
+      this.spinner.show();
          // this.pass_temp = this.servicio.generarContraseña();
           this.servicio.olvideContrasenia({
             ci_ruc: this.forma.value.ci_ruc,
@@ -72,12 +73,15 @@ export class OlvidePasswordComponent implements OnInit {
              this.toastr.success(data.mensaje + '!', 'Correcto');
              Swal.fire('Se envio una clave temporal a su correo!');
               this.servicio.irA('/login');
+              this.spinner.hide();
             }else{
               this.toastr.warning(data.mensaje + '!', 'Alerta');
+              this.spinner.hide();
             }
           },(error:any)=>{
          
             this.toastr.error(error, 'Error');
+            this.spinner.hide();
      
           });
     }

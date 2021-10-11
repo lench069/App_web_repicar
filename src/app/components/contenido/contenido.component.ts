@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ToastNoAnimationModule, ToastrService } from 'ngx-toastr';
 import { ServiciosService } from 'src/app/services/servicios.service';
+//spinner
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-contenido',
@@ -13,7 +15,7 @@ export class ContenidoComponent implements OnInit {
   forma: FormGroup;
 
   constructor(private fb: FormBuilder,private servicio: ServiciosService,
-    private toastr:ToastrService) { 
+    private toastr:ToastrService,private spinner: NgxSpinnerService) { 
     this.crearFormulario();
   }
 
@@ -64,7 +66,7 @@ export class ContenidoComponent implements OnInit {
       });
      
     }else{
-
+      this.spinner.show();
       this.servicio.contactanos_enviar({
         nombre:this.forma.value.nombre,
         correo:this.forma.value.correo,
@@ -78,6 +80,7 @@ export class ContenidoComponent implements OnInit {
         }else{
           this.toastr.error('', data.mensaje);
         }
+        this.spinner.hide();
           
           this.forma.reset({
             
@@ -85,6 +88,7 @@ export class ContenidoComponent implements OnInit {
 
       },(error:any)=>{
         this.toastr.error( 'No se pudo enviar el mensaje, compruebe su conexion a internet');
+        this.spinner.hide();
       });
 
     }

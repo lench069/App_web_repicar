@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ServiciosService } from 'src/app/services/servicios.service';
-
+//spinner
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-cambio-password',
@@ -20,7 +21,7 @@ export class CambioPasswordComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private servicio: ServiciosService,
-    private toastr:ToastrService) { 
+    private toastr:ToastrService,private spinner: NgxSpinnerService) { 
       this.crearFormulario();
 
     }
@@ -64,7 +65,7 @@ export class CambioPasswordComponent implements OnInit {
     }else{
         if(this.forma.value.contraRep == this.forma.value.contraNueva)
         {
-
+          this.spinner.show();
           this.servicio.cambiarContrasenia({
             ci_ruc: this.proveedor_id,
             newContraseña: this.servicio.encriptarContraseña(this.forma.value.contraNueva)
@@ -78,9 +79,11 @@ export class CambioPasswordComponent implements OnInit {
               this.toastr.warning(data.mensaje + '!', 'Alerta');
               this.servicio.irA('/login');
             }
+            this.spinner.hide();
           },(error:any)=>{
          
             this.toastr.error(error, 'Error');
+            this.spinner.hide();
      
           });
 
