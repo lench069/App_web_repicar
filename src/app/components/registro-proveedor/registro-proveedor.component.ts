@@ -4,6 +4,8 @@ import { ServiciosService } from 'src/app/services/servicios.service';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ToastNoAnimationModule, ToastrService } from 'ngx-toastr';
 import  Swal  from 'sweetalert2'; 
+//spinner
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 @Component({
@@ -22,7 +24,8 @@ export class RegistroProveedorComponent implements OnInit {
 
   constructor( private fb: FormBuilder,
                private servicio: ServiciosService,
-               private toastr:ToastrService ) { 
+               private toastr:ToastrService,
+               private spinner: NgxSpinnerService ) { 
 
     this.crearFormulario();
     
@@ -153,6 +156,7 @@ export class RegistroProveedorComponent implements OnInit {
       });
      
     }else{
+      this.spinner.show();
       this.servicio.Proveedor_Guardar({
         nombres:this.forma.value.nombres,
         ci_ruc:this.forma.value.ci_pass,
@@ -164,6 +168,7 @@ export class RegistroProveedorComponent implements OnInit {
         sector: this.forma.value.sector,
       //  contrasenia: this.forma.value.contrasenia
       }).subscribe((data:any)=>{
+        this.spinner.hide();
           this.toastr.success('', 'EL proveedor se registro corectamente');
           Swal.fire('EL proveedor se registro corectamente, un asesor se comunicara lo antes posible!');
           this.forma.reset({
@@ -171,6 +176,7 @@ export class RegistroProveedorComponent implements OnInit {
           });
 
       },(error:any)=>{
+        this.spinner.hide();
         this.toastr.error('Error!', 'No se pudo realizar la peticion, compruebe su conexion a internet');
       });
     }
