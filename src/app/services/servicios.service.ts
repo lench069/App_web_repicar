@@ -185,6 +185,21 @@ export class ServiciosService {
           }) 
           );
       };
+      Proveedor_EditarCotiza_Propuesta(data:any) {
+        console.log(data);
+        return this.http.post(
+          this.URL_API + 're-cotizar-propuesta/'+data.id_propuesta, 
+          this.objectToFormData({
+            p_original: data.p_original,
+            p_generico:data.p_generico,
+            factura: data.factura == false ? '0' : 1,
+            envio: data.envio == false ? '0' : 1,
+            p_envio:data.p_envio == 0 ? '0' : data.p_envio,//Areglar por que no va el valor de cero
+            p_original_com:data.p_original_com,
+            p_generico_com:data.p_generico_com
+          }) 
+          );
+      };
       //****************TIPO VEHICULO */
 
       Tipo_vehiculo() {

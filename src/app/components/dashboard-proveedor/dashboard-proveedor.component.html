@@ -3,7 +3,9 @@
 <br>
 <br>
 <br>
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > Cargando... </p></ngx-spinner>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+  <p style="color: white"> Cargando... </p>
+</ngx-spinner>
 <div class="main-container ace-save-state" id="dashboard">
   <div class="main-content">
     <div class="main-content-inner">
@@ -69,20 +71,19 @@
                     <div class="widget-main padding-8 " class="scrollbar" id="style-1">
                       <div id="profile-feed-1" class="profile-feed" class="widget-body"
                         *ngFor="let item of pedidos_nuevos">
-                        <div class="profile-activity clearfix" *ngFor="let pedido of item.pedidos"
-                          (click)="verPedido(item)">
-
-                          <h5>{{pedido.FECHA_INI}}</h5>
-                          <div>
-                            <h6 style="line-height: 30%;"><small><b>Ubicacion:</b> {{pedido.NOMBRE_PROVINCIA}},
-                                {{pedido.NOMBRE_CIUDAD}}</small></h6>
-                            <h6 style="line-height: 30%;"><small><b>Vehiculo:</b> {{pedido.MARCA}}, {{pedido.MODELO}},
-                                {{pedido.ANIO}}</small></h6>
-                            <h6 style="line-height: 30%;"><small><b>Respuesto:</b> {{pedido.DESCRIPCION}}</small></h6>
-                            <h6 style="line-height: 30%;"><small><b>Extras:</b> {{pedido.ORIGINAL}},
-                                {{pedido.GENERICO}}, {{pedido.FACTURA}}, {{pedido.SERVICIO_ENV}}</small></h6>
-                          </div>
-
+                        <div class="profile-activity clearfix" *ngFor="let pedido of item.pedidos">
+                            <div (click)="verPedidoEntrada(item)">
+                              <h5>{{pedido.FECHA_INI}}</h5>
+                              <div>
+                                <h6 style="line-height: 30%;"><small><b>Ubicacion:</b> {{pedido.NOMBRE_PROVINCIA}},
+                                    {{pedido.NOMBRE_CIUDAD}}</small></h6>
+                                <h6 style="line-height: 30%;"><small><b>Vehiculo:</b> {{pedido.MARCA}}, {{pedido.MODELO}},
+                                    {{pedido.ANIO}}</small></h6>
+                                <h6 style="line-height: 30%;"><small><b>Respuesto:</b> {{pedido.DESCRIPCION}}</small></h6>
+                                <h6 style="line-height: 30%;"><small><b>Extras:</b> {{pedido.ORIGINAL}},
+                                    {{pedido.GENERICO}}, {{pedido.FACTURA}}, {{pedido.SERVICIO_ENV}}</small></h6>
+                              </div>
+                            </div>
                           <div class="tools action-buttons">
                             <a href="#" class="grey">
                               <i class="ace-icon fa fa-trash bigger-130"></i>
@@ -116,8 +117,6 @@
                               </div>
                               <div class="widget-body">
                                 <form action="" [formGroup]="forma" (ngSubmit)="cotizar()">
-
-
                                   <div class="widget-main">
                                     <div class="row">
                                       <div class="col-md-6">
@@ -146,9 +145,10 @@
                                           <ul class="ace-thumbnails clearfix">
 
                                             <li *ngFor="let item of fotos; let i = index">
-                                              
-                                                <img width="130" height="130" alt="130x130" src="{{item.IMAGEN}}" (click)="showGallery(i)"/>
-                                             
+
+                                              <img width="130" height="130" alt="130x130" src="{{item.IMAGEN}}"
+                                                (click)="showGallery(i)" />
+
                                             </li>
                                           </ul>
                                         </div>
@@ -234,139 +234,23 @@
                                       </div>
 
                                     </div>
-                                    <div class="widget-main">
+                                    <div class="widget-main" *ngIf="actionCotizar">
                                       <p style="text-align: center;">
                                         <button id="loading-btn" type="submit" class="btn btn-success"
                                           data-loading-text="Loading...">Cotizar</button>
+                                      </p>
+                                    </div>
+                                    <div class="widget-main" *ngIf="actionEditar">
+                                      <p style="text-align: center;">
+                                        <button id="loading-btn" type="submit" class="btn btn-warning"
+                                          data-loading-text="Loading...">Recotizar</button>
                                       </p>
                                     </div>
                                   </div>
                                 </form>
                               </div>
                             </div>
-                            <!--Fin Mostrar Entrada-->
-                            <!--Mostrar Enviada-->
-                            <div class="widget-box" *ngIf="mostrarEnviada">
-                              <div class="widget-header">
-                                <h4 class="widget-title">Item 1</h4>
-
-                                <div class="widget-toolbar">
-                                  <a href="#" data-action="collapse">
-                                    <i class="ace-icon fa fa-chevron-up"></i>
-                                  </a>
-                                </div>
-                              </div>
-                              <div class="widget-body">
-                                <div class="widget-main">
-                                  <div class="row">
-                                    <div class="col-md-6">
-                                      <label for="form-field-8">Ubicacion</label>
-                                      <textarea class="form-control" id="form-field-8" placeholder="Default Text"
-                                        disabled>{{item.NOMBRE_CIUDAD}} - {{item.NOMBRE_PROVINCIA}}</textarea>
-                                    </div>
-                                    <div class="col-md-6">
-                                      <label for="form-field-8">Vehiculo</label>
-                                      <textarea class="form-control" id="form-field-8" placeholder="Default Text"
-                                        disabled>{{item.MARCA}} {{item.MODELO}} del año {{item.ANIO}}</textarea>
-                                    </div>
-                                  </div>
-                                  <div>
-                                    <label for="form-field-9">Repuesto</label>
-
-                                      <textarea class="form-control limited" id="form-field-9" maxlength="50"
-                                        disabled>{{item.DESCRIPCION}}</textarea>
-                                  </div>
-                                  <hr>
-                                  <div>
-                                    <label for="form-field-11">Fotos</label>
-                                    <div class="row">
-                                      <div class="col-md-2"></div>
-                                      <div class="col-md-10">
-                                        <ul class="ace-thumbnails clearfix">
-
-                                          <li *ngFor="let item of fotos">
-                                            <a href="{{item.IMAGEN}}" data-rel="colorbox">
-                                              <img width="130" height="130" alt="130x130" src="{{item.IMAGEN}}" />
-                                            </a>
-                                          </li>
-                                        </ul>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <hr>
-                                  <div class="well">
-                                    <div class="row">
-                                      <table class="table table-hover" style="text-align: center;">
-                                        <thead>
-                                          <tr>
-                                            <th scope="col"></th>
-                                            <th style="width: 150px;">Precio</th>
-                                            <th>Precio + Comision</th>
-                                          </tr>
-                                        </thead>
-                                        <tbody>
-                                          <tr>
-                                            <th>Original</th>
-                                            <td>
-                                              <div class="input-group mb-3">
-                                                <input type="number" class="form-control" placeholder="Precio"
-                                                  aria-label="original" aria-describedby="original"
-                                                  [(ngModel)]="item.P_ORIGINAL" disabled>
-                                                <span class="input-group-text">$</span>
-                                              </div>
-                                            </td>
-                                            <td>{{item.P_ORIGINAL_COM | currency}}</td>
-                                          </tr>
-                                          <tr>
-                                            <th>Generico</th>
-                                            <td>
-                                              <div class="input-group mb-3">
-                                                <input type="number" class="form-control" placeholder="Precio"
-                                                  aria-label="original" aria-describedby="original"
-                                                  [(ngModel)]="item.P_GENERICO" disabled>
-                                                <span class="input-group-text">$</span>
-                                              </div>
-                                            </td>
-                                            <td>{{item.P_GENERICO_COM | currency}}</td>
-                                          </tr>
-                                          <tr *ngIf="item.P_ENVIO > 0">
-                                            <th>Envio</th>
-                                            <td>
-                                              <div class="input-group mb-3">
-                                                <input type="number" class="form-control" placeholder="Precio"
-                                                  aria-label="original" aria-describedby="original"
-                                                  [(ngModel)]="item.P_ENVIO" disabled>
-                                                <span class="input-group-text">$</span>
-                                              </div>
-                                            </td>
-                                            <td></td>
-                                          </tr>
-                                          <tr>
-                                            <th>Adicionales</th>
-                                            <td>
-                                              <label style="vertical-align:top;">Factura</label>
-                                              <input name="switch-field-1" class="ace ace-switch" type="checkbox"
-                                                [(ngModel)]="item.FAC_PROPUESTA" disabled />
-                                              <span class="lbl"></span>
-
-                                            </td>
-                                            <td>
-                                              <label style="vertical-align:top;">Envio </label>
-                                              <input name="switch-field-1" class="ace ace-switch" type="checkbox"
-                                                [(ngModel)]="item.ENV_PROPUESTA" disabled />
-                                              <span class="lbl"></span>
-                                            </td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </div>
-
-                                  </div>
-                                </div>
-
-                              </div>
-                            </div>
-                            <!--Fin Mostrar Enviada-->
+                            <!--Fin Mostrar Entrada-->                    
                           </div><!-- /.span -->
                         </div>
                         <br>
@@ -397,22 +281,23 @@
                       <div class="widget-main padding-8">
                         <div id="profile-feed-3" class="profile-feed" *ngFor="let item of pedidos_aceptados">
                           <div class="profile-activity clearfix" *ngFor="let pedido of item.pedidos">
-
-                            <h5>{{pedido.FECHA_FIN}}</h5>
-                            <div>
-                              <h6 style="line-height: 30%;"><small><b>Ubicacion:</b> {{pedido.NOMBRE_PROVINCIA}},
-                                  {{pedido.NOMBRE_CIUDAD}}</small></h6>
-                              <h6 style="line-height: 30%;"><small><b>Automovil:</b> {{pedido.MARCA}},
-                                  {{pedido.MODELO}}, {{pedido.ANIO}}</small></h6>
-                              <h6 style="line-height: 30%;"><small><b>Respuesto:</b> {{pedido.DESCRIPCION}}</small></h6>
-                              <h6 style="line-height: 30%;"><small><b>Extras:</b> {{pedido.ORIGINAL}},
-                                  {{pedido.GENERICO}}, {{pedido.FACTURA}}, {{pedido.SERVICIO_ENV}}</small></h6>
-                            </div>
+                            <div (click)="verPedidoEnviada(item, 'ver')">
+                              <h5>{{pedido.FECHA_FIN}}</h5>
+                              <div>
+                                  <h6 style="line-height: 30%;"><small><b>Ubicacion:</b> {{pedido.NOMBRE_PROVINCIA}},
+                                      {{pedido.NOMBRE_CIUDAD}}</small></h6>
+                                  <h6 style="line-height: 30%;"><small><b>Automovil:</b> {{pedido.MARCA}},
+                                      {{pedido.MODELO}}, {{pedido.ANIO}}</small></h6>
+                                  <h6 style="line-height: 30%;"><small><b>Respuesto:</b> {{pedido.DESCRIPCION}}</small></h6>
+                                  <h6 style="line-height: 30%;"><small><b>Extras:</b> {{pedido.ORIGINAL}},
+                                      {{pedido.GENERICO}}, {{pedido.FACTURA}}, {{pedido.SERVICIO_ENV}}</small></h6>
+                              </div>
+                          </div>
 
                             <div class="tools action-buttons">
-                              <a [routerLink]="" class="green" (click)="verPedidoEnviada(item)">
+                              <!--<a [routerLink]="" class="green" (click)="verPedidoEnviada(item, 'ver')">
                                 <i class="ace-icon fa fa-eye bigger-130"></i>
-                              </a>
+                              </a>-->
                               <a href="#" class="blue">
                                 <i class="ace-icon fa fa-user bigger-130"></i>
                               </a>
@@ -436,8 +321,8 @@
                     <div class="widget-main padding-8 " class="scrollbar" id="style-1">
                       <div id="profile-feed-1" class="profile-feed" class="widget-body"
                         *ngFor="let item of pedidos_enviados">
-                        <div class="profile-activity clearfix" *ngFor="let pedido of item.pedidos">
-
+                        <div class="profile-activity clearfix" *ngFor="let pedido of item.pedidos" >
+                          <div (click)="verPedidoEnviada(item,'ver')">
                           <h5>{{pedido.FECHA_INI}}</h5>
                           <div>
                             <h6 style="line-height: 30%;"><small><b>Ubicacion:</b> {{pedido.NOMBRE_PROVINCIA}},
@@ -448,12 +333,16 @@
                             <h6 style="line-height: 30%;"><small><b>Extras:</b> {{pedido.ORIGINAL}},
                                 {{pedido.GENERICO}}, {{pedido.FACTURA}}, {{pedido.SERVICIO_ENV}}</small></h6>
                           </div>
+                        </div>
 
                           <div class="tools action-buttons">
-                            <a [routerLink]="" class="green" (click)="verPedidoEnviada(item)">
+                          <!--  <a [routerLink]="" class="green" (click)="verPedidoEnviada(item,'ver')">
                               <i class="ace-icon fa fa-eye bigger-130"></i>
-                            </a>
-                            <a href="#" class="grey">
+                            </a>-->
+                              <a [routerLink]="" class="blue" (click)="verPedidoEnviada(item, 'edit')" *ngIf="pedido.ESTADO_PROPUESTA != 'Aceptado'">
+                                <i class="ace-icon fa fa-pencil bigger-130"></i>
+                              </a>                    
+                            <a [routerLink]="" class="grey" (click)="verPedidoEnviadaEliminar(item)">
                               <i class="ace-icon fa fa-trash bigger-130"></i>
                             </a>
                           </div>
