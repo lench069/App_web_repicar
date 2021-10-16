@@ -11,6 +11,7 @@ import {Gallery, Images} from 'angular-gallery';
 import{imagenesPath} from 'src/app/interfaces/imagenes.interface'
 //spinner
 import { NgxSpinnerService } from "ngx-spinner";
+import { NgControl } from '@angular/forms';
 
 
 
@@ -52,6 +53,9 @@ export class DashboardProveedorComponent implements OnInit {
   public mostrarEnviada: boolean = null;
   public galery:any[];
   public foto:imagenesPath = {};
+  public editPropuesta:boolean;
+  public actionCotizar:boolean = false;
+  public actionEditar:boolean = false;
 
 
 
@@ -60,6 +64,7 @@ export class DashboardProveedorComponent implements OnInit {
     private ngZone: NgZone, private fb: FormBuilder,private gallery: Gallery,private spinner: NgxSpinnerService) {
 
     this.crearFormulario();
+    this.editPropuesta = false;
   }
 
   ngOnInit(): void {
@@ -94,7 +99,8 @@ export class DashboardProveedorComponent implements OnInit {
   }
 
   crearFormulario() {
-
+    this.actionCotizar = false;
+    this.actionEditar = false;
     this.forma = this.fb.group({
       pre_original: ['', [Validators.required]],
       pre_generico: ['', [Validators.required]],
@@ -294,6 +300,7 @@ export class DashboardProveedorComponent implements OnInit {
 
 
   verPedido(pedido) {
+    this.crearFormulario();
     this.fotos = [];
     this.galery = [];
     this.mostrarEntrada = true;
@@ -321,17 +328,32 @@ export class DashboardProveedorComponent implements OnInit {
     };
     this.gallery.load(prop);
 }
+verPedidoEntrada(pedido) {
+    this.verPedido(pedido);
+    this.actionCotizar = true;
+}
 
-  verPedidoEnviada(pedido) {
-    console.log(pedido);
-    this.mostrarEntrada = false;
-    this.mostrarEnviada = true;
-    this.pedidoSeleccionado = pedido.pedidos;
-    this.descripcion = pedido.pedidos[0].DESCRIPCION;
-    this.id_propuesta = pedido.pedidos[0].ID_PROPUESTA;
+  verPedidoEnviada(pedido,opcion) {
+    this.verPedido(pedido);
+    this.editPropuesta = opcion == 'ver' ? true : false;
+    console.log('estoy viendo');
+    this.forma = this.fb.group({
+        pre_original: [{value: this.pedidoSeleccionado[0].P_ORIGINAL,disabled:this.editPropuesta}, [Validators.required]],
+        pre_generico: [{value: this.pedidoSeleccionado[0].P_GENERICO,disabled: this.editPropuesta}, [Validators.required]],
+        pre_envio: [{value: this.pedidoSeleccionado[0].P_ENVIO,disabled: this.editPropuesta}, [Validators.min(0)]],
+        checkFactura: {value: parseInt(this.pedidoSeleccionado[0].FAC_PROPUESTA) ,disabled: this.editPropuesta},
+        checkEnvio: {value: parseInt(this.pedidoSeleccionado[0].ENV_PROPUESTA) ,disabled: this.editPropuesta},   
+    });
+    this.p_generico_Coti = this.pedidoSeleccionado[0].P_GENERICO_COM;
+    this.p_original_Coti = this.pedidoSeleccionado[0].P_ORIGINAL_COM;
+    if(!this.editPropuesta){
+      this.actionEditar = true;
+    }
+    
+  }
 
-    this.fotos = pedido.fotos;
-    console.log(this.pedidoSeleccionado[0]);
+  verPedidoEnviadaEliminar(pedido){
+      console.log('Eliminadno');
   }
 
   getTipoVehiculos() {
@@ -380,7 +402,7 @@ export class DashboardProveedorComponent implements OnInit {
 
 
   cotizar() {
-  
+
     if (this.forma.invalid) {
       console.log('invalido');
       return Object.values(this.forma.controls).forEach(control => {
@@ -395,37 +417,56 @@ export class DashboardProveedorComponent implements OnInit {
       });
 
     } else {   
-      console.log(this.forma.value.pre_envio);
-      console.log(this.forma.value.pre_original);
+
       if (this.id_propuesta != 0) {
         this.spinner.show();
-        this.servicio.Proveedor_Cotiza_Propuesta({
-          id_propuesta: this.id_propuesta,
-          estado: 'Cotizado',
-          p_original: this.forma.value.pre_original,
-          p_generico: this.forma.value.pre_generico,
-          factura: this.forma.value.checkFactura,
-          envio: this.forma.value.checkEnvio,
-          p_original_com: this.p_original_Coti,
-          p_generico_com: this.p_generico_Coti,
-          p_envio: this.forma.value.pre_envio
-        }).subscribe((data: any) => {
-          this.toastr.success('Propuesta enviada al cliente!', 'Exito');
-          this.Cargar_Pedidos_Nuevos(this.proveedor_id);
-          this.Cargar_Pedidos_Enviados(this.proveedor_id);
-          this.pedidoSeleccionado = [];
-          this.spinner.hide();
-          /* this.descripcion='';
-           this.fotos=[];
-           this.forma.value.pre_original='';
-           this.forma.value.pre_generico='';
-           this.id_propuesta=0;
-           this.forma.value.checkFactura= false;
-           this.forma.value.checkEnvio=false;*/
-        }, (error: any) => {
-          this.toastr.error(error, 'Error');
-          this.spinner.hide();
-        });
+          if(this.actionCotizar)
+          {
+                  this.servicio.Proveedor_Cotiza_Propuesta({
+                    id_propuesta: this.id_propuesta,
+                    estado: 'Cotizado',
+                    p_original: this.forma.value.pre_original,
+                    p_generico: this.forma.value.pre_generico,
+                    factura: this.forma.value.checkFactura,
+                    envio: this.forma.value.checkEnvio,
+                    p_original_com: this.p_original_Coti,
+                    p_generico_com: this.p_generico_Coti,
+                    p_envio: this.forma.value.pre_envio
+                }).subscribe((data: any) => {
+                    this.toastr.success('Propuesta enviada al cliente!', 'Exito');
+                    this.Cargar_Pedidos_Nuevos(this.proveedor_id);
+                    this.Cargar_Pedidos_Enviados(this.proveedor_id);
+                    this.pedidoSeleccionado = [];
+                    this.spinner.hide();
+                }, (error: any) => {
+                    this.toastr.error(error, 'Error');
+                    this.spinner.hide();
+                });
+     
+          }
+          if(this.actionEditar)
+          {
+            this.servicio.Proveedor_EditarCotiza_Propuesta({
+              id_propuesta: this.id_propuesta,
+              p_original: this.forma.value.pre_original,
+              p_generico: this.forma.value.pre_generico,
+              factura: this.forma.value.checkFactura,
+              envio: this.forma.value.checkEnvio,
+              p_original_com: this.p_original_Coti,
+              p_generico_com: this.p_generico_Coti,
+              p_envio: this.forma.value.pre_envio
+          }).subscribe((data: any) => {
+              this.toastr.success('La propuesta se edito correctamente!', 'Exito');
+              this.Cargar_Pedidos_Nuevos(this.proveedor_id);
+              this.Cargar_Pedidos_Enviados(this.proveedor_id);
+              this.pedidoSeleccionado = [];
+              this.spinner.hide();
+          }, (error: any) => {
+              this.toastr.error(error, 'Error');
+              this.spinner.hide();
+          });
+          }
+
       } else {
         this.toastr.warning('Debe seleccionar un pedido de la bandeja de entrada!', 'Alerta');
         this.spinner.hide();
