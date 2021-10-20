@@ -484,7 +484,7 @@ verPedidoEntrada(pedido) {
     /*buscar pedido*/
     this.spinner.show();
     if (this.numPedido == '') {
-      this.toastr.warning('Debe ingresar un codigo de pedido!', 'Alerta');
+      this.toastr.warning('Debe ingresar un codigo de pedido!', 'Alerta');   
     } else if (this.numPedido.length < 10) {
       this.toastr.warning('El codigo de pedido debe tener 10 caracteres!', 'Alerta');
     } else if (this.numPedido.length == 10) {
@@ -495,12 +495,18 @@ verPedidoEntrada(pedido) {
       })
         .subscribe((data: any) => {
           console.log(data);
-          this.numPedido = "";
-          this.Cargar_Pedidos_Enviados(this.proveedor_id);
-          this.Cargar_Pedidos_Aceptados(this.proveedor_id);
+          let response = data[0];
+          if(response.result == 'true')
+          {
+            this.numPedido = "";
+            this.Cargar_Pedidos_Enviados(this.proveedor_id);
+            this.Cargar_Pedidos_Aceptados(this.proveedor_id);
+            this.toastr.warning(response.msg +'!', 'Alerta');
+          }else{
+            this.toastr.warning(response.msg +'!', 'Alerta');
+          }
+          
           this.spinner.hide();
-
-
 
         }, (error: any) => {
           console.log('errorAceptar');
@@ -508,7 +514,9 @@ verPedidoEntrada(pedido) {
 
 
         });
+       
     }
+    this.spinner.hide();
   }
 
 
