@@ -21,7 +21,7 @@ export class AddProveedoresComponent implements OnInit {
   public ciudades:[] = [];
 
   constructor( private fb: FormBuilder,
-    private servicio: ServiciosService,
+    public servicio: ServiciosService,
     private toastr:ToastrService,private spinner: NgxSpinnerService ) { 
       this.crearFormulario();
 

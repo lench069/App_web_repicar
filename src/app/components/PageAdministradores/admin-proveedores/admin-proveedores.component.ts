@@ -29,24 +29,27 @@ export class AdminProveedoresComponent implements OnInit {
         console.log(data);
         if (data.length >= 1) {
           this.proveedores = data; 
+            setTimeout(()=>{
+              $('#DTproveedores').DataTable({
+                  "language": {
+                      "url": "http://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                  }
+              });
+              
+              this.spinner.hide(); 
+              
+            }, 1000);
         } else {
           this.toastr.warning('Aun no tienes ventas concretadas!', 'Aviso');
         }
-        this.spinner.hide();
+   
       }, (error: any) => { //sentencias cuando ocurrio un error
-
-        this.toastr.warning(error + '!', 'Error');
-        this.spinner.hide();        
+        
+        this.toastr.warning(error + '!', 'Error');              
         //this.servicio.irA('/inicio');
       })
 
-      setTimeout(function(){
-        $('#DTproveedores').DataTable({
-            "language": {
-                "url": "http://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-            }
-        });    
-    }, 1000);
+     
   }
 
   editProveedor(item)

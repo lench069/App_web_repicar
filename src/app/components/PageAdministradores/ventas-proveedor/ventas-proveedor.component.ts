@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ServiciosService } from 'src/app/services/servicios.service';
 import { ActivatedRoute } from '@angular/router';
+//spinner
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-ventas-proveedor',
@@ -34,12 +36,13 @@ export class VentasProveedorComponent implements OnInit {
   public recargo_total:number=0;
   public precio_total:number=0;
 
-  constructor(private servicio: ServiciosService,private toastr: ToastrService,public route:ActivatedRoute) { 
+  constructor(private servicio: ServiciosService,private toastr: ToastrService,public route:ActivatedRoute,private spinner: NgxSpinnerService ) { 
 
     this.proveedor_id = this.route.snapshot.params.ci_ruc;
   }
 
   ngOnInit(): void {
+    
     this.Cargar_Total_Ventas(this.proveedor_id);
     this.consultarProveedor();
    
@@ -74,6 +77,7 @@ export class VentasProveedorComponent implements OnInit {
 
   consultarProveedor()
   {
+    this.spinner.show();
     console.log("consultar");
     if(this.proveedor_id != '')
     {
@@ -100,8 +104,10 @@ export class VentasProveedorComponent implements OnInit {
 
          this.toastr.error('El proveedor que desea consultar no existe.');    
         }   
+        this.spinner.hide();
       },(error:any)=>{
           this.toastr.error('No se pudo realizar la peticion.');
+          this.spinner.hide();
       });
     }
   }
