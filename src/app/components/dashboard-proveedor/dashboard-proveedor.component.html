@@ -12,7 +12,7 @@
       <div class="page-content">
         <div class="page-header">
           <h1>
-            Dashboard Proveedor
+            Pantalla Principal
             <small>
               <i class="ace-icon fa fa-angle-double-right"></i>
               Funcionalidades asociadas al proveedor
@@ -28,17 +28,19 @@
                   <div class="widget-header">
                     <h4 class="smaller">Bandeja entrada</h4>
                   </div>
-                  <div class="row">
+                  <div class="row filtro">
 
-                    <div class="col-md-6">
+                    <div class="col-md-6 ng-select-container">
                       <label for="form-field-select-3">Tipo de auto</label>
+                      <div class="">
                       <ng-select bindLabel="DESCRIPCION" placeholder="Selecciona" searchable="true" clearable="false"
                         [(ngModel)]="selectedTipoV"
-                        (change)="Cargar_Pedidos_Nuevos_Por_TipoV(selectedTipoV.DESCRIPCION)">
+                        (change)="Cargar_Pedidos_Nuevos_Por_TipoV(selectedTipoV.DESCRIPCION)" class="custom">
                         <ng-option [value]="item" *ngFor="let item of Tipo_vehiculos">
                           <span style="font-size:x-small;">{{item.DESCRIPCION}}</span>
                         </ng-option>
                       </ng-select>
+                    </div>
                     </div>
                     <div class="col-md-6">
                       <label for="form-field-select-3">Marca</label>
@@ -50,25 +52,28 @@
                       </ng-select>
                     </div>
                   </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-md-1">
-                    </div>
-                    <div class="col-md-10">
+                  <br>
+                  <div class="row" style="padding-left: 10px; padding-right: 10px;">
+                   
+                    <div class="col-md-12">
                       <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Buscar termino"
                           aria-label="Recipient's username" aria-describedby="button-addon2" [(ngModel)]="termino">
                         <button class="btnace btn-outline-secondary" type="button" id="button-addon2"
                           (click)="buscarTermino()">Buscar</button>
+                          <div style="text-align: center; padding-left: 10px;">
+                            <button class="btn btn-warning" (click)="verTodosNuevos()">Todos </button>
+                          </div>
                       </div>
                     </div>
+
                   </div><!-- ./row -->
-                  <div style="text-align: center;">
+                 <!-- <div style="text-align: center;">
                     <button class="btn btn-warning" (click)="verTodosNuevos()">Todos </button>
-                  </div>
-                  <hr>
+                  </div>-->
+                  <hr style="margin: 0px;">
                   <div>
-                    <div class="widget-main padding-8 " class="scrollbar" id="style-1">
+                    <div class="widget-main padding-8 scrollbarEntrada" id="style-1">
                       <div id="profile-feed-1" class="profile-feed" class="widget-body"
                         *ngFor="let item of pedidos_nuevos">
                         <div class="profile-activity clearfix" *ngFor="let pedido of item.pedidos">
@@ -96,7 +101,7 @@
                 </div>
               </div>
               <div class="col-md-6">
-                <div class="card">
+                <div class="card scrollbarEntrada">
                   <h5 class="card-header">Detalles del pedido solicitado</h5>
                   <div class="card-body">
                     <div class="widget-body">
@@ -261,13 +266,13 @@
               </div>
               <div class="col-md-3">
                 <div class="row">
-                  <div class="widget-box">
+                  <div class="widget-boxMedium">
                     <div class="widget-header">
                       <h4 class="smaller">Cotizaciones Aceptadas</h4>
                     </div>
                     <br>
-                    <div class="row">
-                      <div class="col-md-10">
+                    <div class="row" style="padding-left: 10px;padding-right: 50px;">
+                      <div class="col-md-12">
                         <div class="input-group mb-3">
                           <input type="text" class="form-control" placeholder="Ingrese el numero de orden"
                             aria-label="numero de orden" [(ngModel)]="numPedido" aria-describedby="btnSerie">
@@ -278,7 +283,7 @@
                     </div><!-- ./row -->
                     <!--*ngFor="let pedido of pedidos_nuevos;let impar = odd;let par = even;" [ngClass]="{azul:par,verde:impar}"-->
                     <div class="widget-body">
-                      <div class="widget-main padding-8">
+                      <div class="widget-main padding-8 scrollbarAceptadas">
                         <div id="profile-feed-3" class="profile-feed" *ngFor="let item of pedidos_aceptados">
                           <div class="profile-activity clearfix" *ngFor="let pedido of item.pedidos">
                             <div (click)="verPedidoEnviada(item, 'ver')">
@@ -314,11 +319,11 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="widget-box">
+                  <div class="widget-boxMedium">
                     <div class="widget-header">
                       <h4 class="smaller">Cotizaciones Enviadas</h4>
                     </div>
-                    <div class="widget-main padding-8 " class="scrollbar" id="style-1">
+                    <div class="widget-main padding-8 scrollbarEnviados" id="style-1">
                       <div id="profile-feed-1" class="profile-feed" class="widget-body"
                         *ngFor="let item of pedidos_enviados">
                         <div class="profile-activity clearfix" *ngFor="let pedido of item.pedidos" >

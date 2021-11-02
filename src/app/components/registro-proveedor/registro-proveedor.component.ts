@@ -11,7 +11,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: 'app-registro-proveedor',
   templateUrl: './registro-proveedor.component.html',
-  styleUrls: ['/src/assets/login_registro/css/style.css']
+  styleUrls: ['/src/assets/login_registro/css/style.css','./registro-proveedor.component.css']
 })
 export class RegistroProveedorComponent implements OnInit {  
   
@@ -21,6 +21,7 @@ export class RegistroProveedorComponent implements OnInit {
   public id_provincia:number = 0;
   public id_ciudad:number = 0;
   public ciudades:[] = [];
+  public seleccionado:string = '';
 
   constructor( private fb: FormBuilder,
                private servicio: ServiciosService,
@@ -119,6 +120,9 @@ export class RegistroProveedorComponent implements OnInit {
         if(data.info.items.length > 0)
         {
           this.ciudades = data.info.items;
+          console.log(this.ciudades);
+          this.seleccionado = data.info.items[0].NOMBRE;
+          console.log(this.seleccionado);
         }else{
           this.toastr.error('Error!', 'La provincia seleccionada no tiene ciudades asociadas.');
         }
@@ -169,11 +173,20 @@ export class RegistroProveedorComponent implements OnInit {
       //  contrasenia: this.forma.value.contrasenia
       }).subscribe((data:any)=>{
         this.spinner.hide();
-          this.toastr.success('', 'EL proveedor se registro corectamente');
-          Swal.fire('EL proveedor se registro corectamente, un asesor se comunicara lo antes posible!');
-          this.forma.reset({
-            
-          });
+          this.toastr.success('', 'Proveedor registrado correctamente');    
+
+          Swal.fire({
+            text: 'Proveedor registrado correctamente, un asesor se comunicara con usted lo antes posible!',
+            confirmButtonText: 'De acuerdo!',
+            icon: 'success',
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              this.forma.reset({});
+              this.servicio.irA('/login');
+            } 
+          })
+          
 
       },(error:any)=>{
         this.spinner.hide();
