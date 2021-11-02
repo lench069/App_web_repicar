@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ServiciosService } from 'src/app/services/servicios.service';
+//spinner
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-edit-proveedores',
@@ -31,17 +33,19 @@ export class EditProveedoresComponent implements OnInit {
   public pass:string="";
   constructor( private fb: FormBuilder,
     public servicio: ServiciosService,
-    private toastr:ToastrService,public route:ActivatedRoute, ) { 
+    private toastr:ToastrService,public route:ActivatedRoute,
+    private spinner: NgxSpinnerService ) { 
 
       this.id_proveedor = this.route.snapshot.params.ci_ruc;
+      this.spinner.show();
       this.consultarProveedor();
      
 
     }
 
   ngOnInit(): void {
- 
-    this.listarEstados();
+    
+    
   }
 
   get nombreNoValido() {
@@ -93,18 +97,22 @@ console.log("crear formulario");
       // this.servicio.Mensajes(data.mensaje,data.info.item.id == 0 ? 'danger': 'success');
         if(data.length > 0)
         {
-          this.estados = data;        
+          this.estados = data;  
+               
         }else{
        
           this.toastr.error('Error!', 'El pais seleccionado no tiene provincias asociadas.');
         }   
+        this.spinner.hide(); 
       },(error:any)=>{
           this.toastr.error('Error!', 'No se pudo realizar la peticion.');
+          this.spinner.hide(); 
       });
     }
 
 
   Editar() {
+   
     console.log( "gg" );
 
     if ( this.forma.invalid ) {
@@ -121,7 +129,7 @@ console.log("crear formulario");
       });
      
     }else{
-
+      this.spinner.show(); 
       if (this.forma.value.estado == 2) //si es activo enviar contraseña
       {
          this.pass = this.servicio.encriptarContraseña(this.servicio.generarContraseña());
@@ -141,9 +149,11 @@ console.log("crear formulario");
       }).subscribe((data:any)=>{
           this.toastr.success('', 'EL proveedor se edito corectamente');
           this.servicio.irA("/admin-proveedores");
+          this.spinner.hide(); 
 
       },(error:any)=>{
         this.toastr.error('Error!', 'No se pudo realizar la peticion, compruebe su conexion a internet');
+        this.spinner.hide(); 
       });
     }
   }
@@ -170,9 +180,10 @@ console.log("crear formulario");
           this.direccion = data.proveedor.DIRECCION;
           this.estado = data.proveedor.ESTADO;
           this.crearFormulario();
+          this.listarEstados();
           console.log(this.estado);
 
-          this.toastr.success(data.mensaje+'!');
+          //this.toastr.success(data.mensaje+'!');
           
         }else{
 
