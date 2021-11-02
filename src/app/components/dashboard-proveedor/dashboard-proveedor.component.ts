@@ -18,7 +18,7 @@ import { NgControl } from '@angular/forms';
 @Component({
   selector: 'app-dashboard-proveedor',
   templateUrl: './dashboard-proveedor.component.html',
-  styleUrls: ['./dashboard-proveedor.component.css', '/src/assets/dashboard/css/ace.min.css']
+  styleUrls: [ '/src/assets/dashboard/css/ace.min.css','./dashboard-proveedor.component.css']
 })
 export class DashboardProveedorComponent implements OnInit {
 

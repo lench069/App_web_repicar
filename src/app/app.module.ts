@@ -71,7 +71,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     ReactiveFormsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({
-      timeOut: 20000,
+      timeOut: 2000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }), // ToastrModule added
