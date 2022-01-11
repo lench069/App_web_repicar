@@ -412,16 +412,27 @@ verPedidoEntrada(pedido) {
         } else {
           control.markAsTouched();
         }
-
-
       });
 
     } else {   
 
       if (this.id_propuesta != 0) {
-        this.spinner.show();
+       // this.spinner.show();
           if(this.actionCotizar)
           {
+            console.log(this.pedidoSeleccionado[0]);   
+                   //enviar push
+                    this.servicio.push_notificacion({
+                      id_cliente : this.pedidoSeleccionado[0].ID_CLIENTE,
+                      titulo: 'Nueva propuesta',
+                      desc: 'Tiene una propuesta para el pidido AFSFGGHGA',
+                      token: this.pedidoSeleccionado[0].TOKEN
+                    }).subscribe((data: any) => {
+                         console.log(data);
+                      }, (error: any) => {
+                          
+                      });
+            
                   this.servicio.Proveedor_Cotiza_Propuesta({
                     id_propuesta: this.id_propuesta,
                     estado: 'Cotizado',
@@ -436,7 +447,7 @@ verPedidoEntrada(pedido) {
                     this.toastr.success('Propuesta enviada al cliente!', 'Exito');
                     this.Cargar_Pedidos_Nuevos(this.proveedor_id);
                     this.Cargar_Pedidos_Enviados(this.proveedor_id);
-                    this.pedidoSeleccionado = [];
+                    this.pedidoSeleccionado = []; 
                     this.spinner.hide();
                 }, (error: any) => {
                     this.toastr.error(error, 'Error');

@@ -358,6 +358,20 @@ export class ServiciosService {
       }) 
       );
   }
+
+  //Enviar notificaciones
+  push_notificacion(data:any) {
+    console.log(data);
+    return this.http.post(
+      this.URL_API + 'push-notificacion/'+data.id_cliente, 
+      this.objectToFormData({
+        titulo: data.titulo,
+        desc: data.desc,
+        token: data.token
+      }) 
+      );
+
+  }
 }
 
 
