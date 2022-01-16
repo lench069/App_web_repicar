@@ -425,7 +425,7 @@ verPedidoEntrada(pedido) {
                     this.servicio.push_notificacion({
                       id_cliente : this.pedidoSeleccionado[0].ID_CLIENTE,
                       titulo: 'Nueva propuesta',
-                      desc: 'Tiene una propuesta para el pidido AFSFGGHGA',
+                      desc: 'Tiene una propuesta para el pedido '+ this.pedidoSeleccionado[0].COD_PEDIDO,
                       token: this.pedidoSeleccionado[0].TOKEN
                     }).subscribe((data: any) => {
                          console.log(data);
