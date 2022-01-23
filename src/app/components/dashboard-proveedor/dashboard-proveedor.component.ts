@@ -426,7 +426,8 @@ verPedidoEntrada(pedido) {
                       id_cliente : this.pedidoSeleccionado[0].ID_CLIENTE,
                       titulo: 'Nueva propuesta',
                       desc: 'Tiene una propuesta para el pedido '+ this.pedidoSeleccionado[0].COD_PEDIDO,
-                      token: this.pedidoSeleccionado[0].TOKEN
+                      token: this.pedidoSeleccionado[0].TOKEN,
+                      cod_pedido: this.pedidoSeleccionado[0].COD_PEDIDO
                     }).subscribe((data: any) => {
                          console.log(data);
                       }, (error: any) => {

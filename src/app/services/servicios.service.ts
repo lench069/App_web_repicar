@@ -367,7 +367,8 @@ export class ServiciosService {
       this.objectToFormData({
         titulo: data.titulo,
         desc: data.desc,
-        token: data.token
+        token: data.token,
+        cod_pedido: data.cod_pedido
       }) 
       );
 
