@@ -171,7 +171,7 @@
                                             </tr>
                                           </thead>
                                           <tbody>
-                                            <tr>
+                                            <tr *ngIf="item.ORIGINAL">
                                               <th>Original</th>
                                               <td>
                                                 <div class="input-group mb-3">
@@ -187,7 +187,7 @@
                                               </td>
                                               <td>{{p_original_Coti | currency}}</td>
                                             </tr>
-                                            <tr>
+                                            <tr *ngIf="item.GENERICO">
                                               <th>Generico</th>
                                               <td>
                                                 <div class="input-group mb-3">

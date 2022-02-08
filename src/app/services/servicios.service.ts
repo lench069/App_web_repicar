@@ -179,8 +179,8 @@ export class ServiciosService {
             factura:data.factura,
             envio:data.envio,
             p_envio:data.p_envio == 0 ? '0' : data.p_envio,//Areglar por que no va el valor de cero
-            p_original_com:data.p_original_com,
-            p_generico_com:data.p_generico_com
+            p_original_com: data.p_original_com == 0 ? '0' : data.p_original_com,
+            p_generico_com: data.p_generico_com == 0 ? '0' : data.p_generico_com
     
           }) 
           );

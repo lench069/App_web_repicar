@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ServiciosService } from 'src/app/services/servicios.service';
 //spinner
 import { NgxSpinnerService } from "ngx-spinner";
+import  Swal  from 'sweetalert2'; 
 
 @Component({
   selector: 'app-cambio-password',
@@ -42,7 +43,7 @@ export class CambioPasswordComponent implements OnInit {
   crearFormulario() {
 
     this.forma = this.fb.group({
-      contraNueva: ['', [Validators.required, Validators.minLength(6),Validators.pattern('((?=.*\d)(?=.*[a-zA-Z]).{4,20})') ] ],
+      contraNueva: ['', [Validators.required, Validators.minLength(6),Validators.maxLength(12) ] ],
       contraRep: ['', [Validators.required] ]
     });
 
@@ -74,6 +75,7 @@ export class CambioPasswordComponent implements OnInit {
             if(data.flag == 'true'){
              // this.storage.set('session_storage', data.info.item);
              this.toastr.success(data.mensaje + '!', 'Correcto');
+             Swal.fire('La contraseña se cambio exitosamente, vuelva a ingresar con el usuario y su nueva contraseña!');
               this.servicio.irA('/login');
             }else{
               this.toastr.warning(data.mensaje + '!', 'Alerta');

@@ -102,8 +102,10 @@ export class DashboardProveedorComponent implements OnInit {
     this.actionCotizar = false;
     this.actionEditar = false;
     this.forma = this.fb.group({
-      pre_original: ['', [Validators.required]],
-      pre_generico: ['', [Validators.required]],
+      //pre_original: ['0', [Validators.required]],
+      //pre_generico: ['0', [Validators.required]],
+      pre_original: ['0'],
+      pre_generico: ['0'],
       pre_envio: [0, [Validators.min(0)]],
       checkFactura: [false],
       checkEnvio: [false]
@@ -402,7 +404,7 @@ verPedidoEntrada(pedido) {
 
 
   cotizar() {
-
+    
     if (this.forma.invalid) {
       console.log('invalido');
       return Object.values(this.forma.controls).forEach(control => {
@@ -497,9 +499,9 @@ verPedidoEntrada(pedido) {
     this.spinner.show();
     if (this.numPedido == '') {
       this.toastr.warning('Debe ingresar un codigo de pedido!', 'Alerta');   
-    } else if (this.numPedido.length < 10) {
+    } else if (this.numPedido.length < 5) {
       this.toastr.warning('El codigo de pedido debe tener 10 caracteres!', 'Alerta');
-    } else if (this.numPedido.length == 10) {
+    } else if (this.numPedido.length == 5) {
       this.servicio.pedido_consultar({
         numPedido: this.numPedido,
         proveedor_id: this.proveedor_id,
