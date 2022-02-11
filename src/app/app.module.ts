@@ -39,6 +39,8 @@ import { OlvidePasswordComponent } from './components/olvide-password/olvide-pas
 import {IvyGalleryModule} from 'angular-gallery';
 //spinner
 import { NgxSpinnerModule } from "ngx-spinner";
+// ngBootstrap
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +71,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
     NgSelectModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot({
       timeOut: 2000,

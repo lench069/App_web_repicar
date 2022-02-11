@@ -110,7 +110,7 @@
                     <div class="form-group">
                         <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" formControlName="check"
                         [class.is-invalid]="checkNoValido">               
-                        <label for="agree-term" class="label-agree-term"><span><span></span></span>Acepto todas las declaraciones en los <a href="#" class="term-service">Términos de servicio</a></label>
+                        <label for="agree-term" class="label-agree-term"><span><span></span></span>Acepto todas las declaraciones en los <a style="color:goldenrod;" class="term-service" (click)="openLG(contenido)"><u>Términos de servicio</u></a></label>
                         <small *ngIf="checkNoValido" class="text-danger">
                             Requerido
                         </small>
@@ -133,3 +133,92 @@
         </div>
     </div>
 </section>
+<!--Modal-->
+<ng-template #contenido let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">TÉRMINOS Y CONDICIONES REPICAR S.A</h4>
+        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <ol>
+            <li><b>Directrices Comunes</b></li>
+            <ol style="text-align: justify;">
+                <p><small><b>1.</b> Bienvenido a REPICAR en adelante la “Plataforma Digital”. Al ingresar y/o utilizar el sitio web o aplicación móvil usted estará sujeto a las presentes condiciones y términos generales que constituyen un acuerdo legal entre usted y REPICAR, una sociedad ecuatoriana cuyo giro de negocio comprende, la búsqueda y cotización de repuestos automotrices a través de Internet, misma que está domiciliada en la ciudad de Riobamba, Ecuador, con teléfono +593 0992575241, correo electrónico inforepicar@gmail.com, página web https://www.repicar.com</small></p>
+                <p><small><b>2.</b> Los distribuidores de repuestos automotrices, en adelante “Proveedores” se registran en la plataforma digital de REPICAR para ofrecer sus repuestos. La solicitud de repuestos lo puede realizar cualquier persona natural o jurídica, en adelante el “Cliente”, el mismo que deberá descargar nuestra aplicación móvil de las tiendas digitales de Android y Apple. A los Proveedores y Clientes en adelante les llamaremos “Usuarios”.</small></p>
+                <p><small><b>3.</b> Los Términos y Condiciones constituyen un contrato legalmente vinculante para usted y REPICAR en relación con la utilización de los Servicios, por lo que sugerimos leerlos detenidamente.</small></p>
+                <p><small><b>4.</b> Todo acceso a la Plataforma digital o cualquier derivado de esta, está condicionado a la aceptación de los Términos y Condiciones por parte de usted.</small></p>
+                <p><small><b>5.</b> REPICAR se reserva el derecho de enmendar, complementar o suspender total o parcialmente la Plataforma Digital en forma ocasional. Asimismo, la Empresa se reserva el derecho de cambiar los Términos y Condiciones en cualquier momento, con vigencia inmediata a partir del momento que se actualiza la Plataforma Digital.</small></p>
+                <p><small><b>6.</b> Queda prohibido alterar o modificar cualquier parte de los contenidos de la Plataforma Digital, eludir, desactivar o manipular las funciones de seguridad del programa y utilizar la Plataforma Digital o sus contenidos para un fin comercial o publicitario. Queda igualmente prohibido realizar cualquier otro uso que altere, dañe o inutilice las redes, servidores, equipos, productos y programas informáticos de REPICAR o de terceros.</small></p>
+                <p><small><b>7.</b> Todos los signos distintivos y nombres de dominio utilizados en esta Plataforma Digital son propiedad de REPICAR. Ningún tercero puede utilizar ni reproducir ningún signo distintivo idéntico o similar que incluya, entre otros, denominaciones, logotipos, lemas comerciales y nombres comerciales, sin el previo consentimiento por escrito de REPICAR.</small></p>
+                <p><small><b>8.</b> Aparte del derecho de uso de la plataforma, mismo que es intransferible, personal y limitado de los Usuarios tal como se especifica en los presentes Términos y Condiciones, no se confiere ningún derecho a dicho contenido ni a porciones del mismo, sin importar la forma en que aparezca, mediante su inclusión en esta Plataforma Digital o mediante el acceso al mismo. Los Usuarios no pueden: (a) separar ningún Contenido individual o componente de la Plataforma Tecnológica para otro uso que el indicado en relación a la Plataforma Tecnológica; (b) incorporar una porción del mismo a los propios programas del Usuario o recopilar cualquier porción en combinación con los propios programas del Usuario; (c) transferirlo para ser utilizado por otro servicio; o (d) vender, arrendar, ceder, prestar, distribuir, comunicar públicamente, transformar o sublicenciar la Plataforma Digital o conceder en modo alguno cualquier derecho a la Plataforma Digital absoluta o parcialmente.</small></p>
+           
+            </ol>
+            <li><b>Aceptación de los Términos y Condiciones</b></li>
+            <ol style="text-align: justify;">
+                <p><small><b>1.</b> El ingreso a la Plataforma Digital por parte de los Usuarios constituye su reconocimiento y aceptación irrevocable respecto de la aplicación de los Términos y Condiciones, según éstos sean modificados de tiempo en tiempo por REPiCAR. En consecuencia, mediante dicho ingreso y/o utilización, los Usuarios manifiestan su consentimiento con los Términos y Condiciones y se obliga a cumplir con todas las obligaciones a su cargo derivadas de los mismos.</small></p>
+                <p><small><b>2.</b> Al ingresar a la Aplicación y/o utilizar los Servicios, los Usuarios declaran que (a) está legalmente capacitado para celebrar un contrato vinculante con REPICAR conforme a la legislación aplicable y, (b) no tiene prohibición legal expresa para hacer uso de los Servicios.</small></p>
+                <p><small><b>3.</b> REPICAR se reserva el derecho a rechazar, eliminar y/o borrar cualquier publicación que pueda ser considerada por la Empresa como inapropiada, o que los Usuarios o sus publicación se encuentren violando lo establecido en los presentes Términos y Condiciones o derechos de terceros, sin perjuicio de las acciones que la Empresa pueda ejercer por daños y perjuicios por la publicación infractora</small></p>
+                
+            </ol>
+            <li><b>Modificaciones en los Términos y Condiciones</b></li>
+            <ol style="text-align: justify;">
+                <p><small><b>1.</b> REPICAR se reserva el derecho exclusivo de realizar modificaciones a los Términos y Condiciones de tiempo en tiempo, según lo considere pertinente, sin notificación alguna a los Usuarios. Por tal motivo, los Usuarios deberán revisar los Términos y Condiciones regularmente para comprobar dichas modificaciones. La versión actualizada de los Términos y Condiciones estará siempre disponible en nuestro sitio web https://www.repicar.com.</small></p>
+                <p><small><b>2.</b> REPICAR se reserva el derecho de incluir y prestar servicios adicionales, los cuales pueden incluir, de manera enunciativa más no limitativa, anuncios publicitarios, promociones y convocatorias que sean de interés para los Usuarios.</small></p>          
+            </ol>
+            <li><b>Obligaciones y restricciones generales a la utilización de la Plataforma Digital por parte de los Usuarios</b></li>
+            <ol style="text-align: justify;">
+                <p><small><b>1.</b> Los Usuarios se obligan a no extraer, hacer ingeniería inversa, dañar, alterar, modificar o destruir cualquier código o parte de la Aplicación.</small></p>
+                <p><small><b>2.</b> Los Usuarios se obligan a hacer uso normal y apropiado de la Plataforma Digital, sin extraer o utilizar información de índole personal de terceros.</small></p>
+                <p><small><b>3.</b> REPICAR se reserva el derecho a realizar un seguimiento de la actividad de los Clientes y de informar el uso inadecuado de la misma a los Proveedores de repuestos para que los pedidos no tengan respuesta.</small></p>
+                <p><small><b>4.</b> Una vez que el Cliente haya aceptado la compra de un repuesto o repuestos con un determinado proveedor, el cliente se compromete a completar el proceso de compra. En caso que el Cliente no complete el proceso se tomará como uso inadecuado de la Plataforma y de incurrir en esta acción por tres veces su cuenta será calificada como MALA en nuestra base de datos, y sus futuros pedidos no tendrán respuesta por parte de los proveedores.</small></p>
+                <p><small><b>5.</b> REPICAR no solicita ninguna cantidad de dinero al Cliente por la compra de un repuesto, este valor será cancelado directamente al Proveedor con el que acepto la compra.</small></p>
+                <p><small><b>6.</b> REPICAR no se responsabiliza de la selección equivocada de un repuesto por parte del Proveedor o Cliente, siendo este un tema a solucionar directamente entre Proveedor y Cliente.</small></p>
+                <p><small><b>7.</b> Los Usuarios son los únicos y exclusivos responsables por el uso de la Plataforma y/o de los Servicios disponibles en la misma. Por tanto, los Usuarios serán los únicos responsables por (i) todo el contenido que publique a través de la Plataforma y/o mediante la utilización de los Servicios, (ii) las relaciones que establezca con otros usuarios de la Plataforma, y (iii) cualquier consecuencia legal que pueda derivarse del uso de la Plataforma, por lo que el Usuario se obliga a defender, indemnizar y sacar en paz y a salvo a REPICAR de cualquier reclamo, acción, juicio, litigio o demanda iniciada por cualquier tercero en su contra, así como por cualquier pérdida, daño, perjuicio, costo o gasto en que incurra o sufra como consecuencia de lo anterior. En este contexto, los Usuarios se obligan a publicar únicamente aquel contenido de su propiedad que esté dispuesto a compartir y el cual esté legalmente facultado a usar o compartir, ya que el mismo estará a disposición y acceso por parte de cualquier tercero.</small></p>
+                <p><small><b>8.</b> Los Usuarios se obligan a no utilizar la Plataforma para ofrecer servicios en relación con una actividad comercial fuera de la destinada en la Plataforma, consistente en la búsqueda y cotización de repuestos automotrices.</small></p>
+                <p><small><b>9.</b> Los Usuarios se obligan a no utilizar la Plataforma y/o los Servicios para fines fraudulentos o para engañar a cualquier tercero.</small></p>
+            </ol>
+            <li><b>Derechos de Autor y de Propiedad Industrial</b></li>
+            <ol style="text-align: justify;">
+                <p><small><b>1.</b> Los signos distintivos, entre ellos, las marcas, avisos, nombres comerciales, slogans, lemas, frases de propaganda, dibujos, diseños, logotipos, textos, avisos, nombres de dominio y demás derechos de propiedad intelectual que aparezcan en la Plataforma son propiedad exclusiva de REPICAR o de aquellos terceros que han autorizado previamente su uso a REPICAR. Queda estrictamente prohibido a los Usuarios cualquier uso o explotación de dichos derechos de propiedad intelectual por cualquier medio, sin el consentimiento previo y por escrito de REPICAR y/o de sus legítimos propietarios.</small></p>
+                <p><small><b>2.</b> REPICAR podrá suspender o cancelar el acceso a la Plataforma y/o los Servicios a cualquier Usuario que viole lo dispuesto en el párrafo 5.1 anterior, sin perjuicio de las acciones a las que haya lugar por dicha infracción de derechos de Propiedad Intelectual.</small></p>          
+            </ol>
+            <li><b>Datos Personales y Aviso de Privacidad</b></li>
+            <ol style="text-align: justify;">
+                <p><small><b>1.</b> Los Usuarios reconocen expresamente y conviene que al ingresar a la Plataforma y/o utilizar los Servicios entregará los datos personales que sean requeridos, de conformidad con la información solicitada en la plataforma, mismos que serán utilizados, administrados, tratados, divulgados y protegidos por REPICAR conforme a la legislación vigente y al aviso de privacidad de REPICAR que puede ser consultado en el Sitio Web.</small></p>
+                <p><small><b>2.</b> Los Usuarios al ingresar a la Plataforma y / o utilizar los Servicios dan su consentimiento expreso, explicito, inequívoco e informado del uso de sus datos personales para efectos de cumplimiento del servicio detallado en el presente instrumento.</small></p>          
+            </ol>
+            <li><b>Limitación de Responsabilidad</b></li>
+            <ol style="text-align: justify;">
+                <p><small><b>1.</b> Corresponde a los Usuarios, disponer de herramientas adecuadas para la detección y desinfección de programas maliciosos o cualquier otro elemento informático dañino. REPICAR no se responsabiliza de los daños producidos a equipos informáticos durante el uso de la Plataforma. Igualmente, REPICAR no será responsable de los daños producidos a los Usuarios cuando dichos daños tengan su origen en fallos o desconexiones en las redes de telecomunicaciones que interrumpan el servicio.</small></p>
+            </ol>
+            <li><b>Envío de correos electrónicos</b></li>
+            <ol style="text-align: justify;">
+                <p><small><b>1.</b> REPICAR se reserva el derecho de enviar a los Usuarios, correos electrónicos con contenido publicitario de forma periódica. Por lo que el Usuario al aceptar estos términos y condiciones manifiesta su consentimiento expreso, explicito, inequívoco e informado de recibir el contenido publicitario que REPICAR enviará de forma periódica. Asimismo, REPICAR dará en todo momento la opción a los Usuarios de cancelar él envió de estos correos</small></p>
+            </ol>
+            <li><b>Terminación</b></li>
+            <ol style="text-align: justify;">
+                <p><small><b>1.</b> REPICAR podrá, sin previo aviso a los Usuarios (i) cambiar o eliminar la Plataforma total o parcialmente, y (ii) suspender o bloquear, temporal o permanentemente, el acceso de cualquier Usuario a la Plataforma y/o los Servicios, en ambos casos sin responsabilidad alguna a su cargo.</small></p>
+                <p><small><b>2.</b> En cualquier caso, de terminación o suspensión del acceso a la Plataforma y/o los Servicios, los derechos de los Usuarios a hacer uso de la Plataforma cesará completa e inmediatamente.</small></p>          
+            </ol>
+            <li><b>Incumplimiento a los Términos y Condiciones</b></li>
+            <ol style="text-align: justify;">
+                <p><small><b>1.</b> En caso de cualquier incumplimiento del Usuario a estos Términos y Condiciones, REPICAR se reserva el derecho de llevar a cabo todas las acciones que sean necesarias para remediar el mismo, incluyendo, sin limitación, el restringir el acceso a la Aplicación y/o al uso de los Servicios al Usuario en incumplimiento.</small></p>
+            </ol>
+            <li><b>Disposiciones Generales</b></li>
+            <ol style="text-align: justify;">
+                <p><small><b>1.</b> Estos Términos y Condiciones constituyen el acuerdo legal total entre los Usuarios y REPICAR en relación con el acceso a la Plataforma y/o el uso de los Servicios.</small></p>
+                <p><small><b>2.</b> Mediante el acceso a la Plataforma y/o el uso de los Servicios, los Usuarios aceptan que REPICAR le envíe notificaciones, incluyendo, sin limitación, las relativas a cambios en los Términos y Condiciones, mediante correo electrónico, correo ordinario o publicando dichas notificaciones en la Aplicación y/o en el Sitio Web</small></p>
+                <p><small><b>3.</b> En caso de que un tribunal con jurisdicción competente determinare que cualquiera de las disposiciones de los presentes Términos y Condiciones es inválida, ilegal o inexigible, dicha disposición será eliminada de los Términos y Condiciones sin que ello afecte el resto de los mismos, permaneciendo las demás disposiciones vigentes en todos sus aspectos</small></p>
+                <p><small><b>4.</b> Estos Términos y Condiciones se regirán e interpretarán conforme a la legislación vigente Ecuatoriana y para cualquier controversia o disputa en relación con los mismos REPICAR y el Usuario se someten expresamente a la jurisdicción de los tribunales competentes de la Ciudad de Quito, Ecuador, renunciando a cualquier otro fuero que pudiere corresponderles en virtud de sus domicilios o por cualquier otra razón.</small></p>
+                </ol>
+        </ol>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-warning" (click)="modal.close()">Ok!</button>
+    </div>
+</ng-template>
+
+
+

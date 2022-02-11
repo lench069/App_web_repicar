@@ -7,6 +7,8 @@ import  Swal  from 'sweetalert2';
 //spinner
 import { NgxSpinnerService } from "ngx-spinner";
 
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-registro-proveedor',
@@ -26,7 +28,8 @@ export class RegistroProveedorComponent implements OnInit {
   constructor( private fb: FormBuilder,
                private servicio: ServiciosService,
                private toastr:ToastrService,
-               private spinner: NgxSpinnerService ) { 
+               private spinner: NgxSpinnerService,
+               private modal:NgbModal ) { 
 
     this.crearFormulario();
     
@@ -35,6 +38,10 @@ export class RegistroProveedorComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarProvincias();
+  }
+
+  openLG(contenido){
+    this.modal.open(contenido,{size:'lg',scrollable:true});
   }
 
   get nombreNoValido() {
