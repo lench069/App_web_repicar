@@ -154,18 +154,24 @@ export class ServiciosService {
           this.objectToFormData({id_proveedor: data.id_proveedor})
           );
       }
-      pedido_consultar(data){
+      consultar_pedi_finalizar(data){
+        return this.http.post(
+          this.URL_API + 'consultar-cod-pedido/'+data.numPedido, 
+          this.objectToFormData({id_proveedor: data.proveedor_id}) 
+          );
+      }
+      finalizar_consultar(data){
       return this.http.post(
-        this.URL_API + 'consultar-cod-pedido/'+data.numPedido, 
+        this.URL_API + 'finalizar-cod-pedido/'+data.numPedido, 
         this.objectToFormData({id_proveedor: data.proveedor_id}) 
         );
-    }
-    Pedidos_Total_Ventas(data:any) {
-      return this.http.post(
-        this.URL_API + 'total-ventas', 
-        this.objectToFormData({id_proveedor: data.id_proveedor})
-        );
-    }
+      }
+      Pedidos_Total_Ventas(data:any) {
+        return this.http.post(
+          this.URL_API + 'total-ventas', 
+          this.objectToFormData({id_proveedor: data.id_proveedor})
+          );
+      }
 
       //**************************PROPUESTA */
       Proveedor_Cotiza_Propuesta(data:any) {

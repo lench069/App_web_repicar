@@ -56,6 +56,7 @@ export class DashboardProveedorComponent implements OnInit {
   public editPropuesta:boolean;
   public actionCotizar:boolean = false;
   public actionEditar:boolean = false;
+  public pedidos_consul_finalizar: any = [];
 
 
 
@@ -494,16 +495,38 @@ verPedidoEntrada(pedido) {
     console.log(this.activar_preenvio);
   }
 
-  bucarNumPedido() {
-    /*buscar pedido*/
+  consultarPedidoFinalizar()
+  {
     this.spinner.show();
     if (this.numPedido == '') {
       this.toastr.warning('Debe ingresar un codigo de pedido!', 'Alerta');   
     } else if (this.numPedido.length < 5) {
-      this.toastr.warning('El codigo de pedido debe tener 10 caracteres!', 'Alerta');
+      this.toastr.warning('El codigo de pedido debe tener 5 caracteres!', 'Alerta');
     } else if (this.numPedido.length == 5) {
-      this.servicio.pedido_consultar({
+      this.servicio.consultar_pedi_finalizar({
         numPedido: this.numPedido,
+        proveedor_id: this.proveedor_id
+      })
+        .subscribe((data: any) => {
+         console.log(data);
+         this.pedidos_consul_finalizar = data;
+         this.numPedido = '';
+          this.spinner.hide();
+
+        }, (error: any) => {
+          console.log('errorAceptar');
+          this.spinner.hide();
+        });
+       
+    }
+    this.spinner.hide();
+  }
+
+  finalizarNumPedido(COD_PEDIDO) {
+    /*buscar pedido*/
+    this.spinner.show();
+      this.servicio.finalizar_consultar({
+        numPedido: COD_PEDIDO,
         proveedor_id: this.proveedor_id,
         estado: 'Aceptado'
       })
@@ -516,6 +539,7 @@ verPedidoEntrada(pedido) {
             this.Cargar_Pedidos_Enviados(this.proveedor_id);
             this.Cargar_Pedidos_Aceptados(this.proveedor_id);
             this.toastr.warning(response.msg +'!', 'Alerta');
+            this.pedidos_consul_finalizar=[];
           }else{
             this.toastr.warning(response.msg +'!', 'Alerta');
           }
@@ -528,8 +552,6 @@ verPedidoEntrada(pedido) {
 
 
         });
-       
-    }
     this.spinner.hide();
   }
 
