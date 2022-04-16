@@ -98,6 +98,7 @@ export class MisVentasComponent implements OnInit {
 
            }
         }
+         this.cargarLicencias();             
       } else {
         this.toastr.warning('No existen publicidades!', 'Aviso');
       }
@@ -123,14 +124,6 @@ export class MisVentasComponent implements OnInit {
             if(this.proveedor != {})
                 {
                   this.cargarPublicidad();
-                  this.cargarLicencias();
-                  this.cantidad_total = 3;
-                  this.recargo_total = this.selectPublicidad.PRECIO + this.selectLicencia.VALOR + (this.total_ventas.TOTAL_ORIGINAL_COM - this.total_ventas.TOTAL_ORIGINAL);
-                  this.precio_total = this.selectPublicidad.PRECIO + this.selectLicencia.VALOR + this.total_ventas.TOTAL_ORIGINAL_COM ;
-                  console.log(this.cantidad_total);
-                  console.log(this.recargo_total);
-                  console.log(this.precio_total);
-
                 }
         }else{
 
@@ -158,6 +151,14 @@ export class MisVentasComponent implements OnInit {
 
            }
         }
+        //TOTALES A MOSTRAR EN LA TABLA A PAGAR
+        this.cantidad_total = this.total_ventas.VENTAS;
+        this.recargo_total = this.total_ventas.TOTAL_ORIGINAL_COM - this.total_ventas.TOTAL_ORIGINAL;
+        console.log(this.selectPublicidad);
+        this.precio_total = parseFloat(this.selectPublicidad.PRECIO) + parseFloat(this.selectLicencia.VALOR) + this.recargo_total;
+        console.log(this.cantidad_total);
+        console.log(this.recargo_total);
+        console.log(this.precio_total);
       } else {
         this.toastr.warning('No existen licencias!', 'Aviso');
       }

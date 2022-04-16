@@ -20,49 +20,113 @@
 
         <div class="row">
           <div class="col-md-2">
-            <div class="table-header" style="background-color: forestgreen;">
-              Resumen de ventas
+            <div class="table-header" style="background-color: #213b52;">
+              Resumen de ventas <strong>{{fecha_inicial | date:'MMMM' }}</strong>
             </div>
           </div>
           <div class="col-md-3">
-            <div class="table-header" style="background-color: darkkhaki;">
-              <b>Fecha de corte </b> {{fecha_inicial}} - {{fecha_final}}
+            <div class="table-header" style="background-color: #fdc134;">
+              <strong>Fecha de corte del </strong> <small>{{fecha_inicial | date:'dd' }} al {{fecha_final | date:'dd'}} de {{fecha_inicial | date:'MMMM' }}</small>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-5">
-            <div class="clearfix">
-              <div class="pull-right tableTools-container"></div>
-            </div>
-            <div>
-              <!--datatable-->
-              <table id="DTventas" class="table table-striped table-bordered table-hover textTam">
-                <thead>
-                  <tr>                  
-                    <th>Fecha</th>
-                    <th>Categoria</th>
-                    <th class="hidden-480">Precio</th>                  
-                    <th class="hidden-480">Recargo</th>
-                  </tr>
-                </thead>
-                <tbody >
-                  <tr *ngFor="let pedido of pedidos_finalizados">                  
-                    <td>{{pedido.FECHA_FIN}}</td>
-                    <td class="hidden-480">{{pedido.TIPO_VEHICULO}}</td>
-                    <td>{{pedido.P_ORIGINAL | currency}}</td>
-                    <td class="hidden-480">
-                      <span >{{pedido.P_ORIGINAL*0.1 | currency}}</span>
-                    </td>                 
-                  </tr>      
-                </tbody>
-              </table>
-            </div>
+        <div class="row">    
+          <div class="col-md-9" style="background-color: #EBF5FB;">
+            <div class="row">
+              <!--TABLA RESUMEN VENTAS DEL MES-->
+              <div class="col-md-12">
+                <div class="clearfix">
+                  <div class="pull-right tableTools-container"></div>
+                </div>
+                <div>
+                  <!--datatable-->
+                  <table id="DTventas" class="table table-striped table-bordered table-hover textTam">
+                    <thead>
+                      <tr>                  
+                        <th>Fecha</th>
+                        <th>Categoria</th>
+                        <th class="hidden-480">Precio</th>                  
+                        <th class="hidden-480">Recargo</th>
+                      </tr>
+                    </thead>
+                    <tbody >
+                      <tr *ngFor="let pedido of pedidos_finalizados">                  
+                        <td>{{pedido.FECHA_FIN}}</td>
+                        <td class="hidden-480">{{pedido.TIPO_VEHICULO}}</td>
+                        <td>{{pedido.P_ORIGINAL | currency}}</td>
+                        <td class="hidden-480">
+                          <span >{{pedido.P_ORIGINAL*0.1 | currency}}</span>
+                        </td>                 
+                      </tr>      
+                    </tbody>
+                  </table>
+                </div>
+                <br>
+                <br>
+                <div class="col-md-8">
+                    <div class="clearfix">
+                    <div class="pull-right tableTools-container"></div>
+                  </div>
+                  <div class="table-header" style="background-color:#213b52;">
+                    Valores a cancelar
+                  </div>
+                  <div>
+                    <table id="myTable" class="table table-striped table-bordered table-hover textTam">
+                      <thead>
+                        <tr>                  
+                          <th>Item</th>
+                          <th>Cantidad</th>
+                          <th class="hidden-480">Total</th>  
+                          <th class="hidden-480">Recargo</th>                  
+                          <th class="hidden-480">A Pagar</th>
+                        </tr>
+                      </thead>
+                      <tbody >
+                        <tr>                  
+                          <td>{{selectPublicidad.DESCRIPCION}}</td>
+                          <td class="hidden-480">1</td>                  
+                          <td>{{selectPublicidad.PRECIO|currency}}</td>
+                          <td class="hidden-480">0</td>
+                          <td class="hidden-480">
+                            <span >{{selectPublicidad.PRECIO|currency}}</span>
+                          </td>                 
+                        </tr>     
+                        <tr>                  
+                          <td>{{selectLicencia.DESCRIPCION}}</td>
+                          <td class="hidden-480">1</td>
+                          <td>{{selectLicencia.VALOR|currency}}</td>
+                          <td class="hidden-480">0</td>
+                          <td class="hidden-480">
+                            <span >{{selectLicencia.VALOR|currency}}</span>
+                          </td>                 
+                        </tr>  
+                        <tr>                  
+                          <td>Ventas finalizadas</td>
+                          <td class="hidden-480">{{total_ventas.VENTAS}}</td>
+                          <td class="hidden-480">{{total_ventas.TOTAL_ORIGINAL_COM|currency }}</td>
+                          <td>{{total_ventas.TOTAL_ORIGINAL_COM - total_ventas.TOTAL_ORIGINAL|currency }}</td>
+                          <td class="hidden-480">
+                            <span >{{total_ventas.TOTAL_ORIGINAL_COM - total_ventas.TOTAL_ORIGINAL|currency }}</span>
+                          </td>                 
+                        </tr>  
+                        <tr>                  
+                          <td>Total</td>
+                          <td class="hidden-480"></td>
+                          <td> </td>
+                          <td> </td>
+                          <td class="hidden-480">
+                            <span >{{this.precio_total |currency}}</span>
+                          </td>                 
+                        </tr>  
+                      </tbody>
+                    </table>
+                  </div>                    
+                </div>
+              </div>
+            </div>   
           </div>
-          <div class="col-md-1">
-
-          </div>
-          <div class="col-md-6">
+         
+          <div class="col-md-3">
 
             <div class=" infobox-container" style="margin-top: -40px;">
 										<div class="infobox infobox-green">
@@ -121,7 +185,7 @@
 										<div class="infobox infobox-green infobox-large infobox-dark">										
 											<div class="infobox-data">
 												<div class="infobox-content">Fecha Maxima de Pago</div>
-												<div class="infobox-content">31-07-2021</div>
+												<div class="infobox-content">{{fecha_final | date}}</div>
 											</div>
 										</div>																		
 									</div>
@@ -130,62 +194,6 @@
         <!--Valores a cancelar-->
         <br>
         <br>
-        <div class="row">
-          <div class="col-md-5">
-              <div class="clearfix">
-              <div class="pull-right tableTools-container"></div>
-            </div>
-            <div class="table-header" style="background-color:mediumorchid;">
-              Valores a cancelar
-            </div>
-            <div>
-              <table id="myTable" class="table table-striped table-bordered table-hover textTam">
-                <thead>
-                  <tr>                  
-                    <th>Item</th>
-                    <th>Cantidad</th>
-                    <th class="hidden-480">Recargo</th>                  
-                    <th class="hidden-480">Precio Total</th>
-                  </tr>
-                </thead>
-                <tbody >
-                  <tr>                  
-                    <td>{{selectPublicidad.DESCRIPCION}}</td>
-                    <td class="hidden-480">1</td>
-                    <td>{{selectPublicidad.PRECIO|currency}}</td>
-                    <td class="hidden-480">
-                      <span >{{1 * selectPublicidad.PRECIO|currency}}</span>
-                    </td>                 
-                  </tr>     
-                  <tr>                  
-                    <td>{{selectLicencia.DESCRIPCION}}</td>
-                    <td class="hidden-480">1</td>
-                    <td>{{selectLicencia.VALOR|currency}}</td>
-                    <td class="hidden-480">
-                      <span >{{1 * selectLicencia.VALOR|currency}}</span>
-                    </td>                 
-                  </tr>  
-                  <tr>                  
-                    <td>Ventas finalizadas</td>
-                    <td class="hidden-480">{{total_ventas.VENTAS}}</td>
-                    <td>{{total_ventas.TOTAL_ORIGINAL_COM - total_ventas.TOTAL_ORIGINAL|currency }}</td>
-                    <td class="hidden-480">
-                      <span >{{total_ventas.TOTAL_ORIGINAL_COM|currency }}</span>
-                    </td>                 
-                  </tr>  
-                  <tr>                  
-                    <td>Total</td>
-                    <td class="hidden-480"></td>
-                    <td></td>
-                    <td class="hidden-480">
-                      <span >20</span>
-                    </td>                 
-                  </tr>  
-                </tbody>
-              </table>
-            </div>         
-          </div>
-        </div>
         <div class="row">
             <div class="col-md-5">  
                 <div style="text-align: center;">
@@ -197,8 +205,8 @@
             </div>
             <div class="col-md-6">
               <div style="text-align: right;">
-                <button class="btn btn-white btn-success btn-bold">
-                  PANTALLA PRINCIPAL
+                <button class="btn btn-white btn-success btn-bold" routerLink="/dashboard_proveedor">
+                  PANTALLA PRINCIPAL             
                 </button>
               </div>
             </div>
