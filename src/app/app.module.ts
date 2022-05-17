@@ -41,6 +41,7 @@ import {IvyGalleryModule} from 'angular-gallery';
 import { NgxSpinnerModule } from "ngx-spinner";
 // ngBootstrap
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ResumenMesComponent } from './components/mis-ventas/resumen-mes/resumen-mes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,6 +63,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     VentasProveedorComponent,
     CambioPasswordComponent,
     OlvidePasswordComponent,
+    ResumenMesComponent,
   ],
   imports: [
     BrowserModule,
